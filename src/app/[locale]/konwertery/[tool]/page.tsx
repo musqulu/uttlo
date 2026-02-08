@@ -10,7 +10,7 @@ import { ToolPlaceholder } from "@/components/layout/tool-placeholder";
 // Tool Components
 import { PdfConverter } from "@/components/pdf-converter/pdf-converter";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 const CATEGORY = "converters";
 const CATEGORY_SLUG = categoryMeta[CATEGORY].slug;
 

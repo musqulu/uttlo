@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { Sigma, Plus, Trash2, Copy, Check, RotateCcw, Sparkles } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -100,6 +101,7 @@ export function WeightedAverageCalculator({ dictionary }: WeightedAverageCalcula
       await navigator.clipboard.writeText(formatWeightedAverage(result.average));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackToolEvent("weighted-average", "calculators", "copy");
     } catch (err) {
       console.error("Failed to copy:", err);
     }

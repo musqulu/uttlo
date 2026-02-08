@@ -5,7 +5,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 const LAST_UPDATED = "6 lutego 2026";
 
 interface PageProps {
@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   
   return {
-    title: "Polityka Prywatności | uttlo",
-    description: "Polityka prywatności serwisu uttlo. Dowiedz się, jak chronimy Twoje dane i jakie informacje zbieramy podczas korzystania z naszych narzędzi online.",
+    title: "Polityka Prywatności | utllo",
+    description: "Polityka prywatności serwisu utllo. Dowiedz się, jak chronimy Twoje dane i jakie informacje zbieramy podczas korzystania z naszych narzędzi online.",
     alternates: {
       canonical: `${BASE_URL}/${locale}/polityka-prywatnosci`,
     },
     openGraph: {
-      title: "Polityka Prywatności | uttlo",
-      description: "Polityka prywatności serwisu uttlo. Dowiedz się, jak chronimy Twoje dane.",
+      title: "Polityka Prywatności | utllo",
+      description: "Polityka prywatności serwisu utllo. Dowiedz się, jak chronimy Twoje dane.",
       url: `${BASE_URL}/${locale}/polityka-prywatnosci`,
       type: "website",
       locale: "pl_PL",
@@ -68,7 +68,7 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
         <Card className="mb-8">
           <CardContent className="p-6">
             <p className="text-muted-foreground m-0">
-              Niniejsza Polityka Prywatności opisuje, w jaki sposób serwis <strong>uttlo.pl</strong> 
+              Niniejsza Polityka Prywatności opisuje, w jaki sposób serwis <strong>utllo.pl</strong> 
               ("my", "nas", "nasz") zbiera, wykorzystuje i chroni informacje podczas korzystania 
               z naszych usług. Szanujemy Twoją prywatność i zobowiązujemy się do jej ochrony.
             </p>
@@ -84,9 +84,9 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
             <h2 className="text-xl font-bold m-0">1. Administrator danych</h2>
           </div>
           <p className="text-muted-foreground">
-            Administratorem danych osobowych jest właściciel serwisu uttlo.pl. 
+            Administratorem danych osobowych jest właściciel serwisu utllo.pl. 
             W sprawach związanych z ochroną danych osobowych można kontaktować się 
-            pod adresem: <a href="mailto:kontakt@uttlo.com" className="text-primary hover:underline">kontakt@uttlo.com</a>
+            pod adresem: <a href="mailto:kontakt@utllo.com" className="text-primary hover:underline">kontakt@utllo.com</a>
           </p>
         </section>
 
@@ -99,7 +99,7 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
             <h2 className="text-xl font-bold m-0">2. Jakie dane zbieramy?</h2>
           </div>
           <p className="text-muted-foreground mb-4">
-            <strong>uttlo</strong> zostało zaprojektowane z myślą o prywatności. 
+            <strong>utllo</strong> zostało zaprojektowane z myślą o prywatności. 
             Większość naszych narzędzi działa całkowicie w Twojej przeglądarce, 
             co oznacza, że:
           </p>
@@ -130,21 +130,27 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
             <h2 className="text-xl font-bold m-0">3. Pliki cookies</h2>
           </div>
           <p className="text-muted-foreground mb-4">
-            Nasza strona może wykorzystywać pliki cookies w następujących celach:
+            Nasza strona wykorzystuje pliki cookies. Przy pierwszej wizycie wyświetlamy 
+            baner z prośbą o zgodę na pliki cookies. Analityczne cookies są ładowane 
+            <strong> wyłącznie po wyrażeniu zgody</strong> przez użytkownika.
           </p>
           <ul className="text-muted-foreground space-y-2">
             <li>
               <strong>Niezbędne cookies:</strong> Wymagane do prawidłowego działania strony 
-              (np. zapamiętanie preferencji językowych).
+              (np. zapamiętanie preferencji językowych i Twojej decyzji dotyczącej cookies).
             </li>
             <li>
-              <strong>Analityczne cookies:</strong> Pomagają nam zrozumieć, jak użytkownicy 
-              korzystają z serwisu, co pozwala nam go ulepszać.
+              <strong>Analityczne cookies (Google Analytics):</strong> Pomagają nam zrozumieć, 
+              jak użytkownicy korzystają z serwisu. Zbierane dane są anonimowe i obejmują 
+              informacje o odwiedzanych stronach, czasie spędzonym na stronie, urządzeniu 
+              i źródle ruchu. Te cookies są aktywowane tylko po kliknięciu &quot;Akceptuję&quot; 
+              w banerze cookie.
             </li>
           </ul>
           <p className="text-muted-foreground mt-4">
-            Możesz zarządzać plikami cookies w ustawieniach swojej przeglądarki. 
-            Wyłączenie niektórych cookies może wpłynąć na funkcjonalność strony.
+            Twoja decyzja dotycząca cookies jest zapisywana w pamięci przeglądarki (localStorage). 
+            Aby zmienić swoją decyzję, wyczyść dane strony w ustawieniach przeglądarki - 
+            baner zostanie wyświetlony ponownie przy następnej wizycie.
           </p>
         </section>
 
@@ -156,11 +162,24 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
             </div>
             <h2 className="text-xl font-bold m-0">4. Usługi zewnętrzne</h2>
           </div>
-          <p className="text-muted-foreground">
-            Możemy korzystać z zewnętrznych usług analitycznych (np. Google Analytics) 
+          <p className="text-muted-foreground mb-4">
+            Korzystamy z usługi <strong>Google Analytics 4</strong> (GA4) firmy Google Ireland Limited 
             w celu zbierania anonimowych statystyk dotyczących ruchu na stronie. 
-            Te usługi mogą wykorzystywać własne pliki cookies zgodnie z ich politykami 
-            prywatności.
+            Google Analytics jest ładowane wyłącznie po wyrażeniu zgody przez użytkownika 
+            za pomocą banera cookie.
+          </p>
+          <p className="text-muted-foreground">
+            Google Analytics zbiera dane takie jak: odwiedzane strony, czas spędzony na stronie, 
+            typ urządzenia, przeglądarka, kraj i źródło ruchu. Dane te są anonimowe i nie 
+            pozwalają na identyfikację konkretnego użytkownika. Więcej informacji znajdziesz w{" "}
+            <a 
+              href="https://policies.google.com/privacy" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-foreground transition-colors"
+            >
+              Polityce prywatności Google
+            </a>.
           </p>
         </section>
 
@@ -202,8 +221,8 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
             <CardContent className="p-4">
               <p className="text-muted-foreground m-0">
                 <strong>Email:</strong>{" "}
-                <a href="mailto:kontakt@uttlo.com" className="text-primary hover:underline">
-                  kontakt@uttlo.com
+                <a href="mailto:kontakt@utllo.com" className="text-primary hover:underline">
+                  kontakt@utllo.com
                 </a>
               </p>
             </CardContent>

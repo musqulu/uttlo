@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { Dices, RotateCcw, History, Trash2 } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -116,6 +117,7 @@ export function DiceRoller({ dictionary }: DiceRollerProps) {
         );
         setCurrentRoll(finalRoll);
         setIsRolling(false);
+        trackToolEvent("dice-roll", "randomizers", "use");
 
         // Add to history
         const result: RollResult = {

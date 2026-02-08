@@ -12,7 +12,7 @@ interface BreadcrumbsProps {
   className?: string;
 }
 
-export function Breadcrumbs({ items, baseUrl = "https://uttlo.com", className = "" }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, baseUrl = "https://utllo.com", className = "" }: BreadcrumbsProps) {
   const schemaItems = items.map((item) => ({
     name: item.name,
     url: item.url.startsWith("http") ? item.url : `${baseUrl}${item.url}`,

@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Calculator, Copy, Check, RotateCcw } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -56,6 +57,7 @@ export function ProportionCalculator({ dictionary }: ProportionCalculatorProps) 
       const x = solveProportion(a, b, c);
       setResult(x);
       setError(null);
+      trackToolEvent("proportion-calculator", "calculators", "use");
     } catch (err) {
       setError((err as Error).message);
       setResult(null);
@@ -75,6 +77,7 @@ export function ProportionCalculator({ dictionary }: ProportionCalculatorProps) 
       await navigator.clipboard.writeText(result.toString());
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackToolEvent("proportion-calculator", "calculators", "copy");
     }
   }, [result]);
 

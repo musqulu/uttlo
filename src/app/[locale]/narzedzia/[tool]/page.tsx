@@ -8,17 +8,14 @@ import { JsonLd, generateWebApplicationSchema, generateBreadcrumbSchema } from "
 import { ToolPlaceholder } from "@/components/layout/tool-placeholder";
 
 // Tool Components
-import { GeneratorCard as PasswordGenerator } from "@/components/password-generator/generator-card";
-import { LoremGenerator } from "@/components/lorem-ipsum/lorem-generator";
 import { CharacterCounter } from "@/components/text-counter/character-counter";
 import { WordCounter } from "@/components/text-counter/word-counter";
-import { DiceRoller } from "@/components/dice/dice-roller";
-import { FontGenerator } from "@/components/fonts/font-generator";
 import { CountdownVacation } from "@/components/countdown/countdown-vacation";
 import { CountdownChristmas } from "@/components/countdown/countdown-christmas";
 import { CountdownDate } from "@/components/countdown/countdown-date";
+import { WhiteScreenTool } from "@/components/white-screen/white-screen-tool";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 const CATEGORY = "tools";
 const CATEGORY_SLUG = categoryMeta[CATEGORY].slug;
 
@@ -95,22 +92,6 @@ export default async function ToolPage({ params }: PageProps) {
     }
 
     switch (tool.id) {
-      case "password-generator":
-        return <PasswordGenerator />;
-      case "lorem-ipsum":
-        return (
-          <LoremGenerator
-            dictionary={{
-              paragraphs: (toolDict as any).paragraphs || "Akapity",
-              sentences: (toolDict as any).sentences || "Zdania",
-              words: (toolDict as any).words || "Słowa",
-              count: (toolDict as any).count || "Ilość",
-              generate: (toolDict as any).generate || "Generuj",
-              copy: dict.common.copy,
-              copied: dict.common.copied,
-            }}
-          />
-        );
       case "character-counter":
         return (
           <CharacterCounter
@@ -154,53 +135,6 @@ export default async function ToolPage({ params }: PageProps) {
               clear: (toolDict as any).clear || "Wyczyść",
               copy: (toolDict as any).copy || "Kopiuj tekst",
               topWords: (toolDict as any).topWords || "Najczęstsze słowa",
-            }}
-          />
-        );
-      case "dice-roll":
-        return (
-          <DiceRoller
-            dictionary={{
-              title: (toolDict as any).title || "Rzut Kostką",
-              subtitle: (toolDict as any).subtitle || "Wirtualna kostka do gry online",
-              roll: (toolDict as any).roll || "Rzuć kostką",
-              rolling: (toolDict as any).rolling || "Rzucam...",
-              result: (toolDict as any).result || "Wynik",
-              total: (toolDict as any).total || "Suma",
-              numberOfDice: (toolDict as any).numberOfDice || "Liczba kostek",
-              diceType: (toolDict as any).diceType || "Typ kostki",
-              history: (toolDict as any).history || "Historia rzutów",
-              clearHistory: (toolDict as any).clearHistory || "Wyczyść historię",
-              sides: (toolDict as any).sides || "ścianek",
-              average: (toolDict as any).average || "Średnia",
-              min: (toolDict as any).min || "Min",
-              max: (toolDict as any).max || "Max",
-            }}
-          />
-        );
-      case "font-generator":
-        return (
-          <FontGenerator
-            dictionary={{
-              title: (toolDict as any).title || "Generator Czcionek",
-              subtitle: (toolDict as any).subtitle || "Podgląd tekstu w różnych czcionkach",
-              placeholder: (toolDict as any).placeholder || "Wpisz swój tekst...",
-              defaultText: (toolDict as any).defaultText || "Twój tekst tutaj",
-              fontSize: (toolDict as any).fontSize || "Rozmiar czcionki",
-              allFonts: (toolDict as any).allFonts || "Wszystkie czcionki",
-              serif: (toolDict as any).serif || "Szeryfowe",
-              sansSerif: (toolDict as any).sansSerif || "Bezszeryfowe",
-              display: (toolDict as any).display || "Dekoracyjne",
-              handwriting: (toolDict as any).handwriting || "Odręczne",
-              monospace: (toolDict as any).monospace || "Monospace",
-              copyFont: (toolDict as any).copyFont || "Kopiuj nazwę",
-              copied: (toolDict as any).copied || "Skopiowano!",
-              fontPairings: (toolDict as any).fontPairings || "Kombinacje czcionek",
-              heading: (toolDict as any).heading || "Nagłówek",
-              body: (toolDict as any).body || "Treść",
-              searchFonts: (toolDict as any).searchFonts || "Szukaj czcionek...",
-              noResults: (toolDict as any).noResults || "Nie znaleziono czcionek",
-              googleFonts: (toolDict as any).googleFonts || "Google Fonts",
             }}
           />
         );
@@ -257,6 +191,23 @@ export default async function ToolPage({ params }: PageProps) {
             }}
           />
         );
+      case "white-screen":
+        return (
+          <WhiteScreenTool
+            dictionary={{
+              title: (toolDict as any).title || "Biały Ekran",
+              subtitle: (toolDict as any).subtitle || "Pełnoekranowy wyświetlacz koloru",
+              fullscreen: (toolDict as any).fullscreen || "Pełny ekran",
+              exitFullscreen: (toolDict as any).exitFullscreen || "Wyjdź z pełnego ekranu",
+              pixelTest: (toolDict as any).pixelTest || "Test pikseli",
+              stopTest: (toolDict as any).stopTest || "Kliknij aby zatrzymać test",
+              customColor: (toolDict as any).customColor || "Własny kolor (HEX)",
+              clickToExit: (toolDict as any).clickToExit || "Kliknij aby wyjść",
+              presets: (toolDict as any).presets || "Gotowe kolory",
+              currentColor: (toolDict as any).currentColor || "Aktualny kolor",
+            }}
+          />
+        );
       default:
         return <ToolPlaceholder name={toolDict?.name || tool.id} />;
     }
@@ -265,54 +216,6 @@ export default async function ToolPage({ params }: PageProps) {
   // Render SEO content based on tool
   const renderSeoContent = () => {
     switch (tool.id) {
-      case "password-generator":
-        return (
-          <section className="max-w-2xl mx-auto mt-12 text-center">
-            <h2 className="text-xl font-semibold mb-4">
-              Bezpieczny Generator Haseł Online
-            </h2>
-            <div className="text-sm text-muted-foreground space-y-4">
-              <p>
-                Nasz generator haseł tworzy silne i bezpieczne hasła bezpośrednio w
-                Twojej przeglądarce. Hasła nie są nigdzie wysyłane ani zapisywane.
-              </p>
-              <p>
-                Używamy kryptograficznie bezpiecznego generatora liczb losowych
-                (crypto.getRandomValues) dla maksymalnego bezpieczeństwa Twoich haseł.
-              </p>
-              <p>
-                Możesz dostosować długość hasła od 8 do 64 znaków oraz wybrać, jakie
-                typy znaków mają być uwzględnione: wielkie litery, małe litery,
-                cyfry i symbole specjalne.
-              </p>
-            </div>
-          </section>
-        );
-      case "lorem-ipsum":
-        return (
-          <section className="max-w-2xl mx-auto mt-12 text-center">
-            <h2 className="text-xl font-semibold mb-4">
-              Czym jest Lorem Ipsum?
-            </h2>
-            <div className="text-sm text-muted-foreground space-y-4">
-              <p>
-                Lorem Ipsum to standardowy tekst zastępczy używany w przemyśle
-                poligraficznym i typograficznym od XVI wieku. Jest to zniekształcony
-                fragment traktatu Cycerona &quot;De finibus bonorum et malorum&quot;.
-              </p>
-              <p>
-                Nasz generator tworzy losowy tekst Lorem Ipsum w trzech formatach:
-                akapity, zdania i pojedyncze słowa. Możesz dostosować ilość
-                generowanego tekstu za pomocą suwaka.
-              </p>
-              <p>
-                Tekst Lorem Ipsum jest powszechnie używany przez projektantów
-                i deweloperów do wypełniania makiet i prototypów przed dodaniem
-                właściwej treści.
-              </p>
-            </div>
-          </section>
-        );
       case "character-counter":
         return (
           <section className="max-w-3xl mx-auto mt-16 space-y-12">
@@ -463,272 +366,6 @@ export default async function ToolPage({ params }: PageProps) {
               <p>
                 Nasz licznik słów działa całkowicie w przeglądarce - Twój tekst nigdy nie 
                 opuszcza Twojego urządzenia. Wszystkie obliczenia wykonywane są lokalnie.
-              </p>
-            </div>
-          </section>
-        );
-      case "dice-roll":
-        return (
-          <section className="max-w-3xl mx-auto mt-16 space-y-12">
-            <div>
-              <h2 className="text-2xl font-bold text-center mb-6">
-                Rzut Kostką Online - Wirtualna Kostka do Gry
-              </h2>
-              <div className="text-muted-foreground space-y-4">
-                <p>
-                  Nasz darmowy symulator rzutu kostką to idealne narzędzie do gier planszowych, 
-                  RPG, losowań i zabaw. Wybierz liczbę kostek i ich typ (D4, D6, D8, D10, D12, D20, D100) 
-                  i rzucaj bez ograniczeń. Wyniki są w pełni losowe i uczciwe.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Dostępne typy kostek</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="p-4 bg-muted rounded-lg text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">D4</div>
-                  <div className="text-sm text-muted-foreground">Czworościan</div>
-                </div>
-                <div className="p-4 bg-muted rounded-lg text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">D6</div>
-                  <div className="text-sm text-muted-foreground">Klasyczna kostka</div>
-                </div>
-                <div className="p-4 bg-muted rounded-lg text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">D8</div>
-                  <div className="text-sm text-muted-foreground">Ośmiościan</div>
-                </div>
-                <div className="p-4 bg-muted rounded-lg text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">D10</div>
-                  <div className="text-sm text-muted-foreground">Dziesięciościan</div>
-                </div>
-                <div className="p-4 bg-muted rounded-lg text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">D12</div>
-                  <div className="text-sm text-muted-foreground">Dwunastościan</div>
-                </div>
-                <div className="p-4 bg-muted rounded-lg text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">D20</div>
-                  <div className="text-sm text-muted-foreground">Dwudziestościan</div>
-                </div>
-                <div className="p-4 bg-muted rounded-lg text-center col-span-2">
-                  <div className="text-2xl font-bold text-primary mb-1">D100</div>
-                  <div className="text-sm text-muted-foreground">Procentówka (1-100)</div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Do czego służy wirtualna kostka?</h3>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li><strong>Gry planszowe</strong> - Nie masz przy sobie prawdziwej kostki? Użyj naszej!</li>
-                <li><strong>Gry RPG</strong> - D&D, Warhammer i inne systemy wymagające różnych kostek</li>
-                <li><strong>Losowania</strong> - Uczciwe losowanie kolejności, nagród, zadań</li>
-                <li><strong>Edukacja</strong> - Nauka prawdopodobieństwa i statystyki</li>
-                <li><strong>Podejmowanie decyzji</strong> - Niech kostka zdecyduje!</li>
-                <li><strong>Zabawy i gry online</strong> - Grasz zdalnie z przyjaciółmi</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Funkcje naszego generatora</h3>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Wiele kostek naraz</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Rzucaj od 1 do 10 kostek jednocześnie i zobacz sumę wszystkich wyników.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Historia rzutów</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Przeglądaj historię poprzednich rzutów wraz ze statystykami.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Animacja rzutu</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Realistyczna animacja zwiększa napięcie przed zobaczeniem wyniku.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Statystyki</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Zobacz średnią, minimum i maksimum z wszystkich rzutów.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Czy wyniki są naprawdę losowe?</h3>
-              <div className="p-4 bg-muted rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  Tak! Nasz generator wykorzystuje JavaScript Math.random(), który zapewnia 
-                  pseudolosowe wyniki o wysokiej jakości. Każda ścianka kostki ma identyczne 
-                  prawdopodobieństwo wylosowania, więc wyniki są tak samo uczciwe jak rzut 
-                  prawdziwą kostką.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Często zadawane pytania</h3>
-              <div className="space-y-4">
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Co oznacza D6, D20 itp.?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Litera &quot;D&quot; pochodzi od angielskiego &quot;dice&quot; (kostka), a liczba oznacza 
-                    ilość ścianek. D6 to klasyczna sześcienna kostka (1-6), D20 to 
-                    dwudziestościan (1-20) popularny w grach RPG.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Jak rzucić wieloma kostkami?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Użyj suwaka &quot;Liczba kostek&quot; aby wybrać od 1 do 10 kostek. 
-                    Wszystkie kostki będą tego samego typu i zostaną rzucone jednocześnie.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Czy mogę używać tej kostki do gier na pieniądze?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Ten generator jest przeznaczony wyłącznie do celów rozrywkowych i edukacyjnych. 
-                    Nie zalecamy używania go do gier hazardowych.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center text-sm text-muted-foreground">
-              <p>
-                Nasz symulator kostki działa całkowicie w przeglądarce. Nie wymaga instalacji, 
-                rejestracji ani połączenia z internetem po załadowaniu strony.
-              </p>
-            </div>
-          </section>
-        );
-      case "font-generator":
-        return (
-          <section className="max-w-3xl mx-auto mt-16 space-y-12">
-            <div>
-              <h2 className="text-2xl font-bold text-center mb-6">
-                Generator Stylowych Czcionek Online - Kopiuj i Wklej
-              </h2>
-              <div className="text-muted-foreground space-y-4">
-                <p>
-                  Nasz darmowy generator czcionek zamienia zwykły tekst na stylowe fonty Unicode, 
-                  które możesz skopiować i wkleić wszędzie - na Instagram, Facebook, Twitter, 
-                  TikTok, Discord i w innych miejscach. Ponad 25 unikalnych stylów do wyboru!
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Dostępne style czcionek</h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Podstawowe</h4>
-                  <p className="text-sm text-muted-foreground">
-                    𝗣𝗼𝗴𝗿𝘂𝗯𝗶𝗼𝗻𝘆, 𝘒𝘶𝘳𝘴𝘺𝘸𝘢, 𝙋𝙤𝙜𝙧𝙪𝙗𝙞𝙤𝙣𝙖 𝙠𝙪𝙧𝙨𝙮𝙬𝙖, 𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Dekoracyjne</h4>
-                  <p className="text-sm text-muted-foreground">
-                    𝒮𝓀𝓇𝓎𝓅𝓉, 𝔉𝔯𝔞𝔨𝔱𝔲𝔯𝔞, 𝔾𝕠𝕥𝕙𝕚𝕔, 𝕯𝖔𝖚𝖇𝖑𝖊
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Symbole</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Ⓦ ⓚⓞⓛⓚⓤ, 🅦 🅝🅔🅖🅐🅣🅨🅦, 🄺🅆🄰🄳🅁🄰🅃
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Stylizowane</h4>
-                  <p className="text-sm text-muted-foreground">
-                    卂乙ﾌ卂ㄒㄚ匚Ҝ丨, ቿፕጎዐየነክል, ค๒г๏๔ภץ
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Efekty</h4>
-                  <p className="text-sm text-muted-foreground">
-                    P̲o̲d̲k̲r̲e̲ś̲l̲o̲n̲y̲, P̶r̶z̶e̶k̶r̶e̶ś̶l̶o̶n̶y̶, ᵍᵒʳⁿʸ ⁱⁿᵈᵉᵏˢ
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Dekoracje</h4>
-                  <p className="text-sm text-muted-foreground">
-                    ✨ Gwiazdki ✨, ♥ Serduszka ♥, 【Nawiasy】
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Jak używać generatora?</h3>
-              <ol className="list-decimal list-inside space-y-3 text-muted-foreground">
-                <li><strong>Wpisz tekst</strong> - wprowadź tekst, który chcesz przekształcić</li>
-                <li><strong>Wybierz styl</strong> - przeglądaj dostępne style czcionek</li>
-                <li><strong>Kopiuj</strong> - kliknij przycisk &quot;Kopiuj&quot; przy wybranym stylu</li>
-                <li><strong>Wklej</strong> - wklej tekst w dowolnym miejscu (Ctrl+V / Cmd+V)</li>
-              </ol>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Gdzie możesz użyć stylowych czcionek?</h3>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li><strong>Instagram</strong> - bio, posty, stories, komentarze</li>
-                <li><strong>Facebook</strong> - posty, komentarze, nazwa profilu</li>
-                <li><strong>Twitter/X</strong> - tweety, bio, nazwa użytkownika</li>
-                <li><strong>TikTok</strong> - bio, komentarze</li>
-                <li><strong>Discord</strong> - wiadomości, nazwa serwera</li>
-                <li><strong>WhatsApp</strong> - wiadomości, status</li>
-                <li><strong>YouTube</strong> - komentarze, opisy</li>
-                <li><strong>Messenger</strong> - wiadomości</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Często zadawane pytania</h3>
-              <div className="space-y-4">
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Jak to działa?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Generator używa specjalnych znaków Unicode, które wyglądają jak stylowe czcionki. 
-                    To nie są prawdziwe fonty, ale znaki z różnych alfabetów i symboli matematycznych, 
-                    które można kopiować i wklejać jako zwykły tekst.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Czy to działa wszędzie?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Większość platform i aplikacji obsługuje znaki Unicode. Jednak niektóre 
-                    mogą nie wyświetlać wszystkich stylów poprawnie. Najlepiej przetestować 
-                    przed użyciem.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Czy stylowe czcionki wpływają na SEO?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Tak, wyszukiwarki mogą mieć problem z indeksowaniem tekstu Unicode. 
-                    Używaj stylowych czcionek do dekoracji, nie do głównej treści strony.
-                  </p>
-                </div>
-                <div className="p-4 bg-muted rounded-lg">
-                  <h4 className="font-medium mb-2">Czy polskie znaki są obsługiwane?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Niektóre style mogą nie obsługiwać polskich znaków diakrytycznych (ą, ę, ó, itd.). 
-                    W takim przypadku polskie litery pozostaną w oryginalnej formie.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center text-sm text-muted-foreground">
-              <p>
-                Nasz generator czcionek działa całkowicie w przeglądarce. Twój tekst nie jest 
-                wysyłany na żaden serwer - wszystkie przekształcenia wykonywane są lokalnie.
               </p>
             </div>
           </section>
@@ -924,6 +561,213 @@ export default async function ToolPage({ params }: PageProps) {
               <p>
                 Licznik aktualizuje się automatycznie co sekundę. Wszystkie dane 
                 przechowywane są lokalnie w Twojej przeglądarce.
+              </p>
+            </div>
+          </section>
+        );
+      case "white-screen":
+        return (
+          <section className="max-w-3xl mx-auto mt-16 space-y-12">
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Biały Ekran Online - Pełnoekranowy Wyświetlacz Koloru
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Nasz darmowy biały ekran online to wszechstronne narzędzie, które wyświetla 
+                  jednolity kolor na pełnym ekranie. Dzięki niemu możesz sprawdzić monitor pod 
+                  kątem martwych pikseli, wyczyścić ekran z kurzu i smug, a nawet użyć go jako 
+                  oświetlenia do zdjęć lub wideorozmów. Wybierz spośród 12 gotowych kolorów 
+                  lub wpisz dowolny kolor w formacie HEX.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Do czego służy biały ekran?</h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Test martwych pikseli</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Martwy piksel to punkt na ekranie, który nie świeci prawidłowo. Na białym tle 
+                    widać go jako czarną kropkę, na czarnym - jako jasną. Użyj trybu testu pikseli, 
+                    który automatycznie przełącza kolory (biały, czarny, czerwony, zielony, niebieski) 
+                    aby wykryć wadliwe piksele na każdym kanale koloru.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czyszczenie ekranu</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Jasne, jednolite tło sprawia, że kurz, odciski palców i smugi są natychmiast 
+                    widoczne. Włącz biały ekran na pełnym ekranie, wyłącz oświetlenie pomieszczenia 
+                    i przetrzyj monitor miękką ściereczką z mikrofibry. Dzięki temu nie przegapisz 
+                    żadnej plamy.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Oświetlenie do zdjęć</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Biały lub kolorowy ekran może służyć jako dodatkowe źródło światła podczas 
+                    robienia zdjęć produktów, selfie lub wideorozmów. Jasność ekranu na maksimum 
+                    daje miękkie, rozproszone światło bez ostrych cieni.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Kalibracja monitora</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Jednolite kolory pomagają sprawdzić, czy ekran wyświetla je równomiernie. 
+                    Szukaj ciemniejszych rogów (backlight bleeding), nierówności jasności 
+                    i odchyleń kolorystycznych. Przydatne przy zakupie nowego monitora.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Jak wykryć martwe piksele?</h3>
+              <div className="space-y-4">
+                <div className="p-4 bg-muted rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Krok 1:</strong> Ustaw jasność ekranu na maksimum i przyciemnij pomieszczenie.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Krok 2:</strong> Kliknij &quot;Test pikseli&quot; - ekran zacznie automatycznie 
+                    przełączać się między kolorami co 3 sekundy.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Krok 3:</strong> Przyjrzyj się uważnie całej powierzchni ekranu. 
+                    Martwy piksel to punkt, który nie zmienia koloru wraz z resztą ekranu.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Krok 4:</strong> Jeśli znajdziesz wadliwy piksel na nowym monitorze, 
+                    skontaktuj się z producentem - większość oferuje wymianę w ramach gwarancji.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Rodzaje wadliwych pikseli</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-muted">
+                      <th className="border p-3 text-left">Typ</th>
+                      <th className="border p-3 text-left">Opis</th>
+                      <th className="border p-3 text-left">Jak wygląda</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border p-3 font-medium">Martwy piksel</td>
+                      <td className="border p-3 text-sm">Piksel nie świeci wcale</td>
+                      <td className="border p-3 text-sm">Czarny punkt na jasnym tle</td>
+                    </tr>
+                    <tr>
+                      <td className="border p-3 font-medium">Zablokowany piksel</td>
+                      <td className="border p-3 text-sm">Piksel świeci jednym kolorem</td>
+                      <td className="border p-3 text-sm">Kolorowa kropka (czerwona, zielona lub niebieska)</td>
+                    </tr>
+                    <tr>
+                      <td className="border p-3 font-medium">Hot piksel</td>
+                      <td className="border p-3 text-sm">Piksel świeci białym na ciemnym tle</td>
+                      <td className="border p-3 text-sm">Jasny punkt widoczny tylko na czarnym ekranie</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Jak prawidłowo czyścić ekran?</h3>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li><strong>Wyłącz urządzenie</strong> - na ciemnym ekranie lepiej widać smugi i kurz</li>
+                <li><strong>Użyj mikrofibry</strong> - nigdy nie używaj ręczników papierowych, ścierek kuchennych ani chusteczek</li>
+                <li><strong>Brak chemikaliów</strong> - nie spryskuj ekranu zwykłym płynem do szyb (zawiera amoniak)</li>
+                <li><strong>Delikatne ruchy</strong> - przecieraj okrężnymi ruchami, bez naciskania</li>
+                <li><strong>Specjalne płyny</strong> - użyj dedykowanego płynu do ekranów lub lekko zwilżonej wodą ściereczki</li>
+                <li><strong>Suszenie</strong> - poczekaj aż ekran wyschnie przed włączeniem</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Dostępne kolory</h3>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                <div className="p-3 bg-white border rounded-lg text-center text-sm">Biały</div>
+                <div className="p-3 bg-black text-white rounded-lg text-center text-sm">Czarny</div>
+                <div className="p-3 bg-red-500 text-white rounded-lg text-center text-sm">Czerwony</div>
+                <div className="p-3 bg-green-500 text-white rounded-lg text-center text-sm">Zielony</div>
+                <div className="p-3 bg-blue-500 text-white rounded-lg text-center text-sm">Niebieski</div>
+                <div className="p-3 bg-yellow-400 rounded-lg text-center text-sm">Żółty</div>
+                <div className="p-3 bg-cyan-400 rounded-lg text-center text-sm">Cyjan</div>
+                <div className="p-3 bg-fuchsia-500 text-white rounded-lg text-center text-sm">Magenta</div>
+                <div className="p-3 bg-orange-500 text-white rounded-lg text-center text-sm">Pomarańczowy</div>
+                <div className="p-3 bg-violet-600 text-white rounded-lg text-center text-sm">Fioletowy</div>
+                <div className="p-3 bg-pink-400 text-white rounded-lg text-center text-sm">Różowy</div>
+                <div className="p-3 bg-gray-500 text-white rounded-lg text-center text-sm">Szary</div>
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">
+                Możesz też wpisać dowolny kolor w formacie HEX (np. #FF5733).
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Często zadawane pytania</h3>
+              <div className="space-y-4">
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czy biały ekran działa na telefonie?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Tak! Narzędzie działa na każdym urządzeniu z przeglądarką internetową - 
+                    smartfonach, tabletach, laptopach i monitorach stacjonarnych. Na telefonie 
+                    tryb pełnoekranowy ukryje pasek nawigacji.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czy biały ekran jest bezpieczny dla ekranów OLED?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Tak, krótkotrwałe wyświetlanie białego ekranu nie uszkodzi panelu OLED. 
+                    Unikaj jednak pozostawiania statycznego obrazu przez wiele godzin, co może 
+                    prowadzić do wypalenia pikseli (burn-in). Test pikseli trwa tylko kilkanaście sekund.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Jak wyjść z trybu pełnoekranowego?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Kliknij gdziekolwiek na ekranie lub naciśnij klawisz Escape. 
+                    W trybie testu pikseli najpierw zatrzymaj test przyciskiem X w rogu, 
+                    a następnie kliknij ekran.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Ile martwych pikseli to wada?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Norma ISO 9241-302 określa dopuszczalną liczbę wadliwych pikseli w zależności 
+                    od klasy monitora. Większość producentów wymienia monitor przy 3-5 wadliwych pikselach. 
+                    W przypadku nowego monitora reklamuj go nawet przy jednym martwym pikselu.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czy można naprawić martwy piksel?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Zablokowany piksel (świecący jednym kolorem) można czasem &quot;odblokować&quot; 
+                    poprzez wyświetlanie szybko zmieniających się kolorów na kilkanaście minut. 
+                    Martwy piksel (nieświecący) niestety zazwyczaj wymaga wymiany panelu.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground">
+              <p>
+                Nasz biały ekran działa całkowicie w przeglądarce. Nie wymaga instalacji, 
+                rejestracji ani połączenia z internetem po załadowaniu strony. Działa na 
+                wszystkich urządzeniach i systemach operacyjnych.
               </p>
             </div>
           </section>

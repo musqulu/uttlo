@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Copy, Check, RefreshCw } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 
 interface PasswordDisplayProps {
@@ -17,6 +18,7 @@ export function PasswordDisplay({ password, onRegenerate }: PasswordDisplayProps
       await navigator.clipboard.writeText(password);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackToolEvent("password-generator", "generators", "copy");
     } catch (err) {
       console.error("Nie udało się skopiować hasła:", err);
     }

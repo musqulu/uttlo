@@ -3,7 +3,7 @@ import { i18n } from "@/lib/i18n/config";
 import { tools, categoryMeta, allCategoryIds, getToolUrl, getCategoryUrl } from "@/lib/tools";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://uttlo.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://utllo.com";
 
   const routes: MetadataRoute.Sitemap = [];
 

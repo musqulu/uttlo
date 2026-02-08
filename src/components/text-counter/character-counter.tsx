@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { Type, Copy, Check, Trash2, Clock } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -47,6 +48,7 @@ export function CharacterCounter({ dictionary }: CharacterCounterProps) {
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackToolEvent("character-counter", "tools", "copy");
     } catch (err) {
       console.error("Failed to copy:", err);
     }

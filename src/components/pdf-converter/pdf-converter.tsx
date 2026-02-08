@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { FileUp, Download, Image, Loader2, X, FileImage } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -85,6 +86,7 @@ export function PdfConverter({ format, dictionary }: PdfConverterProps) {
         setProgress
       );
       setPages(convertedPages);
+      trackToolEvent(format === "jpeg" ? "pdf-to-jpg" : "pdf-to-png", "converters", "use");
     } catch (err) {
       console.error("Conversion error:", err);
       setError("Wystąpił błąd podczas konwersji. Spróbuj ponownie.");

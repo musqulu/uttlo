@@ -28,10 +28,13 @@ import {
   Sun,
   Gift,
   Calendar,
+  Moon,
+  Flame,
+  Monitor,
   LucideIcon,
 } from "lucide-react";
 
-export type ToolCategory = "tools" | "converters" | "randomizers" | "calculators";
+export type ToolCategory = "tools" | "generators" | "converters" | "randomizers" | "calculators";
 
 export interface CategoryMeta {
   slug: string;
@@ -41,12 +44,13 @@ export interface CategoryMeta {
 
 export const categoryMeta: Record<ToolCategory, CategoryMeta> = {
   tools: { slug: "narzedzia", icon: Wrench, name: "Narzędzia" },
+  generators: { slug: "generatory", icon: Sparkles, name: "Generatory" },
   converters: { slug: "konwertery", icon: ArrowRightLeft, name: "Konwertery" },
   randomizers: { slug: "losuj", icon: Dices, name: "Losuj" },
   calculators: { slug: "kalkulatory", icon: Calculator, name: "Kalkulatory" },
 };
 
-export const allCategoryIds: ToolCategory[] = ["tools", "converters", "randomizers", "calculators"];
+export const allCategoryIds: ToolCategory[] = ["tools", "generators", "converters", "randomizers", "calculators"];
 
 export interface Tool {
   id: string;
@@ -57,26 +61,35 @@ export interface Tool {
 }
 
 export const tools: Tool[] = [
-  // Narzędzia (Tools)
+  // Generatory (Generators)
   {
     id: "password-generator",
     slug: "generator-hasel",
     icon: KeyRound,
     isReady: true,
-    category: "tools",
+    category: "generators",
   },
+  {
+    id: "lorem-ipsum",
+    slug: "generator-lorem-ipsum",
+    icon: FileText,
+    isReady: true,
+    category: "generators",
+  },
+  {
+    id: "font-generator",
+    slug: "generator-czcionek",
+    icon: ALargeSmall,
+    isReady: true,
+    category: "generators",
+  },
+
+  // Narzędzia (Tools)
   {
     id: "uuid-generator",
     slug: "generator-uuid",
     icon: Fingerprint,
     isReady: false,
-    category: "tools",
-  },
-  {
-    id: "lorem-ipsum",
-    slug: "lorem-ipsum",
-    icon: FileText,
-    isReady: true,
     category: "tools",
   },
   {
@@ -133,14 +146,7 @@ export const tools: Tool[] = [
     slug: "rzut-kostka",
     icon: Dices,
     isReady: true,
-    category: "tools",
-  },
-  {
-    id: "font-generator",
-    slug: "generator-czcionek",
-    icon: ALargeSmall,
-    isReady: true,
-    category: "tools",
+    category: "randomizers",
   },
   {
     id: "countdown-vacation",
@@ -160,6 +166,13 @@ export const tools: Tool[] = [
     id: "countdown-date",
     slug: "odliczanie-do-daty",
     icon: Calendar,
+    isReady: true,
+    category: "tools",
+  },
+  {
+    id: "white-screen",
+    slug: "bialy-ekran",
+    icon: Monitor,
     isReady: true,
     category: "tools",
   },
@@ -271,6 +284,20 @@ export const tools: Tool[] = [
     id: "weighted-average",
     slug: "srednia-wazona",
     icon: Sigma,
+    isReady: true,
+    category: "calculators",
+  },
+  {
+    id: "sleep-calculator",
+    slug: "kalkulator-snu",
+    icon: Moon,
+    isReady: true,
+    category: "calculators",
+  },
+  {
+    id: "calorie-calculator",
+    slug: "kalkulator-kalorii",
+    icon: Flame,
     isReady: true,
     category: "calculators",
   },

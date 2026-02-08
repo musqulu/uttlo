@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Calendar, Clock, PartyPopper } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -46,6 +47,7 @@ export function CountdownDate({ dictionary }: CountdownDateProps) {
       date.setHours(0, 0, 0, 0);
       setTimeRemaining(getTimeRemaining(date));
       setIsDateSet(true);
+      trackToolEvent("countdown-date", "tools", "use");
     } else {
       setTimeRemaining(null);
       setIsDateSet(false);

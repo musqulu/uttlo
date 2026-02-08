@@ -1,5 +1,5 @@
 {
-  "brand": "uttlo",
+  "brand": "utllo",
   "tagline": "Proste narzędzia. Zrobione dobrze.",
   "nav": {
     "tools": "Narzędzia",
@@ -9,8 +9,9 @@
     "popular": "Popularne"
   },
   "categories": {
-    "available": "Dostępne",
+    "available": "Popularne",
     "tools": "Narzędzia",
+    "generators": "Generatory",
     "converters": "Konwertery",
     "randomizers": "Losuj",
     "calculators": "Kalkulatory"
@@ -19,8 +20,14 @@
     "tools": {
       "title": "Narzędzia Online",
       "subtitle": "Kolekcja darmowych narzędzi dla programistów i twórców",
-      "seoTitle": "Darmowe Narzędzia Online - Generator Haseł, Lorem Ipsum i więcej",
-      "seoDescription": "Bezpłatne narzędzia online dla programistów i twórców. Generator haseł, Lorem Ipsum, konwerter kolorów, formatter JSON i więcej. Wszystko działa w przeglądarce."
+      "seoTitle": "Darmowe Narzędzia Online - Liczniki, Odliczanie i więcej",
+      "seoDescription": "Bezpłatne narzędzia online. Licznik znaków i słów, rzut kostką, odliczanie do wakacji i świąt. Wszystko działa w przeglądarce."
+    },
+    "generators": {
+      "title": "Generatory Online",
+      "subtitle": "Generuj hasła, tekst Lorem Ipsum i stylowe czcionki",
+      "seoTitle": "Darmowe Generatory Online - Haseł, Lorem Ipsum, Czcionek",
+      "seoDescription": "Bezpłatne generatory online. Generator haseł, Lorem Ipsum, czcionek Unicode. Szybkie i bezpieczne generowanie treści w przeglądarce."
     },
     "converters": {
       "title": "Konwertery Online",
@@ -81,7 +88,7 @@
       "seoDescription": "Darmowy generator UUID v4 online. Twórz unikalne identyfikatory dla swoich projektów."
     },
     "lorem-ipsum": {
-      "name": "Lorem Ipsum",
+      "name": "Generator Lorem Ipsum",
       "description": "Generuj tekst zastępczy Lorem Ipsum do projektów.",
       "seoTitle": "Generator Lorem Ipsum Online - Tekst Zastępczy",
       "seoDescription": "Darmowy generator tekstu Lorem Ipsum. Twórz akapity, zdania i słowa do projektów.",
@@ -262,6 +269,22 @@
       "dateReached": "Data już minęła!",
       "timeSince": "Od tego wydarzenia minęło"
     },
+    "white-screen": {
+      "name": "Biały Ekran",
+      "description": "Wyświetl biały ekran na pełnym ekranie. Testuj martwe piksele i czyść ekran.",
+      "seoTitle": "Biały Ekran Online - Test Martwych Pikseli i Czyszczenie Ekranu | Darmowe Narzędzie",
+      "seoDescription": "Darmowy biały ekran online na pełny ekran. Wykryj martwe piksele, wyczyść monitor z kurzu i smug. 12 kolorów + własny kolor HEX. Działa na telefonie i komputerze.",
+      "title": "Biały Ekran",
+      "subtitle": "Pełnoekranowy wyświetlacz koloru - test pikseli i czyszczenie ekranu",
+      "fullscreen": "Pełny ekran",
+      "exitFullscreen": "Wyjdź z pełnego ekranu",
+      "pixelTest": "Test pikseli",
+      "stopTest": "Kliknij aby zatrzymać test",
+      "customColor": "Własny kolor (HEX)",
+      "clickToExit": "Kliknij aby wyjść",
+      "presets": "Gotowe kolory",
+      "currentColor": "Aktualny kolor"
+    },
     "youtube-converter": {
       "name": "Konwerter YouTube",
       "description": "Konwertuj filmy z YouTube do różnych formatów.",
@@ -438,6 +461,65 @@
       "copy": "Kopiuj wynik",
       "example": "Przykład",
       "loadExample": "Załaduj przykład ocen"
+    },
+    "sleep-calculator": {
+      "name": "Kalkulator Snu",
+      "description": "Oblicz optymalną godzinę snu lub budzenia na podstawie cykli snu.",
+      "seoTitle": "Kalkulator Snu Online - Oblicz Optymalny Czas Snu i Budzenia | Darmowe Narzędzie",
+      "seoDescription": "Darmowy kalkulator snu online. Oblicz optymalną godzinę zasypiania lub budzenia na podstawie 90-minutowych cykli snu. Wstawaj wypoczęty każdego dnia!",
+      "title": "Kalkulator Snu",
+      "subtitle": "Oblicz optymalną godzinę snu lub budzenia",
+      "wakeUpAt": "Chcę wstać o...",
+      "fallAsleepAt": "Chcę zasnąć o...",
+      "calculate": "Oblicz",
+      "clear": "Wyczyść",
+      "cycles": "cykli",
+      "hours": "godzin",
+      "optimal": "Optymalnie",
+      "good": "Dobrze",
+      "minimum": "Minimum",
+      "timeToFallAsleep": "Czas zasypiania",
+      "results": "Wyniki",
+      "bedtimeResults": "Powinieneś położyć się spać o:",
+      "wakeUpResults": "Powinieneś wstać o:"
+    },
+    "calorie-calculator": {
+      "name": "Kalkulator Kalorii",
+      "description": "Oblicz dzienne zapotrzebowanie kaloryczne na podstawie wagi, wzrostu, wieku i aktywności.",
+      "seoTitle": "Kalkulator Kalorii Online - Oblicz Zapotrzebowanie Kaloryczne (BMR i TDEE) | Darmowe Narzędzie",
+      "seoDescription": "Darmowy kalkulator kalorii online. Oblicz BMR, TDEE i dzienne zapotrzebowanie kaloryczne na podstawie wagi, wzrostu, wieku i poziomu aktywności. Cele: odchudzanie, budowa masy, utrzymanie wagi.",
+      "title": "Kalkulator Kalorii",
+      "subtitle": "Oblicz dzienne zapotrzebowanie kaloryczne",
+      "gender": "Płeć",
+      "male": "Mężczyzna",
+      "female": "Kobieta",
+      "age": "Wiek (lat)",
+      "weight": "Waga (kg)",
+      "height": "Wzrost (cm)",
+      "activityLevel": "Poziom aktywności",
+      "sedentary": "Siedzący (brak ćwiczeń)",
+      "lightlyActive": "Lekko aktywny (1-3 dni/tydzień)",
+      "moderatelyActive": "Umiarkowanie aktywny (3-5 dni/tydzień)",
+      "veryActive": "Bardzo aktywny (6-7 dni/tydzień)",
+      "extremelyActive": "Ekstremalnie aktywny (sportowiec)",
+      "calculate": "Oblicz kalorie",
+      "clear": "Wyczyść",
+      "bmr": "BMR",
+      "bmrDesc": "Podstawowa przemiana materii",
+      "tdee": "TDEE",
+      "tdeeDesc": "Całkowity dzienny wydatek energetyczny",
+      "loseWeight": "Odchudzanie",
+      "slowCut": "Wolna redukcja",
+      "maintenance": "Utrzymanie wagi",
+      "leanBulk": "Czysta masa",
+      "bulk": "Budowa masy",
+      "protein": "Białko",
+      "carbs": "Węglowodany",
+      "fat": "Tłuszcze",
+      "kcalPerDay": "kcal/dzień",
+      "weeklyChange": "Tygodniowo",
+      "goalResults": "Zapotrzebowanie kaloryczne wg celu",
+      "macros": "Makroskładniki"
     }
   },
   "common": {

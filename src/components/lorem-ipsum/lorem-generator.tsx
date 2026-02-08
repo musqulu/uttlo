@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { FileText, Copy, Check, RefreshCw } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -42,6 +43,7 @@ export function LoremGenerator({ dictionary }: LoremGeneratorProps) {
   const regenerate = useCallback(() => {
     const newText = generateLorem({ type, count });
     setText(newText);
+    trackToolEvent("lorem-ipsum", "generators", "use");
   }, [type, count]);
 
   // Generate on mount and when options change
@@ -59,6 +61,7 @@ export function LoremGenerator({ dictionary }: LoremGeneratorProps) {
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackToolEvent("lorem-ipsum", "generators", "copy");
     } catch (err) {
       console.error("Nie udało się skopiować tekstu:", err);
     }

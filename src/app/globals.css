@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* 
- * uttlo Brand Colors
+ * utllo Brand Colors
  * Primary: #0F172A (deep blue-gray)
  * Accent: #4F46E5 (indigo)
  * Background: #FFFFFF, #F8FAFC
@@ -197,6 +197,15 @@
   .prose-ui {
     max-width: 65ch;
   }
+}
+
+/* ── Scrollbar hide utility ── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── Responsive: mobile type scale ── */

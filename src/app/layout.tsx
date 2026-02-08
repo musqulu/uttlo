@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { CookieBanner } from "@/components/layout/cookie-banner";
+import { RouteTracker } from "@/components/analytics/route-tracker";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,13 +11,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | uttlo",
-    default: "uttlo - Darmowe Narzędzia Online",
+    template: "%s | utllo",
+    default: "utllo - Darmowe Narzędzia Online",
   },
   description:
     "Darmowe narzędzia online dla każdego. Generator haseł, odliczanie do wakacji, kalkulatory, konwertery i wiele więcej. Wszystko działa w przeglądarce.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://uttlo.com"
+    process.env.NEXT_PUBLIC_BASE_URL || "https://utllo.com"
   ),
   keywords: [
     "narzędzia online",
@@ -24,19 +26,19 @@ export const metadata: Metadata = {
     "odliczanie do wakacji",
     "kalkulator BMI",
     "konwerter PDF",
-    "uttlo",
+    "utllo",
   ],
-  authors: [{ name: "uttlo" }],
-  creator: "uttlo",
-  publisher: "uttlo",
+  authors: [{ name: "utllo" }],
+  creator: "utllo",
+  publisher: "utllo",
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    siteName: "uttlo",
+    siteName: "utllo",
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@uttlo",
+    creator: "@utllo",
   },
   robots: {
     index: true,
@@ -60,6 +62,8 @@ export default function RootLayout({
     <html lang="pl" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
+        <CookieBanner />
+        <RouteTracker />
       </body>
     </html>
   );

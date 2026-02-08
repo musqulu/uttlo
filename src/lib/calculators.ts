@@ -269,3 +269,310 @@ export const EXAMPLE_GRADES: WeightedValue[] = [
 export function formatWeightedAverage(value: number, decimals: number = 2): string {
   return value.toFixed(decimals);
 }
+
+// ============================================
+// Sleep Calculator
+// ============================================
+
+/** Duration of one full sleep cycle in minutes */
+export const SLEEP_CYCLE_MINUTES = 90;
+
+/** Average time it takes to fall asleep in minutes */
+export const FALL_ASLEEP_MINUTES = 14;
+
+/** Number of cycles to calculate (3 through 6) */
+export const SLEEP_CYCLES = [6, 5, 4, 3] as const;
+
+export type SleepQuality = "optimal" | "good" | "minimum";
+
+export interface SleepTimeResult {
+  time: Date;
+  cycles: number;
+  totalHours: number;
+  quality: SleepQuality;
+}
+
+/**
+ * Get sleep quality rating based on number of cycles
+ */
+export function getSleepQuality(cycles: number): SleepQuality {
+  if (cycles >= 5) return "optimal";
+  if (cycles === 4) return "good";
+  return "minimum";
+}
+
+/**
+ * Get color classes for sleep quality
+ */
+export function getSleepQualityColor(quality: SleepQuality): string {
+  switch (quality) {
+    case "optimal":
+      return "text-green-600 dark:text-green-400";
+    case "good":
+      return "text-yellow-600 dark:text-yellow-400";
+    case "minimum":
+      return "text-red-600 dark:text-red-400";
+  }
+}
+
+/**
+ * Get background color classes for sleep quality
+ */
+export function getSleepQualityBgColor(quality: SleepQuality): string {
+  switch (quality) {
+    case "optimal":
+      return "bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800";
+    case "good":
+      return "bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800";
+    case "minimum":
+      return "bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800";
+  }
+}
+
+/**
+ * Calculate optimal bedtimes given a desired wake-up time.
+ * Subtracts N cycles + fall-asleep time from the wake-up time.
+ */
+export function calculateBedtimes(wakeUpTime: Date): SleepTimeResult[] {
+  return SLEEP_CYCLES.map((cycles) => {
+    const totalSleepMinutes = cycles * SLEEP_CYCLE_MINUTES;
+    const totalMinutes = totalSleepMinutes + FALL_ASLEEP_MINUTES;
+    const bedtime = new Date(wakeUpTime.getTime() - totalMinutes * 60 * 1000);
+    return {
+      time: bedtime,
+      cycles,
+      totalHours: totalSleepMinutes / 60,
+      quality: getSleepQuality(cycles),
+    };
+  });
+}
+
+/**
+ * Calculate optimal wake-up times given a desired bedtime.
+ * Adds fall-asleep time + N cycles to the bedtime.
+ */
+export function calculateWakeUpTimes(bedTime: Date): SleepTimeResult[] {
+  return SLEEP_CYCLES.map((cycles) => {
+    const totalSleepMinutes = cycles * SLEEP_CYCLE_MINUTES;
+    const totalMinutes = totalSleepMinutes + FALL_ASLEEP_MINUTES;
+    const wakeUp = new Date(bedTime.getTime() + totalMinutes * 60 * 1000);
+    return {
+      time: wakeUp,
+      cycles,
+      totalHours: totalSleepMinutes / 60,
+      quality: getSleepQuality(cycles),
+    };
+  });
+}
+
+/**
+ * Format a Date as HH:MM string
+ */
+export function formatSleepTime(date: Date): string {
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+/**
+ * Create a Date object from hours and minutes (today's date)
+ */
+export function createTimeDate(hours: number, minutes: number): Date {
+  const date = new Date();
+  date.setHours(hours, minutes, 0, 0);
+  return date;
+}
+
+// ============================================
+// Calorie Calculator (Mifflin-St Jeor)
+// ============================================
+
+export type Gender = "male" | "female";
+
+export type ActivityLevel =
+  | "sedentary"
+  | "lightlyActive"
+  | "moderatelyActive"
+  | "veryActive"
+  | "extremelyActive";
+
+export type CalorieGoalType =
+  | "loseWeight"
+  | "slowCut"
+  | "maintenance"
+  | "leanBulk"
+  | "bulk";
+
+export interface CalorieGoalResult {
+  goal: CalorieGoalType;
+  calories: number;
+  adjustment: number;
+  weeklyKgChange: number;
+  macros: MacroSplit;
+}
+
+export interface MacroSplit {
+  protein: number; // grams
+  carbs: number;   // grams
+  fat: number;     // grams
+}
+
+export interface CalorieCalculationResult {
+  bmr: number;
+  tdee: number;
+  goals: CalorieGoalResult[];
+}
+
+/** Activity level multipliers for TDEE calculation */
+export const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
+  sedentary: 1.2,
+  lightlyActive: 1.375,
+  moderatelyActive: 1.55,
+  veryActive: 1.725,
+  extremelyActive: 1.9,
+};
+
+/** Calorie adjustments per day for each goal */
+export const GOAL_ADJUSTMENTS: Record<CalorieGoalType, number> = {
+  loseWeight: -500,
+  slowCut: -250,
+  maintenance: 0,
+  leanBulk: 250,
+  bulk: 500,
+};
+
+/**
+ * Approximate weekly kg change per goal.
+ * 1 kg of body fat ~ 7700 kcal.
+ */
+const WEEKLY_KG_CHANGE: Record<CalorieGoalType, number> = {
+  loseWeight: -0.45,
+  slowCut: -0.23,
+  maintenance: 0,
+  leanBulk: 0.23,
+  bulk: 0.45,
+};
+
+/**
+ * Calculate BMR using Mifflin-St Jeor formula
+ * Men:   BMR = 10 * weight(kg) + 6.25 * height(cm) - 5 * age + 5
+ * Women: BMR = 10 * weight(kg) + 6.25 * height(cm) - 5 * age - 161
+ */
+export function calculateBMR(
+  weightKg: number,
+  heightCm: number,
+  age: number,
+  gender: Gender
+): number {
+  const base = 10 * weightKg + 6.25 * heightCm - 5 * age;
+  return gender === "male" ? base + 5 : base - 161;
+}
+
+/**
+ * Calculate TDEE from BMR and activity level
+ */
+export function calculateTDEE(bmr: number, activityLevel: ActivityLevel): number {
+  return bmr * ACTIVITY_MULTIPLIERS[activityLevel];
+}
+
+/**
+ * Calculate macro split based on calories and goal type
+ * - Weight loss: higher protein (35%), moderate carbs (40%), lower fat (25%)
+ * - Maintenance: balanced (30% protein, 40% carbs, 30% fat)
+ * - Muscle gain: moderate protein (30%), higher carbs (45%), moderate fat (25%)
+ */
+export function calculateMacros(calories: number, goal: CalorieGoalType): MacroSplit {
+  let proteinPct: number;
+  let carbsPct: number;
+  let fatPct: number;
+
+  switch (goal) {
+    case "loseWeight":
+    case "slowCut":
+      proteinPct = 0.35;
+      carbsPct = 0.40;
+      fatPct = 0.25;
+      break;
+    case "maintenance":
+      proteinPct = 0.30;
+      carbsPct = 0.40;
+      fatPct = 0.30;
+      break;
+    case "leanBulk":
+    case "bulk":
+      proteinPct = 0.30;
+      carbsPct = 0.45;
+      fatPct = 0.25;
+      break;
+  }
+
+  return {
+    protein: Math.round((calories * proteinPct) / 4), // 4 kcal per gram of protein
+    carbs: Math.round((calories * carbsPct) / 4),      // 4 kcal per gram of carbs
+    fat: Math.round((calories * fatPct) / 9),           // 9 kcal per gram of fat
+  };
+}
+
+/**
+ * Calculate all goal-based calorie targets from TDEE
+ */
+export function calculateGoalCalories(tdee: number): CalorieGoalResult[] {
+  const goals: CalorieGoalType[] = [
+    "loseWeight",
+    "slowCut",
+    "maintenance",
+    "leanBulk",
+    "bulk",
+  ];
+
+  return goals.map((goal) => {
+    const adjustment = GOAL_ADJUSTMENTS[goal];
+    const calories = Math.round(tdee + adjustment);
+    return {
+      goal,
+      calories,
+      adjustment,
+      weeklyKgChange: WEEKLY_KG_CHANGE[goal],
+      macros: calculateMacros(calories, goal),
+    };
+  });
+}
+
+/**
+ * Full calorie calculation pipeline
+ */
+export function calculateCalories(
+  weightKg: number,
+  heightCm: number,
+  age: number,
+  gender: Gender,
+  activityLevel: ActivityLevel
+): CalorieCalculationResult {
+  const bmr = calculateBMR(weightKg, heightCm, age, gender);
+  const tdee = calculateTDEE(bmr, activityLevel);
+  const goals = calculateGoalCalories(tdee);
+  return { bmr: Math.round(bmr), tdee: Math.round(tdee), goals };
+}
+
+/**
+ * Validate calorie calculator inputs
+ */
+export function validateCalorieInputs(
+  weight: number,
+  height: number,
+  age: number
+): { valid: boolean; error?: string } {
+  if (isNaN(weight) || isNaN(height) || isNaN(age)) {
+    return { valid: false, error: "Wszystkie wartości muszą być liczbami" };
+  }
+  if (weight <= 0 || weight > 500) {
+    return { valid: false, error: "Waga musi być między 1 a 500 kg" };
+  }
+  if (height <= 0 || height > 300) {
+    return { valid: false, error: "Wzrost musi być między 1 a 300 cm" };
+  }
+  if (age < 1 || age > 120) {
+    return { valid: false, error: "Wiek musi być między 1 a 120 lat" };
+  }
+  return { valid: true };
+}

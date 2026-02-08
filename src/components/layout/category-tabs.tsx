@@ -2,8 +2,8 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToolCard } from "@/components/layout/tool-card";
-import { Tool, ToolCategory, getToolsByCategory, getAvailableTools, getToolUrl } from "@/lib/tools";
-import { Wrench, ArrowRightLeft, Dices, CheckCircle, Calculator } from "lucide-react";
+import { Tool, getToolsByCategory, getAvailableTools, getToolUrl } from "@/lib/tools";
+import { Wrench, ArrowRightLeft, Dices, CheckCircle, Calculator, Sparkles } from "lucide-react";
 
 interface CategoryTabsProps {
   locale: string;
@@ -11,6 +11,7 @@ interface CategoryTabsProps {
     categories: {
       available: string;
       tools: string;
+      generators: string;
       converters: string;
       randomizers: string;
       calculators: string;
@@ -22,12 +23,24 @@ interface CategoryTabsProps {
   };
 }
 
+const TABS = [
+  { value: "available", icon: CheckCircle, labelKey: "available" as const },
+  { value: "generators", icon: Sparkles, labelKey: "generators" as const },
+  { value: "tools", icon: Wrench, labelKey: "tools" as const },
+  { value: "converters", icon: ArrowRightLeft, labelKey: "converters" as const },
+  { value: "randomizers", icon: Dices, labelKey: "randomizers" as const },
+  { value: "calculators", icon: Calculator, labelKey: "calculators" as const },
+] as const;
+
 export function CategoryTabs({ locale, dictionary }: CategoryTabsProps) {
-  const availableTools = getAvailableTools();
-  const toolsCategory = getToolsByCategory("tools");
-  const convertersCategory = getToolsByCategory("converters");
-  const randomizersCategory = getToolsByCategory("randomizers");
-  const calculatorsCategory = getToolsByCategory("calculators");
+  const categoryTools: Record<string, Tool[]> = {
+    available: getAvailableTools(),
+    generators: getToolsByCategory("generators"),
+    tools: getToolsByCategory("tools"),
+    converters: getToolsByCategory("converters"),
+    randomizers: getToolsByCategory("randomizers"),
+    calculators: getToolsByCategory("calculators"),
+  };
 
   const renderToolGrid = (tools: Tool[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -50,43 +63,36 @@ export function CategoryTabs({ locale, dictionary }: CategoryTabsProps) {
 
   return (
     <Tabs defaultValue="available" className="w-full">
-      <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-5 mb-8">
-        <TabsTrigger value="available" className="gap-2">
-          <CheckCircle className="h-4 w-4" />
-          {dictionary.categories.available}
-        </TabsTrigger>
-        <TabsTrigger value="tools" className="gap-2">
-          <Wrench className="h-4 w-4" />
-          {dictionary.categories.tools}
-        </TabsTrigger>
-        <TabsTrigger value="converters" className="gap-2">
-          <ArrowRightLeft className="h-4 w-4" />
-          {dictionary.categories.converters}
-        </TabsTrigger>
-        <TabsTrigger value="randomizers" className="gap-2">
-          <Dices className="h-4 w-4" />
-          {dictionary.categories.randomizers}
-        </TabsTrigger>
-        <TabsTrigger value="calculators" className="gap-2">
-          <Calculator className="h-4 w-4" />
-          {dictionary.categories.calculators}
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="available">
-        {renderToolGrid(availableTools)}
-      </TabsContent>
-      <TabsContent value="tools">
-        {renderToolGrid(toolsCategory)}
-      </TabsContent>
-      <TabsContent value="converters">
-        {renderToolGrid(convertersCategory)}
-      </TabsContent>
-      <TabsContent value="randomizers">
-        {renderToolGrid(randomizersCategory)}
-      </TabsContent>
-      <TabsContent value="calculators">
-        {renderToolGrid(calculatorsCategory)}
-      </TabsContent>
+      {/* Scrollable tab strip on mobile, centered grid on desktop */}
+      <div className="relative mb-8">
+        {/* Fade hints for scroll on mobile */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-background to-transparent z-10 md:hidden" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-background to-transparent z-10 md:hidden" />
+        
+        <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible">
+          <TabsList className="inline-flex h-11 w-max gap-1 p-1 md:grid md:w-full md:max-w-4xl md:mx-auto md:grid-cols-6">
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className="gap-2 px-4 py-2 text-xs sm:text-sm whitespace-nowrap"
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  <span>{dictionary.categories[tab.labelKey]}</span>
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+        </div>
+      </div>
+
+      {TABS.map((tab) => (
+        <TabsContent key={tab.value} value={tab.value}>
+          {renderToolGrid(categoryTools[tab.value])}
+        </TabsContent>
+      ))}
     </Tabs>
   );
 }

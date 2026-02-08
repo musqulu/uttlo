@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { KeyRound } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import {
   Card,
   CardContent,
@@ -28,6 +29,7 @@ export function GeneratorCard() {
     const newPassword = generatePassword(options);
     setPassword(newPassword);
     setStrength(calculateStrength(newPassword));
+    trackToolEvent("password-generator", "generators", "use");
   }, [options]);
 
   // Generate initial password on mount and when options change

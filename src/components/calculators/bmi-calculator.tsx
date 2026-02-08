@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Scale, RotateCcw } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -80,6 +81,7 @@ export function BMICalculator({ dictionary }: BMICalculatorProps) {
       setBmi(bmiValue);
       setCategory(bmiCategory);
       setError(null);
+      trackToolEvent("bmi-calculator", "calculators", "use");
     } catch (err) {
       setError((err as Error).message);
       setBmi(null);

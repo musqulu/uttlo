@@ -9,6 +9,7 @@ interface FooterProps {
     tagline?: string;
     categories: {
       tools: string;
+      generators: string;
       converters: string;
       randomizers: string;
       calculators: string;
@@ -62,7 +63,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <Link href={`/${locale}`} className="inline-flex items-center gap-2 group" aria-label="uttlo - Strona główna">
+            <Link href={`/${locale}`} className="inline-flex items-center gap-2 group" aria-label="utllo - Strona główna">
               <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 p-2 shadow-lg shadow-indigo-500/20">
                 <Zap className="h-5 w-5 text-white" />
               </div>
@@ -88,6 +89,15 @@ export function Footer({ locale, dictionary }: FooterProps) {
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                   {dictionary.categories.tools}
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href={getCategoryUrl("generators", locale)}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500" />
+                  {dictionary.categories.generators}
                 </Link>
               </li>
               <li>

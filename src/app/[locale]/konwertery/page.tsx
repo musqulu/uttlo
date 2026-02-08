@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { JsonLd, generateCollectionPageSchema, generateBreadcrumbSchema } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;

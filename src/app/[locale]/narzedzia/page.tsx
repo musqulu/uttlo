@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { JsonLd, generateCollectionPageSchema, generateBreadcrumbSchema } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;
@@ -35,7 +35,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "generator czcionek",
       "odliczanie do wakacji",
       "odliczanie do świąt",
-      "rzut kostką online",
+      "biały ekran",
+      "test martwych pikseli",
       "darmowe narzędzia",
     ],
     alternates: {
@@ -194,19 +195,11 @@ export default async function ToolsCategoryPage({ params }: PageProps) {
         {/* SEO Content */}
         <section className="mt-16 max-w-3xl mx-auto space-y-10">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Darmowe narzędzia online - uttlo</h2>
+            <h2 className="text-2xl font-bold mb-4">Darmowe narzędzia online - utllo</h2>
             <p className="text-muted-foreground">
               Kolekcja {readyTools.length} darmowych narzędzi online, które działają bezpośrednio 
               w Twojej przeglądarce. Nie musisz niczego instalować, rejestrować się ani płacić. 
               Każde narzędzie zostało zaprojektowane z myślą o szybkości i łatwości użytkowania.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-3">Generator haseł</h3>
-            <p className="text-muted-foreground">
-              Twórz silne, bezpieczne hasła z konfigurowalną długością i typami znaków. 
-              Hasła generowane są lokalnie - nigdy nie opuszczają Twojej przeglądarki.
             </p>
           </div>
 
@@ -227,14 +220,6 @@ export default async function ToolsCategoryPage({ params }: PageProps) {
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-3">Generator czcionek</h3>
-            <p className="text-muted-foreground">
-              Zamień zwykły tekst na stylowe czcionki Unicode, które możesz skopiować i wkleić 
-              na Instagram, Facebook, Twitter i inne platformy. Ponad 25 unikalnych stylów.
-            </p>
-          </div>
-
-          <div>
             <h3 className="text-xl font-semibold mb-3">Bezpieczeństwo i prywatność</h3>
             <p className="text-muted-foreground">
               Wszystkie narzędzia przetwarzają dane lokalnie w Twojej przeglądarce. Żadne 
@@ -246,7 +231,18 @@ export default async function ToolsCategoryPage({ params }: PageProps) {
         {/* Cross-links to other categories */}
         <section className="mt-16 max-w-3xl mx-auto">
           <h2 className="text-xl font-semibold mb-6 text-center">Odkryj inne kategorie</h2>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Link href={getCategoryUrl("generators", locale)} className="group">
+              <Card className="h-full transition-all hover:shadow-lg hover:border-pink-500/50">
+                <CardContent className="p-6 text-center">
+                  <div className="w-3 h-3 rounded-full bg-pink-500 mx-auto mb-3" />
+                  <h3 className="font-semibold group-hover:text-pink-600 transition-colors">
+                    {dict.categories.generators}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-1">{dict.categoryPages.generators.subtitle}</p>
+                </CardContent>
+              </Card>
+            </Link>
             <Link href={getCategoryUrl("converters", locale)} className="group">
               <Card className="h-full transition-all hover:shadow-lg hover:border-green-500/50">
                 <CardContent className="p-6 text-center">

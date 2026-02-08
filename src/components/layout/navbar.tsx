@@ -34,6 +34,7 @@ interface NavbarProps {
     };
     categories: {
       tools: string;
+      generators: string;
       converters: string;
       randomizers: string;
       calculators: string;
@@ -44,6 +45,7 @@ interface NavbarProps {
 
 const CATEGORY_COLORS: Record<ToolCategory, string> = {
   tools: "bg-blue-500",
+  generators: "bg-pink-500",
   converters: "bg-green-500",
   randomizers: "bg-orange-500",
   calculators: "bg-purple-500",
@@ -58,6 +60,7 @@ export function Navbar({ locale, dictionary }: NavbarProps) {
 
   const categories: { key: ToolCategory; tools: Tool[] }[] = [
     { key: "tools", tools: getToolsByCategory("tools") },
+    { key: "generators", tools: getToolsByCategory("generators") },
     { key: "converters", tools: getToolsByCategory("converters") },
     { key: "randomizers", tools: getToolsByCategory("randomizers") },
     { key: "calculators", tools: getToolsByCategory("calculators") },
@@ -90,7 +93,7 @@ export function Navbar({ locale, dictionary }: NavbarProps) {
         <Link
           href={`/${locale}`}
           className="flex items-center gap-2.5 group flex-shrink-0"
-          aria-label="uttlo - Strona główna"
+          aria-label="utllo - Strona główna"
         >
           <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 p-2 shadow-lg shadow-indigo-500/25 group-hover:shadow-indigo-500/40 transition-shadow">
             <Zap className="h-5 w-5 text-white" />

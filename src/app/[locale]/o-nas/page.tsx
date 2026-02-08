@@ -6,7 +6,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   
   return {
-    title: "O nas - Kim jesteśmy | uttlo",
-    description: "Poznaj uttlo - darmowe narzędzia online dla każdego. Dowiedz się o naszej misji, technologii i dlaczego tworzymy bezpłatne narzędzia internetowe.",
+    title: "O nas - Kim jesteśmy | utllo",
+    description: "Poznaj utllo - darmowe narzędzia online dla każdego. Dowiedz się o naszej misji, technologii i dlaczego tworzymy bezpłatne narzędzia internetowe.",
     alternates: {
       canonical: `${BASE_URL}/${locale}/o-nas`,
     },
     openGraph: {
-      title: "O nas - Kim jesteśmy | uttlo",
-      description: "Poznaj uttlo - darmowe narzędzia online dla każdego.",
+      title: "O nas - Kim jesteśmy | utllo",
+      description: "Poznaj utllo - darmowe narzędzia online dla każdego.",
       url: `${BASE_URL}/${locale}/o-nas`,
       type: "website",
       locale: "pl_PL",
@@ -74,7 +74,7 @@ export default async function AboutPage({ params }: PageProps) {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Nasza misja</h2>
                 <p className="text-muted-foreground mb-4">
-                  <strong>uttlo</strong> powstało z prostej idei: każdy powinien mieć dostęp do 
+                  <strong>utllo</strong> powstało z prostej idei: każdy powinien mieć dostęp do 
                   przydatnych narzędzi online bez konieczności płacenia, rejestracji czy instalacji 
                   oprogramowania.
                 </p>

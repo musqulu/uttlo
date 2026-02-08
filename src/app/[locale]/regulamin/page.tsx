@@ -6,7 +6,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 const LAST_UPDATED = "6 lutego 2026";
 
 interface PageProps {
@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   
   return {
-    title: "Regulamin | uttlo",
-    description: "Regulamin korzystania z serwisu uttlo.pl. Zasady użytkowania darmowych narzędzi online, prawa i obowiązki użytkowników.",
+    title: "Regulamin | utllo",
+    description: "Regulamin korzystania z serwisu utllo.pl. Zasady użytkowania darmowych narzędzi online, prawa i obowiązki użytkowników.",
     alternates: {
       canonical: `${BASE_URL}/${locale}/regulamin`,
     },
     openGraph: {
-      title: "Regulamin | uttlo",
-      description: "Regulamin korzystania z serwisu uttlo.pl. Zasady użytkowania darmowych narzędzi online.",
+      title: "Regulamin | utllo",
+      description: "Regulamin korzystania z serwisu utllo.pl. Zasady użytkowania darmowych narzędzi online.",
       url: `${BASE_URL}/${locale}/regulamin`,
       type: "website",
       locale: "pl_PL",
@@ -69,7 +69,7 @@ export default async function TermsPage({ params }: PageProps) {
         <Card className="mb-8">
           <CardContent className="p-6">
             <p className="text-muted-foreground m-0">
-              Niniejszy Regulamin określa zasady korzystania z serwisu <strong>uttlo.pl</strong>. 
+              Niniejszy Regulamin określa zasady korzystania z serwisu <strong>utllo.pl</strong>. 
               Korzystając z naszych usług, akceptujesz poniższe warunki. Prosimy o uważne 
               zapoznanie się z nimi przed rozpoczęciem korzystania z serwisu.
             </p>
@@ -86,7 +86,7 @@ export default async function TermsPage({ params }: PageProps) {
           </div>
           <ul className="space-y-3 text-muted-foreground">
             <li>
-              <strong>Serwis</strong> - strona internetowa dostępna pod adresem uttlo.pl 
+              <strong>Serwis</strong> - strona internetowa dostępna pod adresem utllo.pl 
               wraz ze wszystkimi podstronami i narzędziami.
             </li>
             <li>
@@ -97,7 +97,7 @@ export default async function TermsPage({ params }: PageProps) {
               generatory, konwertery, kalkulatory i inne.
             </li>
             <li>
-              <strong>Usługodawca</strong> - właściciel i administrator Serwisu uttlo.pl.
+              <strong>Usługodawca</strong> - właściciel i administrator Serwisu utllo.pl.
             </li>
           </ul>
         </section>
@@ -111,7 +111,7 @@ export default async function TermsPage({ params }: PageProps) {
             <h2 className="text-xl font-bold">2. Opis usług</h2>
           </div>
           <p className="text-muted-foreground mb-4">
-            Serwis uttlo.pl oferuje darmowe narzędzia online, w tym:
+            Serwis utllo.pl oferuje darmowe narzędzia online, w tym:
           </p>
           <ul className="space-y-2 text-muted-foreground">
             <li>Generatory (haseł, Lorem Ipsum, UUID, kodów QR i inne)</li>
@@ -272,8 +272,8 @@ export default async function TermsPage({ params }: PageProps) {
             <CardContent className="p-4">
               <p className="text-muted-foreground m-0">
                 <strong>Email:</strong>{" "}
-                <a href="mailto:kontakt@uttlo.com" className="text-primary hover:underline">
-                  kontakt@uttlo.com
+                <a href="mailto:kontakt@utllo.com" className="text-primary hover:underline">
+                  kontakt@utllo.com
                 </a>
               </p>
             </CardContent>
@@ -284,7 +284,7 @@ export default async function TermsPage({ params }: PageProps) {
         <Card className="bg-muted/50">
           <CardContent className="p-6 text-center">
             <p className="text-sm text-muted-foreground m-0">
-              Korzystając z serwisu uttlo.pl, potwierdzasz, że zapoznałeś się z niniejszym 
+              Korzystając z serwisu utllo.pl, potwierdzasz, że zapoznałeś się z niniejszym 
               Regulaminem i akceptujesz jego postanowienia. Zachęcamy również do zapoznania 
               się z naszą{" "}
               <Link href={`/${locale}/polityka-prywatnosci`} className="text-primary hover:underline">

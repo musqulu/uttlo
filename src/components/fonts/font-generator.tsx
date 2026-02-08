@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { ALargeSmall, Copy, Check, Search, X } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -291,6 +292,7 @@ export function FontGenerator({ dictionary }: FontGeneratorProps) {
       await navigator.clipboard.writeText(transformedText);
       setCopiedIndex(index);
       setTimeout(() => setCopiedIndex(null), 2000);
+      trackToolEvent("font-generator", "generators", "copy");
     } catch (err) {
       console.error("Failed to copy:", err);
     }

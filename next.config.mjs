@@ -13,10 +13,14 @@ const nextConfig = {
     // New: /:locale/:category-slug/:tool-slug
     
     const toolRedirects = [
+      // Generatory (Generators)
+      { old: 'generator-hasel', category: 'generatory' },
+      { old: 'lorem-ipsum', category: 'generatory' },
+      { old: 'generator-lorem-ipsum', category: 'generatory' },
+      { old: 'generator-czcionek', category: 'generatory' },
+
       // Narzędzia (Tools)
-      { old: 'generator-hasel', category: 'narzedzia' },
       { old: 'generator-uuid', category: 'narzedzia' },
-      { old: 'lorem-ipsum', category: 'narzedzia' },
       { old: 'konwerter-kolorow', category: 'narzedzia' },
       { old: 'formatter-json', category: 'narzedzia' },
       { old: 'base64', category: 'narzedzia' },
@@ -25,7 +29,6 @@ const nextConfig = {
       { old: 'licznik-znakow', category: 'narzedzia' },
       { old: 'licznik-slow', category: 'narzedzia' },
       { old: 'rzut-kostka', category: 'narzedzia' },
-      { old: 'generator-czcionek', category: 'narzedzia' },
       { old: 'odliczanie-do-wakacji', category: 'narzedzia' },
       { old: 'odliczanie-do-swiat', category: 'narzedzia' },
       { old: 'odliczanie-do-daty', category: 'narzedzia' },
@@ -52,11 +55,21 @@ const nextConfig = {
       { old: 'srednia-wazona', category: 'kalkulatory' },
     ];
 
-    return toolRedirects.map(({ old, category }) => ({
+    const redirects = toolRedirects.map(({ old, category }) => ({
       source: `/:locale/${old}`,
       destination: `/:locale/${category}/${old}`,
       permanent: true,
     }));
+
+    // Redirects for tools that moved from narzedzia to generatory
+    redirects.push(
+      { source: '/:locale/narzedzia/generator-hasel', destination: '/:locale/generatory/generator-hasel', permanent: true },
+      { source: '/:locale/narzedzia/lorem-ipsum', destination: '/:locale/generatory/generator-lorem-ipsum', permanent: true },
+      { source: '/:locale/narzedzia/generator-czcionek', destination: '/:locale/generatory/generator-czcionek', permanent: true },
+      { source: '/:locale/narzedzia/rzut-kostka', destination: '/:locale/losuj/rzut-kostka', permanent: true },
+    );
+
+    return redirects;
   },
 };
 

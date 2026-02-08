@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { HelpCircle, RefreshCw, ThumbsUp, ThumbsDown } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -59,6 +60,7 @@ export function YesNoGenerator({ dictionary }: YesNoGeneratorProps) {
         const finalAnswer = generateYesNo();
         setAnswer(finalAnswer);
         setShowResult(true);
+        trackToolEvent("random-yesno", "randomizers", "use");
       }
     }, 100);
   }, []);

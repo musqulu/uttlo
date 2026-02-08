@@ -5,7 +5,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
-const BASE_URL = "https://uttlo.com";
+const BASE_URL = "https://utllo.com";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   
   return {
-    title: "Kontakt - Skontaktuj się z nami | uttlo",
-    description: "Masz pytanie, sugestię lub problem? Skontaktuj się z zespołem uttlo. Odpowiadamy na wiadomości w ciągu 24-48 godzin.",
+    title: "Kontakt - Skontaktuj się z nami | utllo",
+    description: "Masz pytanie, sugestię lub problem? Skontaktuj się z zespołem utllo. Odpowiadamy na wiadomości w ciągu 24-48 godzin.",
     alternates: {
       canonical: `${BASE_URL}/${locale}/kontakt`,
     },
     openGraph: {
-      title: "Kontakt - Skontaktuj się z nami | uttlo",
-      description: "Masz pytanie, sugestię lub problem? Skontaktuj się z zespołem uttlo.",
+      title: "Kontakt - Skontaktuj się z nami | utllo",
+      description: "Masz pytanie, sugestię lub problem? Skontaktuj się z zespołem utllo.",
       url: `${BASE_URL}/${locale}/kontakt`,
       type: "website",
       locale: "pl_PL",
@@ -72,10 +72,10 @@ export default async function ContactPage({ params }: PageProps) {
             </CardHeader>
             <CardContent>
               <a 
-                href="mailto:kontakt@uttlo.com" 
+                href="mailto:kontakt@utllo.com" 
                 className="text-lg font-medium text-primary hover:underline"
               >
-                kontakt@uttlo.com
+                kontakt@utllo.com
               </a>
               <p className="text-sm text-muted-foreground mt-2">
                 Pisz śmiało w sprawie pytań, sugestii nowych narzędzi lub zgłoszeń błędów.
@@ -144,7 +144,7 @@ export default async function ContactPage({ params }: PageProps) {
                 <h3 className="font-semibold mb-2">Czy mogę zaproponować nowe narzędzie?</h3>
                 <p className="text-sm text-muted-foreground">
                   Tak! Chętnie wysłuchamy Twoich pomysłów. Napisz do nas z opisem narzędzia, 
-                  które chciałbyś zobaczyć na uttlo.
+                  które chciałbyś zobaczyć na utllo.
                 </p>
               </CardContent>
             </Card>

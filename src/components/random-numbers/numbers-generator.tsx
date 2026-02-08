@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Dices, Copy, Check, RefreshCw } from "lucide-react";
+import { trackToolEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -75,6 +76,7 @@ export function NumbersGenerator({ dictionary }: NumbersGeneratorProps) {
         clearInterval(interval);
         setIsAnimating(false);
         setResults(generateMultipleNumbers(min, max, count, unique, sorted));
+        trackToolEvent("random-numbers", "randomizers", "use");
       }
     }, 60);
   }, [min, max, count, unique, sorted]);
@@ -90,6 +92,7 @@ export function NumbersGenerator({ dictionary }: NumbersGeneratorProps) {
       await navigator.clipboard.writeText(results.join(", "));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackToolEvent("random-numbers", "randomizers", "copy");
     } catch (err) {
       console.error("Nie udało się skopiować:", err);
     }
