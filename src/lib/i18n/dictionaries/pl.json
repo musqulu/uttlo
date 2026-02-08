@@ -285,18 +285,6 @@
       "presets": "Gotowe kolory",
       "currentColor": "Aktualny kolor"
     },
-    "youtube-converter": {
-      "name": "Konwerter YouTube",
-      "description": "Konwertuj filmy z YouTube do różnych formatów.",
-      "seoTitle": "Konwerter YouTube Online - Pobierz filmy z YT",
-      "seoDescription": "Darmowy konwerter YouTube online. Konwertuj i pobieraj filmy z YouTube w różnych formatach."
-    },
-    "mp3-converter": {
-      "name": "Konwerter MP3",
-      "description": "Konwertuj pliki audio do formatu MP3.",
-      "seoTitle": "Konwerter MP3 Online - Darmowa konwersja audio",
-      "seoDescription": "Darmowy konwerter MP3 online. Konwertuj pliki audio do formatu MP3 szybko i bezpłatnie."
-    },
     "pdf-to-word": {
       "name": "PDF na Word",
       "description": "Konwertuj dokumenty PDF do edytowalnych plików Word.",

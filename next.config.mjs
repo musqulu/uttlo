@@ -34,8 +34,6 @@ const nextConfig = {
       { old: 'odliczanie-do-daty', category: 'narzedzia' },
       
       // Konwertery (Converters)
-      { old: 'konwerter-youtube', category: 'konwertery' },
-      { old: 'konwerter-mp3', category: 'konwertery' },
       { old: 'pdf-na-word', category: 'konwertery' },
       { old: 'word-na-pdf', category: 'konwertery' },
       { old: 'pdf-na-jpg', category: 'konwertery' },

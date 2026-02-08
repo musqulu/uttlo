@@ -13,10 +13,14 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const dictionary = await getDictionary(locale as Locale);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://utllo.com";
 
   return {
     title: `${dictionary.home.title} | ${dictionary.brand}`,
     description: dictionary.home.subtitle,
+    alternates: {
+      canonical: `${baseUrl}/${locale}`,
+    },
     openGraph: {
       title: `${dictionary.home.title} | ${dictionary.brand}`,
       description: dictionary.home.subtitle,
@@ -33,7 +37,7 @@ export async function generateStaticParams() {
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   const dictionary = await getDictionary(locale as Locale);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://uttlo.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://utllo.com";
 
   const websiteSchema = generateWebsiteSchema({
     name: dictionary.brand,

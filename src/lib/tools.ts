@@ -10,8 +10,6 @@ import {
   Type,
   LetterText,
   ALargeSmall,
-  Youtube,
-  Music,
   FileOutput,
   Image,
   Dices,
@@ -178,20 +176,6 @@ export const tools: Tool[] = [
   },
 
   // Konwertery (Converters)
-  {
-    id: "youtube-converter",
-    slug: "konwerter-youtube",
-    icon: Youtube,
-    isReady: false,
-    category: "converters",
-  },
-  {
-    id: "mp3-converter",
-    slug: "konwerter-mp3",
-    icon: Music,
-    isReady: false,
-    category: "converters",
-  },
   {
     id: "pdf-to-word",
     slug: "pdf-na-word",
