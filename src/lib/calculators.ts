@@ -576,3 +576,307 @@ export function validateCalorieInputs(
   }
   return { valid: true };
 }
+
+// ============================================================
+// Blood Type Calculator
+// ============================================================
+
+export type BloodType = "A" | "B" | "AB" | "O";
+export type RhFactor = "+" | "-";
+
+export interface BloodTypeResult {
+  type: string; // e.g. "A+", "O-"
+  probability: number; // 0-100
+}
+
+/**
+ * ABO alleles: each phenotype maps to possible genotype pairs.
+ * Since we don't know the exact genotype, we assume equal probability
+ * for each possible genotype.
+ */
+type Allele = "A" | "B" | "O";
+
+const ABO_GENOTYPES: Record<BloodType, [Allele, Allele][]> = {
+  A: [["A", "A"], ["A", "O"]],
+  B: [["B", "B"], ["B", "O"]],
+  AB: [["A", "B"]],
+  O: [["O", "O"]],
+};
+
+/**
+ * Rh alleles: + can be DD or Dd, - is dd.
+ */
+type RhAllele = "D" | "d";
+
+const RH_GENOTYPES: Record<RhFactor, [RhAllele, RhAllele][]> = {
+  "+": [["D", "D"], ["D", "d"]],
+  "-": [["d", "d"]],
+};
+
+/**
+ * Determine phenotype from a pair of ABO alleles.
+ */
+function aboPhenotype(a1: Allele, a2: Allele): BloodType {
+  const set = new Set([a1, a2]);
+  if (set.has("A") && set.has("B")) return "AB";
+  if (set.has("A")) return "A";
+  if (set.has("B")) return "B";
+  return "O";
+}
+
+/**
+ * Determine Rh phenotype from a pair of Rh alleles.
+ */
+function rhPhenotype(r1: RhAllele, r2: RhAllele): RhFactor {
+  return r1 === "D" || r2 === "D" ? "+" : "-";
+}
+
+/**
+ * Calculate possible child blood types from parents' blood types.
+ * Uses Punnett square with equal probability assumption for heterozygous genotypes.
+ */
+export function calculateChildBloodTypes(
+  parent1Type: BloodType,
+  parent1Rh: RhFactor,
+  parent2Type: BloodType,
+  parent2Rh: RhFactor
+): BloodTypeResult[] {
+  const p1AboGenotypes = ABO_GENOTYPES[parent1Type];
+  const p2AboGenotypes = ABO_GENOTYPES[parent2Type];
+  const p1RhGenotypes = RH_GENOTYPES[parent1Rh];
+  const p2RhGenotypes = RH_GENOTYPES[parent2Rh];
+
+  // Count outcomes for each full blood type
+  const outcomes: Record<string, number> = {};
+  let totalCombinations = 0;
+
+  // For each possible genotype combination of parents
+  for (const p1Abo of p1AboGenotypes) {
+    for (const p2Abo of p2AboGenotypes) {
+      for (const p1Rh of p1RhGenotypes) {
+        for (const p2Rh of p2RhGenotypes) {
+          // ABO Punnett square: 4 combinations per parent genotype pair
+          for (const a1 of p1Abo) {
+            for (const a2 of p2Abo) {
+              // Rh Punnett square: 4 combinations per parent genotype pair
+              for (const r1 of p1Rh) {
+                for (const r2 of p2Rh) {
+                  const abo = aboPhenotype(a1, a2);
+                  const rh = rhPhenotype(r1, r2);
+                  const key = `${abo}${rh}`;
+                  outcomes[key] = (outcomes[key] || 0) + 1;
+                  totalCombinations++;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Convert to percentages and sort by probability (descending)
+  const results: BloodTypeResult[] = Object.entries(outcomes)
+    .map(([type, count]) => ({
+      type,
+      probability: Math.round((count / totalCombinations) * 10000) / 100,
+    }))
+    .sort((a, b) => b.probability - a.probability);
+
+  return results;
+}
+
+// ============================================================
+// Inflation Calculator
+// ============================================================
+
+export interface InflationYearData {
+  year: number;
+  value: number; // equivalent cost in that year
+  loss: number; // cumulative purchasing power loss
+  lossPercent: number;
+}
+
+export interface InflationResult {
+  futureValue: number;
+  purchasingPowerLoss: number;
+  purchasingPowerPercent: number;
+  yearByYear: InflationYearData[];
+}
+
+/**
+ * Calculate how inflation changes the value of money over time.
+ * futureValue = amount * (1 + rate/100)^years
+ * This represents how much the same goods/services would cost after N years.
+ * purchasingPowerLoss = futureValue - amount (how much more you'd pay).
+ */
+export function calculateInflation(
+  amount: number,
+  annualRate: number,
+  years: number
+): InflationResult {
+  const yearByYear: InflationYearData[] = [];
+
+  for (let y = 1; y <= years; y++) {
+    const value = amount * Math.pow(1 + annualRate / 100, y);
+    const loss = value - amount;
+    const lossPercent = (loss / amount) * 100;
+    yearByYear.push({
+      year: y,
+      value: Math.round(value * 100) / 100,
+      loss: Math.round(loss * 100) / 100,
+      lossPercent: Math.round(lossPercent * 100) / 100,
+    });
+  }
+
+  const futureValue = yearByYear.length > 0
+    ? yearByYear[yearByYear.length - 1].value
+    : amount;
+  const purchasingPowerLoss = Math.round((futureValue - amount) * 100) / 100;
+  const purchasingPowerPercent = Math.round(((futureValue - amount) / amount) * 10000) / 100;
+
+  return {
+    futureValue,
+    purchasingPowerLoss,
+    purchasingPowerPercent,
+    yearByYear,
+  };
+}
+
+/**
+ * Calculate effective annual inflation rate from past and current amounts.
+ * rate = ((currentAmount / pastAmount)^(1/years) - 1) * 100
+ */
+export function calculateEffectiveInflation(
+  pastAmount: number,
+  currentAmount: number,
+  years: number
+): number {
+  if (pastAmount <= 0 || years <= 0) return 0;
+  const rate = (Math.pow(currentAmount / pastAmount, 1 / years) - 1) * 100;
+  return Math.round(rate * 100) / 100;
+}
+
+/**
+ * Validate inflation calculator inputs.
+ */
+export function validateInflationInputs(
+  amount: number,
+  rate: number,
+  years: number
+): { valid: boolean; error?: string } {
+  if (isNaN(amount) || isNaN(rate) || isNaN(years)) {
+    return { valid: false, error: "Wszystkie wartości muszą być liczbami" };
+  }
+  if (amount <= 0) {
+    return { valid: false, error: "Kwota musi być większa niż 0" };
+  }
+  if (rate < -50 || rate > 1000) {
+    return { valid: false, error: "Stopa inflacji musi być między -50% a 1000%" };
+  }
+  if (years < 1 || years > 100 || !Number.isInteger(years)) {
+    return { valid: false, error: "Liczba lat musi być liczbą całkowitą od 1 do 100" };
+  }
+  return { valid: true };
+}
+
+// ============================================================
+// Dog Years Calculator
+// ============================================================
+
+export type DogSize = "small" | "medium" | "large" | "giant";
+
+export type DogLifeStage =
+  | "puppy"
+  | "young"
+  | "adult"
+  | "senior"
+  | "geriatric";
+
+export interface DogYearsResult {
+  humanYears: number;
+  lifeStage: DogLifeStage;
+}
+
+/**
+ * Incremental human-years per dog-year, based on veterinary research.
+ * Year 1 and 2 are fast development; year 3+ depends on size.
+ * Data based on American Veterinary Medical Association guidelines
+ * and the University of California San Diego 2019 study adaptations.
+ */
+const DOG_AGING_RATES: Record<DogSize, number[]> = {
+  //           yr1  yr2  yr3+ (per additional year)
+  small:  [15, 9, 4],   // <10 kg
+  medium: [15, 9, 5],   // 10-25 kg
+  large:  [15, 9, 6],   // 25-45 kg
+  giant:  [15, 9, 8],   // >45 kg
+};
+
+/**
+ * Life stage thresholds in human-equivalent years.
+ */
+function getDogLifeStage(humanYears: number, size: DogSize): DogLifeStage {
+  // Smaller dogs become seniors later, larger dogs earlier
+  const seniorThresholds: Record<DogSize, number> = {
+    small: 50,
+    medium: 45,
+    large: 42,
+    giant: 38,
+  };
+  const geriatricThresholds: Record<DogSize, number> = {
+    small: 70,
+    medium: 65,
+    large: 60,
+    giant: 55,
+  };
+
+  if (humanYears <= 12) return "puppy";
+  if (humanYears <= 24) return "young";
+  if (humanYears < seniorThresholds[size]) return "adult";
+  if (humanYears < geriatricThresholds[size]) return "senior";
+  return "geriatric";
+}
+
+/**
+ * Calculate human-equivalent age for a dog.
+ * Supports fractional dog ages (e.g. 1.5 years).
+ */
+export function calculateDogYears(
+  dogAge: number,
+  size: DogSize
+): DogYearsResult {
+  const rates = DOG_AGING_RATES[size];
+  let humanYears = 0;
+
+  if (dogAge <= 0) {
+    return { humanYears: 0, lifeStage: "puppy" };
+  }
+
+  if (dogAge <= 1) {
+    // Proportional first year
+    humanYears = dogAge * rates[0];
+  } else if (dogAge <= 2) {
+    // Full first year + proportional second year
+    humanYears = rates[0] + (dogAge - 1) * rates[1];
+  } else {
+    // First two years + additional years at size-specific rate
+    humanYears = rates[0] + rates[1] + (dogAge - 2) * rates[2];
+  }
+
+  humanYears = Math.round(humanYears * 10) / 10;
+
+  return {
+    humanYears,
+    lifeStage: getDogLifeStage(humanYears, size),
+  };
+}
+
+/**
+ * Average life expectancy in dog years by size.
+ */
+export const DOG_LIFE_EXPECTANCY: Record<DogSize, { min: number; max: number }> = {
+  small: { min: 12, max: 16 },
+  medium: { min: 10, max: 14 },
+  large: { min: 8, max: 12 },
+  giant: { min: 6, max: 10 },
+};

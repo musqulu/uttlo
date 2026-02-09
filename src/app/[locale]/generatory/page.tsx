@@ -30,6 +30,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "generator haseł",
       "generator lorem ipsum",
       "generator czcionek",
+      "generator qr",
+      "kod qr",
+      "generator kodów qr",
       "darmowe generatory",
       "generator tekstu",
       "generator Unicode",
@@ -219,6 +222,15 @@ export default async function GeneratorsCategoryPage({ params }: PageProps) {
               Zamień zwykły tekst na stylowe czcionki Unicode, które możesz skopiować i wkleić 
               na Instagram, Facebook, Twitter i inne platformy. Ponad 25 unikalnych stylów 
               do wyboru - od pogrubionego i kursywy po gotyckie i dekoracyjne fonty.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Generator kodów QR</h3>
+            <p className="text-muted-foreground">
+              Twórz kody QR dla dowolnych treści - linków, tekstu, numerów telefonów i danych WiFi. 
+              Pobierz wygenerowany kod QR jako PNG w różnych rozmiarach (128×128 do 1024×1024). 
+              Idealne do marketingu, wizytówek i udostępniania informacji.
             </p>
           </div>
 

@@ -227,7 +227,6 @@ function PopoverPanel({
   onNavigate,
 }: PopoverPanelProps) {
   const readyTools = tools.filter((t) => t.isReady);
-  const comingSoonTools = tools.filter((t) => !t.isReady);
 
   return (
     <div className="animate-in fade-in slide-in-from-top-1 duration-200">
@@ -278,37 +277,6 @@ function PopoverPanel({
               </button>
             );
           })}
-
-          {comingSoonTools.length > 0 && (
-            <>
-              <div className="mx-4 my-1 border-t" />
-              {comingSoonTools.map((tool) => {
-                const Icon = tool.icon;
-                const toolDict = dictionary.tools[tool.id];
-                return (
-                  <button
-                    key={tool.id}
-                    onClick={() => onNavigate(getToolUrl(tool, locale))}
-                    className="group relative flex items-start gap-3 rounded-xl p-3 hover:bg-accent transition-colors opacity-60 text-left w-full"
-                  >
-                    <div className="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
-                      <Icon className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-muted-foreground">
-                        {toolDict?.name || tool.id}
-                      </p>
-                      {toolDict?.description && (
-                        <p className="mt-0.5 text-xs text-muted-foreground line-clamp-1">
-                          {toolDict.description}
-                        </p>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </>
-          )}
         </div>
       </div>
     </div>
@@ -357,7 +325,7 @@ function MobileCategory({
 
       {isOpen && (
         <div className="mt-1 ml-2 space-y-0.5 animate-in slide-in-from-top-1 duration-150">
-          {tools.map((tool) => {
+          {tools.filter((t) => t.isReady).map((tool) => {
             const Icon = tool.icon;
             const toolDict = dictionary.tools[tool.id];
             const toolUrl = getToolUrl(tool, locale);
@@ -372,7 +340,7 @@ function MobileCategory({
                   isActive
                     ? "bg-primary/10"
                     : "hover:bg-accent"
-                } ${!tool.isReady ? "opacity-50" : ""}`}
+                }`}
               >
                 <div className="flex-shrink-0 mt-0.5 w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center">
                   <Icon className="h-3.5 w-3.5 text-primary" />

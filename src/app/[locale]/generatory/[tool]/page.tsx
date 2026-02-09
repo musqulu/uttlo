@@ -11,6 +11,7 @@ import { ToolPlaceholder } from "@/components/layout/tool-placeholder";
 import { GeneratorCard as PasswordGenerator } from "@/components/password-generator/generator-card";
 import { LoremGenerator } from "@/components/lorem-ipsum/lorem-generator";
 import { FontGenerator } from "@/components/fonts/font-generator";
+import { QRGenerator } from "@/components/qr-generator/qr-generator";
 
 const BASE_URL = "https://utllo.com";
 const CATEGORY = "generators" as const;
@@ -131,6 +132,23 @@ export default async function ToolPage({ params }: PageProps) {
             }}
           />
         );
+      case "qr-generator":
+        return (
+          <QRGenerator
+            dictionary={{
+              title: (toolDict as any).title || "Generator Kodów QR",
+              subtitle: (toolDict as any).subtitle || "Twórz kody QR dla linków, tekstu i danych",
+              inputLabel: (toolDict as any).inputLabel || "Tekst lub URL",
+              inputPlaceholder: (toolDict as any).inputPlaceholder || "Wpisz tekst, URL, numer telefonu...",
+              generate: (toolDict as any).generate || "Generuj kod QR",
+              download: (toolDict as any).download || "Pobierz PNG",
+              size: (toolDict as any).size || "Rozmiar",
+              clear: (toolDict as any).clear || "Wyczyść",
+              preview: (toolDict as any).preview || "Podgląd kodu QR",
+              noContent: (toolDict as any).noContent || "Wpisz treść, aby wygenerować kod QR",
+            }}
+          />
+        );
       default:
         return <ToolPlaceholder name={toolDict?.name || tool.id} />;
     }
@@ -183,6 +201,154 @@ export default async function ToolPage({ params }: PageProps) {
                 Tekst Lorem Ipsum jest powszechnie używany przez projektantów
                 i deweloperów do wypełniania makiet i prototypów przed dodaniem
                 właściwej treści.
+              </p>
+            </div>
+          </section>
+        );
+      case "qr-generator":
+        return (
+          <section className="max-w-3xl mx-auto mt-16 space-y-12">
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Darmowy Generator Kodów QR Online
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Nasz generator kodów QR pozwala na szybkie i bezpłatne tworzenie kodów QR 
+                  bezpośrednio w przeglądarce. Wystarczy wpisać tekst, adres URL, numer telefonu 
+                  lub dowolne dane, a narzędzie wygeneruje gotowy kod QR do pobrania jako PNG.
+                </p>
+                <p>
+                  Kod QR (Quick Response) to dwuwymiarowy kod kreskowy, który przechowuje informacje 
+                  w postaci czarno-białego wzoru. Kody QR mogą być odczytywane przez aparaty 
+                  smartfonów i skanery kodów kreskowych, co czyni je idealnym narzędziem do szybkiego 
+                  przekazywania informacji.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Do czego służą kody QR?</h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Linki i strony WWW</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Zakoduj adres URL, aby użytkownicy mogli szybko otworzyć stronę internetową 
+                    po zeskanowaniu kodu.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">WiFi</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Udostępnij dane sieci WiFi gościom - po zeskanowaniu kodu telefon automatycznie 
+                    połączy się z siecią.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Dane kontaktowe</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Zakoduj wizytówkę vCard z imieniem, numerem telefonu i adresem email 
+                    w jednym kodzie QR.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Marketing i reklama</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Umieść kody QR na ulotkach, plakatach i opakowaniach, aby kierować klientów 
+                    do ofert, stron produktów lub mediów społecznościowych.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Kod QR vs kod kreskowy</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left p-3 font-semibold">Cecha</th>
+                      <th className="text-left p-3 font-semibold">Kod QR</th>
+                      <th className="text-left p-3 font-semibold">Kod kreskowy</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b">
+                      <td className="p-3">Wymiary</td>
+                      <td className="p-3">Dwuwymiarowy (2D)</td>
+                      <td className="p-3">Jednowymiarowy (1D)</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="p-3">Pojemność danych</td>
+                      <td className="p-3">Do 4 296 znaków</td>
+                      <td className="p-3">Zwykle 20-25 znaków</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="p-3">Typy danych</td>
+                      <td className="p-3">Tekst, URL, email, WiFi, vCard</td>
+                      <td className="p-3">Głównie numery</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="p-3">Korekcja błędów</td>
+                      <td className="p-3">Tak (do 30%)</td>
+                      <td className="p-3">Nie</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Jak tworzyć skuteczne kody QR?</h3>
+              <ol className="list-decimal list-inside space-y-3 text-muted-foreground">
+                <li><strong>Odpowiedni rozmiar</strong> - kod QR powinien mieć co najmniej 2×2 cm do druku. Dla billboardów użyj minimum 256×256 px.</li>
+                <li><strong>Wysoki kontrast</strong> - zachowaj ciemny wzór na jasnym tle. Unikaj niskiego kontrastu kolorów.</li>
+                <li><strong>Testuj przed drukiem</strong> - zawsze zeskanuj kod różnymi urządzeniami przed wydrukowaniem.</li>
+                <li><strong>Krótkie URL-e</strong> - im mniej danych, tym prostszy i bardziej czytelny kod QR.</li>
+                <li><strong>Margines (quiet zone)</strong> - zostaw pusty margines wokół kodu, aby skanery mogły go łatwo odczytać.</li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Często zadawane pytania</h3>
+              <div className="space-y-4">
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czy kody QR wygasają?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Statyczne kody QR (jak te generowane przez nasze narzędzie) nigdy nie wygasają. 
+                    Zawierają dane bezpośrednio w kodzie, więc działają tak długo, jak długo 
+                    zakodowane dane są aktualne.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Jaka jest maksymalna pojemność kodu QR?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Kod QR może przechowywać do 4 296 znaków alfanumerycznych, 7 089 cyfr 
+                    lub 2 953 bajty danych binarnych. Jednak krótsze dane dają prostszy 
+                    i łatwiejszy do zeskanowania kod.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czy generator jest darmowy?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Tak, nasz generator kodów QR jest całkowicie darmowy i bez ograniczeń. 
+                    Możesz tworzyć dowolną liczbę kodów QR bez rejestracji.
+                  </p>
+                </div>
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-medium mb-2">Czy mogę używać kodów QR komercyjnie?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Oczywiście! Wygenerowane kody QR możesz używać do dowolnych celów - 
+                    osobistych i komercyjnych, na materiałach drukowanych i cyfrowych.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground">
+              <p>
+                Nasz generator kodów QR działa całkowicie w przeglądarce. Twoje dane nie są 
+                wysyłane na żaden serwer - generowanie odbywa się lokalnie na Twoim urządzeniu.
               </p>
             </div>
           </section>

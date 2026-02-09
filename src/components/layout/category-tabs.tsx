@@ -44,7 +44,7 @@ export function CategoryTabs({ locale, dictionary }: CategoryTabsProps) {
 
   const renderToolGrid = (tools: Tool[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {tools.map((tool) => {
+      {tools.filter((t) => t.isReady).map((tool) => {
         const toolDict = dictionary.tools[tool.id];
         return (
           <ToolCard
@@ -53,8 +53,6 @@ export function CategoryTabs({ locale, dictionary }: CategoryTabsProps) {
             icon={tool.icon}
             name={toolDict?.name || tool.id}
             description={toolDict?.description || ""}
-            isReady={tool.isReady}
-            comingSoonLabel={dictionary.common.comingSoon}
           />
         );
       })}

@@ -13,6 +13,9 @@ import { ProportionCalculator } from "@/components/calculators/proportion-calcul
 import { WeightedAverageCalculator } from "@/components/calculators/weighted-average-calculator";
 import { SleepCalculator } from "@/components/calculators/sleep-calculator";
 import { CalorieCalculator } from "@/components/calculators/calorie-calculator";
+import { BloodTypeCalculator } from "@/components/calculators/blood-type-calculator";
+import { InflationCalculator } from "@/components/calculators/inflation-calculator";
+import { DogYearsCalculator } from "@/components/calculators/dog-years-calculator";
 
 const BASE_URL = "https://utllo.com";
 const CATEGORY = "calculators";
@@ -208,6 +211,76 @@ export default async function ToolPage({ params }: PageProps) {
               weeklyChange: toolDict.weeklyChange || "Tygodniowo",
               goalResults: toolDict.goalResults || "Zapotrzebowanie kaloryczne wg celu",
               macros: toolDict.macros || "Makroskładniki",
+            }}
+          />
+        );
+      case "blood-type-calculator":
+        return (
+          <BloodTypeCalculator
+            dictionary={{
+              title: toolDict.title || "Kalkulator Grupy Krwi",
+              subtitle: toolDict.subtitle || "Oblicz możliwą grupę krwi dziecka",
+              parent1: toolDict.parent1 || "Rodzic 1",
+              parent2: toolDict.parent2 || "Rodzic 2",
+              bloodGroup: toolDict.bloodGroup || "Grupa krwi (ABO)",
+              rhFactor: toolDict.rhFactor || "Czynnik Rh",
+              calculate: toolDict.calculate || "Oblicz grupę krwi",
+              clear: toolDict.clear || "Wyczyść",
+              results: toolDict.results || "Wyniki",
+              probability: toolDict.probability || "Prawdopodobieństwo",
+              possibleTypes: toolDict.possibleTypes || "Możliwe grupy krwi dziecka",
+              noResults: toolDict.noResults || "Brak wyników",
+            }}
+          />
+        );
+      case "inflation-calculator":
+        return (
+          <InflationCalculator
+            dictionary={{
+              title: toolDict.title || "Kalkulator Inflacji",
+              subtitle: toolDict.subtitle || "Oblicz wpływ inflacji na wartość pieniądza",
+              amount: toolDict.amount || "Kwota (PLN)",
+              inflationRate: toolDict.inflationRate || "Roczna inflacja (%)",
+              years: toolDict.years || "Liczba lat",
+              calculate: toolDict.calculate || "Oblicz inflację",
+              clear: toolDict.clear || "Wyczyść",
+              futureValue: toolDict.futureValue || "Równowartość za X lat",
+              purchasingPowerLoss: toolDict.purchasingPowerLoss || "Utrata siły nabywczej",
+              purchasingPowerPercent: toolDict.purchasingPowerPercent || "Utrata wartości",
+              yearByYear: toolDict.yearByYear || "Zmiana wartości rok po roku",
+              year: toolDict.year || "Rok",
+              value: toolDict.value || "Wartość",
+              loss: toolDict.loss || "Utrata",
+            }}
+          />
+        );
+      case "dog-years-calculator":
+        return (
+          <DogYearsCalculator
+            dictionary={{
+              title: toolDict.title || "Psie Lata na Ludzkie",
+              subtitle: toolDict.subtitle || "Przelicz wiek Twojego psa na ludzkie lata",
+              dogAge: toolDict.dogAge || "Wiek psa (lata)",
+              dogSize: toolDict.dogSize || "Rozmiar psa",
+              small: toolDict.small || "Mały",
+              smallDesc: toolDict.smallDesc || "np. York, Chihuahua, Shih Tzu",
+              medium: toolDict.medium || "Średni",
+              mediumDesc: toolDict.mediumDesc || "np. Beagle, Cocker Spaniel, Buldog",
+              large: toolDict.large || "Duży",
+              largeDesc: toolDict.largeDesc || "np. Labrador, Owczarek, Husky",
+              giant: toolDict.giant || "Olbrzymi",
+              giantDesc: toolDict.giantDesc || "np. Dog Niemiecki, Bernardyn",
+              calculate: toolDict.calculate || "Przelicz wiek",
+              clear: toolDict.clear || "Wyczyść",
+              humanYears: toolDict.humanYears || "Wiek w ludzkich latach",
+              lifeStage: toolDict.lifeStage || "Etap życia",
+              result: toolDict.result || "ludzkich lat",
+              lifeExpectancy: toolDict.lifeExpectancy || "Średnia długość życia",
+              puppy: toolDict.puppy || "Szczeniak",
+              young: toolDict.young || "Młody",
+              adult: toolDict.adult || "Dorosły",
+              senior: toolDict.senior || "Senior",
+              geriatric: toolDict.geriatric || "Wiekowy",
             }}
           />
         );
@@ -872,6 +945,482 @@ export default async function ToolPage({ params }: PageProps) {
                 rejestracji ani wysyłania danych. Wszystkie obliczenia wykonywane są 
                 lokalnie na Twoim urządzeniu. Wyniki mają charakter orientacyjny - 
                 w przypadku wątpliwości skonsultuj się z dietetykiem.
+              </p>
+            </div>
+          </section>
+        );
+      case "blood-type-calculator":
+        return (
+          <section className="max-w-3xl mx-auto mt-16 space-y-12">
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Kalkulator Grupy Krwi Online - Oblicz Grupę Krwi Dziecka
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Nasz darmowy kalkulator grupy krwi pozwala obliczyć prawdopodobną grupę 
+                  krwi dziecka na podstawie grup krwi obojga rodziców. Kalkulator uwzględnia 
+                  zarówno system ABO (grupy A, B, AB, O), jak i czynnik Rh (+ i -), 
+                  korzystając z zasad genetyki mendlowskiej i tablicy Punnetta.
+                </p>
+                <p>
+                  Grupa krwi jest dziedziczona po rodzicach i pozostaje niezmienna przez 
+                  całe życie. Znajomość grupy krwi jest istotna w kontekście transfuzji 
+                  krwi, ciąży oraz diagnostyki medycznej.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Jak działa dziedziczenie grupy krwi?
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <h3 className="text-lg font-semibold text-foreground">System ABO</h3>
+                <p>
+                  System ABO opiera się na trzech allelach: A, B i O. Każdy człowiek 
+                  dziedziczy po jednym allelu od każdego z rodziców. Allele A i B są 
+                  dominujące nad O, natomiast A i B są kodominujące względem siebie.
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-2">
+                  <li><strong>Grupa A</strong> - genotyp AA lub AO</li>
+                  <li><strong>Grupa B</strong> - genotyp BB lub BO</li>
+                  <li><strong>Grupa AB</strong> - genotyp AB (kodominacja)</li>
+                  <li><strong>Grupa O</strong> - genotyp OO (allel recesywny)</li>
+                </ul>
+
+                <h3 className="text-lg font-semibold text-foreground mt-6">Czynnik Rh</h3>
+                <p>
+                  Czynnik Rh (Rhesus) jest określany przez obecność antygenu D na 
+                  powierzchni czerwonych krwinek. Allel D (Rh+) jest dominujący nad 
+                  allelem d (Rh-). Osoba Rh+ może mieć genotyp DD lub Dd, natomiast 
+                  osoba Rh- ma genotyp dd.
+                </p>
+                <p>
+                  To oznacza, że dwoje rodziców Rh+ może mieć dziecko Rh-, jeśli oboje 
+                  są nosicielami allelu d (genotyp Dd).
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Najczęściej zadawane pytania
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <h3 className="text-lg font-semibold text-foreground">
+                  Czy dwoje rodziców z grupą O może mieć dziecko z inną grupą?
+                </h3>
+                <p>
+                  Nie. Jeśli oboje rodzice mają grupę O (genotyp OO), dziecko zawsze 
+                  odziedziczy allel O od każdego rodzica, więc będzie miało grupę O.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Czy rodzice z grupami A i B mogą mieć dziecko z grupą O?
+                </h3>
+                <p>
+                  Tak! Jeśli rodzic z grupą A ma genotyp AO, a rodzic z grupą B ma 
+                  genotyp BO, istnieje 25% szans, że dziecko odziedziczy allel O od 
+                  każdego rodzica i będzie miało grupę O.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Co to jest konflikt serologiczny?
+                </h3>
+                <p>
+                  Konflikt serologiczny (konflikt Rh) może wystąpić, gdy matka jest Rh-, 
+                  a dziecko Rh+. W takiej sytuacji organizm matki może wytworzyć 
+                  przeciwciała przeciwko krwinkom dziecka. Dlatego ważne jest, aby 
+                  kobiety Rh- w ciąży były pod specjalną opieką medyczną.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Jakie grupy krwi mogą oddawać krew komu?
+                </h3>
+                <ul className="list-disc list-inside space-y-1 ml-2">
+                  <li><strong>O-</strong> - uniwersalny dawca (może oddać każdemu)</li>
+                  <li><strong>AB+</strong> - uniwersalny biorca (może otrzymać od każdego)</li>
+                  <li><strong>A+</strong> - może oddać dla A+ i AB+</li>
+                  <li><strong>B+</strong> - może oddać dla B+ i AB+</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Tabela dziedziczenia grup krwi
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left p-2 font-semibold text-foreground">Rodzic 1</th>
+                        <th className="text-left p-2 font-semibold text-foreground">Rodzic 2</th>
+                        <th className="text-left p-2 font-semibold text-foreground">Możliwe grupy dziecka</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      <tr><td className="p-2">O</td><td className="p-2">O</td><td className="p-2">O</td></tr>
+                      <tr><td className="p-2">O</td><td className="p-2">A</td><td className="p-2">O, A</td></tr>
+                      <tr><td className="p-2">O</td><td className="p-2">B</td><td className="p-2">O, B</td></tr>
+                      <tr><td className="p-2">O</td><td className="p-2">AB</td><td className="p-2">A, B</td></tr>
+                      <tr><td className="p-2">A</td><td className="p-2">A</td><td className="p-2">O, A</td></tr>
+                      <tr><td className="p-2">A</td><td className="p-2">B</td><td className="p-2">O, A, B, AB</td></tr>
+                      <tr><td className="p-2">A</td><td className="p-2">AB</td><td className="p-2">A, B, AB</td></tr>
+                      <tr><td className="p-2">B</td><td className="p-2">B</td><td className="p-2">O, B</td></tr>
+                      <tr><td className="p-2">B</td><td className="p-2">AB</td><td className="p-2">A, B, AB</td></tr>
+                      <tr><td className="p-2">AB</td><td className="p-2">AB</td><td className="p-2">A, B, AB</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-sm">
+                  Powyższa tabela przedstawia uproszczone zestawienie możliwych grup krwi 
+                  dziecka w systemie ABO (bez uwzględnienia czynnika Rh). Nasz kalkulator 
+                  uwzględnia również czynnik Rh i podaje dokładne prawdopodobieństwa.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground">
+              <p>
+                Nasz kalkulator grupy krwi działa całkowicie w przeglądarce. Nie wymaga 
+                rejestracji ani wysyłania danych. Wszystkie obliczenia wykonywane są 
+                lokalnie na Twoim urządzeniu. Wyniki mają charakter informacyjny i nie 
+                zastępują profesjonalnej diagnostyki medycznej.
+              </p>
+            </div>
+          </section>
+        );
+      case "inflation-calculator":
+        return (
+          <section className="max-w-3xl mx-auto mt-16 space-y-12">
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Kalkulator Inflacji Online - Oblicz Siłę Nabywczą Pieniądza
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Nasz darmowy kalkulator inflacji pozwala obliczyć, jak inflacja wpływa 
+                  na wartość Twoich pieniędzy w czasie. Sprawdź, ile będą warte Twoje 
+                  oszczędności za 5, 10, 20 czy 30 lat przy obecnym poziomie inflacji. 
+                  Kalkulator wykorzystuje wzór procentu składanego, który dokładnie 
+                  odzwierciedla rzeczywisty wpływ inflacji na siłę nabywczą.
+                </p>
+                <p>
+                  Inflacja to wzrost ogólnego poziomu cen dóbr i usług w gospodarce. 
+                  Oznacza to, że za tę samą kwotę pieniędzy z biegiem czasu możesz kupić 
+                  coraz mniej. Nasz kalkulator pomoże Ci zrozumieć skalę tego zjawiska 
+                  i podjąć lepsze decyzje finansowe.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Jak działa inflacja?
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <h3 className="text-lg font-semibold text-foreground">Wzór na inflację (procent składany)</h3>
+                <p>
+                  Kalkulator wykorzystuje wzór procentu składanego do obliczenia przyszłej 
+                  wartości pieniądza:
+                </p>
+                <div className="bg-muted/50 p-4 rounded-lg text-center font-mono text-foreground">
+                  Wartość przyszła = Kwota × (1 + stopa inflacji / 100)<sup>liczba lat</sup>
+                </div>
+                <p>
+                  Na przykład: 1000 zł przy rocznej inflacji 5% po 10 latach będzie 
+                  odpowiadać sile nabywczej ok. 1629 zł. Oznacza to, że za to, co dziś 
+                  kosztuje 1000 zł, za 10 lat zapłacisz ok. 1629 zł - utracisz prawie 
+                  63% siły nabywczej.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-6">Inflacja w Polsce</h3>
+                <p>
+                  Inflacja w Polsce jest mierzona przez Główny Urząd Statystyczny (GUS) 
+                  za pomocą wskaźnika CPI (Consumer Price Index). Historycznie inflacja 
+                  w Polsce wahała się od ujemnych wartości (deflacja) do dwucyfrowych 
+                  poziomów. Cel inflacyjny Narodowego Banku Polskiego wynosi 2,5% z 
+                  dopuszczalnym odchyleniem ±1 punkt procentowy.
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-2">
+                  <li>Średnia inflacja w Polsce (2010-2020): ok. 1,5% rocznie</li>
+                  <li>Inflacja w 2022: ponad 14% (najwyższa od lat 90.)</li>
+                  <li>Cel inflacyjny NBP: 2,5% (±1 pp)</li>
+                  <li>Inflacja w krajach strefy euro: cel EBC to ok. 2%</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Jak chronić oszczędności przed inflacją?
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Trzymanie pieniędzy na koncie oszczędnościowym przy niskim oprocentowaniu 
+                  oznacza realną utratę ich wartości. Oto popularne sposoby ochrony 
+                  oszczędności:
+                </p>
+                <ul className="list-disc list-inside space-y-2 ml-2">
+                  <li>
+                    <strong>Obligacje skarbowe indeksowane inflacją</strong> - ich 
+                    oprocentowanie jest powiązane z poziomem inflacji, co chroni realną 
+                    wartość kapitału.
+                  </li>
+                  <li>
+                    <strong>Lokaty bankowe</strong> - wybieraj lokaty z oprocentowaniem 
+                    wyższym niż inflacja. Porównuj oferty różnych banków.
+                  </li>
+                  <li>
+                    <strong>Inwestycje w akcje/ETF</strong> - historycznie rynki akcji 
+                    generowały zwroty powyżej inflacji w długim terminie.
+                  </li>
+                  <li>
+                    <strong>Nieruchomości</strong> - wartość nieruchomości zazwyczaj rośnie 
+                    wraz z inflacją, a wynajem generuje dochód pasywny.
+                  </li>
+                  <li>
+                    <strong>Złoto i metale szlachetne</strong> - tradycyjnie uważane za 
+                    zabezpieczenie przed inflacją.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Najczęściej zadawane pytania
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <h3 className="text-lg font-semibold text-foreground">
+                  Czym jest siła nabywcza pieniądza?
+                </h3>
+                <p>
+                  Siła nabywcza to ilość dóbr i usług, które można kupić za określoną 
+                  kwotę pieniędzy. Gdy inflacja rośnie, siła nabywcza spada - za te same 
+                  pieniądze kupisz mniej.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Jaka jest różnica między inflacją a deflacją?
+                </h3>
+                <p>
+                  Inflacja oznacza wzrost cen (utratę wartości pieniądza), a deflacja to 
+                  spadek cen (wzrost wartości pieniądza). Deflacja wydaje się korzystna, 
+                  ale może prowadzić do stagnacji gospodarczej.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Co to jest wartość nominalna a realna?
+                </h3>
+                <p>
+                  Wartość nominalna to kwota zapisana na banknocie lub kontrakcie. Wartość 
+                  realna uwzględnia inflację i odzwierciedla faktyczną siłę nabywczą. 
+                  Na przykład: pensja 5000 zł nominalnie to ta sama kwota, ale jej 
+                  wartość realna spada co roku o stopę inflacji.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Jak inflacja wpływa na kredyty?
+                </h3>
+                <p>
+                  Inflacja paradoksalnie pomaga kredytobiorcom - wartość realna długu 
+                  maleje z czasem. Jeśli masz kredyt hipoteczny o stałym oprocentowaniu, 
+                  inflacja sprawia, że raty stanowią coraz mniejszą część Twoich dochodów 
+                  (zakładając, że zarobki rosną wraz z inflacją).
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground">
+              <p>
+                Nasz kalkulator inflacji działa całkowicie w przeglądarce. Nie wymaga 
+                rejestracji ani wysyłania danych. Wszystkie obliczenia wykonywane są 
+                lokalnie na Twoim urządzeniu. Wyniki mają charakter informacyjny i nie 
+                stanowią porady finansowej.
+              </p>
+            </div>
+          </section>
+        );
+      case "dog-years-calculator":
+        return (
+          <section className="max-w-3xl mx-auto mt-16 space-y-12">
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Psie Lata na Ludzkie - Przelicz Wiek Swojego Psa
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Nasz darmowy kalkulator psich lat pozwala dokładnie przeliczyć wiek 
+                  Twojego psa na ludzkie lata. W przeciwieństwie do popularnego mitu 
+                  &quot;pomnóż przez 7&quot;, nasz kalkulator wykorzystuje nowoczesną, 
+                  naukowo potwierdzoną formułę, która uwzględnia rozmiar psa i nieliniowy 
+                  charakter procesu starzenia się.
+                </p>
+                <p>
+                  Psy nie starzeją się w równym tempie przez całe życie. Pierwszy rok 
+                  życia psa odpowiada aż 15 ludzkim latom, a duże psy starzeją się 
+                  szybciej niż małe. Dlatego prosty mnożnik &quot;×7&quot; jest bardzo 
+                  niedokładny.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Dlaczego &quot;pomnóż przez 7&quot; to mit?
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Zasada &quot;1 rok psa = 7 ludzkich lat&quot; została wymyślona jako 
+                  uproszczenie, ale nie ma naukowego uzasadnienia. W rzeczywistości:
+                </p>
+                <ul className="list-disc list-inside space-y-2 ml-2">
+                  <li>
+                    <strong>Pierwszy rok życia psa</strong> to okres ogromnego rozwoju - 
+                    odpowiada ok. 15 ludzkim latom. Roczny pies jest już dojrzały 
+                    reprodukcyjnie.
+                  </li>
+                  <li>
+                    <strong>Drugi rok</strong> dodaje kolejnych ~9 ludzkich lat. 
+                    Dwuletni pies odpowiada więc ok. 24-letniemu człowiekowi.
+                  </li>
+                  <li>
+                    <strong>Kolejne lata</strong> dodają od 4 do 8 ludzkich lat rocznie, 
+                    w zależności od rozmiaru psa.
+                  </li>
+                </ul>
+                <p>
+                  Badania przeprowadzone przez University of California San Diego w 2019 
+                  roku, oparte na analizie DNA (metylacja), potwierdziły, że starzenie się 
+                  psów jest procesem nieliniowym.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Jak rozmiar psa wpływa na starzenie?
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Rozmiar psa ma ogromny wpływ na tempo starzenia i średnią długość życia:
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left p-2 font-semibold text-foreground">Rozmiar</th>
+                        <th className="text-left p-2 font-semibold text-foreground">Waga</th>
+                        <th className="text-left p-2 font-semibold text-foreground">Lat/rok (po 2. roku)</th>
+                        <th className="text-left p-2 font-semibold text-foreground">Średnia długość życia</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      <tr><td className="p-2">Mały</td><td className="p-2">&lt;10 kg</td><td className="p-2">+4 lata</td><td className="p-2">12-16 lat</td></tr>
+                      <tr><td className="p-2">Średni</td><td className="p-2">10-25 kg</td><td className="p-2">+5 lat</td><td className="p-2">10-14 lat</td></tr>
+                      <tr><td className="p-2">Duży</td><td className="p-2">25-45 kg</td><td className="p-2">+6 lat</td><td className="p-2">8-12 lat</td></tr>
+                      <tr><td className="p-2">Olbrzymi</td><td className="p-2">&gt;45 kg</td><td className="p-2">+8 lat</td><td className="p-2">6-10 lat</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Paradoksalnie, większe psy żyją krócej niż mniejsze. Naukowcy uważają, 
+                  że jest to związane z szybszym wzrostem dużych ras, co przyspiesza 
+                  procesy starzenia na poziomie komórkowym.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Etapy życia psa
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <ul className="list-disc list-inside space-y-3 ml-2">
+                  <li>
+                    <strong>Szczeniak (0-12 ludzkich lat)</strong> - intensywny wzrost 
+                    i rozwój. Pies uczy się podstawowych zachowań, wymaga socjalizacji 
+                    i szczepień.
+                  </li>
+                  <li>
+                    <strong>Młody (12-24 ludzkich lat)</strong> - dojrzewanie. Pies jest 
+                    pełen energii, potrzebuje dużo ruchu i treningu.
+                  </li>
+                  <li>
+                    <strong>Dorosły (24-40+ ludzkich lat)</strong> - pełna dojrzałość. 
+                    Pies jest spokojniejszy, ale nadal aktywny. Regularne badania 
+                    weterynaryjne raz w roku.
+                  </li>
+                  <li>
+                    <strong>Senior (40-65+ ludzkich lat)</strong> - spowolnienie tempa 
+                    życia. Mogą pojawiać się problemy ze stawami, wzrokiem i słuchem. 
+                    Badania weterynaryjne co 6 miesięcy.
+                  </li>
+                  <li>
+                    <strong>Wiekowy (65+ ludzkich lat)</strong> - wymaga szczególnej 
+                    opieki, dostosowanej diety i regularnych wizyt u weterynarza. 
+                    Komfort i jakość życia są priorytetem.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Najczęściej zadawane pytania
+              </h2>
+              <div className="text-muted-foreground space-y-4">
+                <h3 className="text-lg font-semibold text-foreground">
+                  Ile ludzkich lat ma 5-letni pies?
+                </h3>
+                <p>
+                  To zależy od rozmiaru! 5-letni mały pies to ok. 36 ludzkich lat, 
+                  średni to ok. 39 lat, duży to ok. 42 lata, a olbrzymi to ok. 48 
+                  ludzkich lat. Użyj naszego kalkulatora, aby uzyskać dokładny wynik.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Które rasy psów żyją najdłużej?
+                </h3>
+                <p>
+                  Najdłużej żyją małe rasy: Chihuahua (15-20 lat), Jack Russell Terrier 
+                  (13-16 lat), Yorkshire Terrier (13-16 lat), Shih Tzu (10-16 lat). 
+                  Rekordzistą jest australijski pies pasterski Bluey, który dożył 29 lat.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Od jakiego wieku pies jest seniorem?
+                </h3>
+                <p>
+                  Małe psy stają się seniorami ok. 10-11 roku życia, średnie ok. 8-9 
+                  roku, duże ok. 6-7 roku, a olbrzymie już ok. 5 roku życia. Im większy 
+                  pies, tym wcześniej wchodzi w etap senioralny.
+                </p>
+
+                <h3 className="text-lg font-semibold text-foreground mt-4">
+                  Jak mogę pomóc mojemu psu żyć dłużej?
+                </h3>
+                <ul className="list-disc list-inside space-y-1 ml-2">
+                  <li>Zbilansowana dieta dostosowana do wieku i rozmiaru</li>
+                  <li>Regularna aktywność fizyczna</li>
+                  <li>Profilaktyczne badania weterynaryjne</li>
+                  <li>Utrzymywanie zdrowej wagi (otyłość skraca życie!)</li>
+                  <li>Higiena jamy ustnej</li>
+                  <li>Stymulacja umysłowa (zabawy, szkolenie)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground">
+              <p>
+                Nasz kalkulator psich lat działa całkowicie w przeglądarce. Nie wymaga 
+                rejestracji ani wysyłania danych. Wyniki oparte są na danych 
+                weterynaryjnych i mają charakter orientacyjny - każdy pies starzeje się 
+                indywidualnie.
               </p>
             </div>
           </section>

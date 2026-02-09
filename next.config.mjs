@@ -25,7 +25,7 @@ const nextConfig = {
       { old: 'formatter-json', category: 'narzedzia' },
       { old: 'base64', category: 'narzedzia' },
       { old: 'generator-hashy', category: 'narzedzia' },
-      { old: 'generator-qr', category: 'narzedzia' },
+      { old: 'generator-qr', category: 'generatory' },
       { old: 'licznik-znakow', category: 'narzedzia' },
       { old: 'licznik-slow', category: 'narzedzia' },
       { old: 'rzut-kostka', category: 'narzedzia' },
@@ -65,6 +65,7 @@ const nextConfig = {
       { source: '/:locale/narzedzia/lorem-ipsum', destination: '/:locale/generatory/generator-lorem-ipsum', permanent: true },
       { source: '/:locale/narzedzia/generator-czcionek', destination: '/:locale/generatory/generator-czcionek', permanent: true },
       { source: '/:locale/narzedzia/rzut-kostka', destination: '/:locale/losuj/rzut-kostka', permanent: true },
+      { source: '/:locale/narzedzia/generator-qr', destination: '/:locale/generatory/generator-qr', permanent: true },
     );
 
     return redirects;
