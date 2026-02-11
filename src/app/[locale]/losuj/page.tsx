@@ -35,6 +35,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "generator liczb",
       "losowy cytat",
       "karta tarota",
+      "losuj kartę tarota",
+      "tarot online",
+      "losowanie kart tarota",
+      "wirtualny tarot",
+      "darmowy tarot",
     ],
     alternates: {
       canonical: `${BASE_URL}/${locale}/${categoryMeta.randomizers.slug}`,

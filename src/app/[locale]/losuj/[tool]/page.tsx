@@ -12,6 +12,7 @@ import { NumberGenerator } from "@/components/random-number/number-generator";
 import { NumbersGenerator } from "@/components/random-numbers/numbers-generator";
 import { YesNoGenerator } from "@/components/random-yesno/yesno-generator";
 import { DiceRoller } from "@/components/dice/dice-roller";
+import { TarotReader } from "@/components/tarot/tarot-reader";
 
 const BASE_URL = "https://utllo.com";
 const CATEGORY = "randomizers";
@@ -152,6 +153,37 @@ export default async function ToolPage({ params }: PageProps) {
               average: (toolDict as any).average || "Średnia",
               min: (toolDict as any).min || "Min",
               max: (toolDict as any).max || "Max",
+            }}
+          />
+        );
+      case "random-tarot":
+        return (
+          <TarotReader
+            dictionary={{
+              title: toolDict.title || "Losuj Kartę Tarota",
+              subtitle: toolDict.subtitle || "Wylosuj kartę z pełnej talii 78 kart",
+              draw: toolDict.draw || "Wylosuj Kartę",
+              drawAnother: toolDict.drawAnother || "Losuj Kolejną",
+              upright: toolDict.upright || "Pozycja prosta",
+              reversed: toolDict.reversed || "Pozycja odwrócona",
+              meaning: toolDict.meaning || "Znaczenie",
+              keywords: toolDict.keywords || "Słowa kluczowe",
+              history: toolDict.history || "Historia losowań",
+              clearHistory: toolDict.clearHistory || "Wyczyść historię",
+              majorArcana: toolDict.majorArcana || "Wielkie Arkana",
+              minorArcana: toolDict.minorArcana || "Małe Arkana",
+              cardOf: toolDict.cardOf || "Karta",
+              of78: toolDict.of78 || "z 78",
+              clickToReveal: toolDict.clickToReveal || "Kliknij, aby obrócić",
+              noHistory: toolDict.noHistory || "Brak historii",
+              imageDesc: toolDict.imageDesc || "Opis karty",
+              love: toolDict.love || "Miłość",
+              health: toolDict.health || "Zdrowie",
+              work: toolDict.work || "Praca",
+              adviceLabel: toolDict.adviceLabel || "Rada",
+              element: toolDict.element || "Żywioł",
+              zodiacLabel: toolDict.zodiacLabel || "Zodiak",
+              planetLabel: toolDict.planetLabel || "Planeta",
             }}
           />
         );
@@ -353,6 +385,151 @@ export default async function ToolPage({ params }: PageProps) {
               <p>
                 Nasz symulator kostki działa całkowicie w przeglądarce. Nie wymaga instalacji, 
                 rejestracji ani połączenia z internetem po załadowaniu strony.
+              </p>
+            </div>
+          </section>
+        );
+      case "random-tarot":
+        return (
+          <section className="max-w-2xl mx-auto mt-16 space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Czym jest tarot?</h2>
+              <p className="text-muted-foreground leading-relaxed mb-3">
+                Tarot to system 78 kart używanych od wieków do refleksji, medytacji i poszukiwania 
+                wewnętrznych odpowiedzi. Talia dzieli się na dwie główne grupy: 22 karty Wielkich 
+                Arkanów (Major Arcana), które symbolizują ważne życiowe tematy i archetypy, oraz 
+                56 kart Małych Arkanów (Minor Arcana), podzielonych na cztery kolory: Kielichy, 
+                Pentakle, Miecze i Różdżki.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Nasze narzędzie losuje kartę z pełnej talii 78 kart, w pozycji prostej lub odwróconej, 
+                i wyświetla jej znaczenie. Każda karta posiada piękną ilustrację w akwarelowym stylu, 
+                polskie nazwy i szczegółowe opisy interpretacji.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Wielkie Arkana — 22 karty losu</h2>
+              <p className="text-muted-foreground leading-relaxed mb-3">
+                Wielkie Arkana to 22 karty numerowane od 0 (Głupiec) do 21 (Świat). Reprezentują 
+                one wielkie tematy życiowe, duchowe lekcje i archetypy — od niewinności Głupca, 
+                przez transformację Śmierci, po spełnienie Świata. Wylosowanie karty z Wielkich 
+                Arkanów sugeruje, że masz do czynienia z ważnym, głębokim tematem.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Do Wielkich Arkanów należą m.in.: Głupiec, Mag, Najwyższa Kapłanka, Cesarzowa, 
+                Cesarz, Hierofant, Kochankowie, Rydwan, Siła, Pustelnik, Koło Fortuny, 
+                Sprawiedliwość, Wisielec, Śmierć, Umiarkowanie, Diabeł, Wieża, Gwiazda, 
+                Księżyc, Słońce, Sąd Ostateczny i Świat.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Małe Arkana — 56 kart codzienności</h2>
+              <p className="text-muted-foreground leading-relaxed mb-3">
+                Małe Arkana dzielą się na cztery kolory po 14 kart (As do Króla):
+              </p>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">•</span>
+                  <span><strong>Kielichy</strong> — emocje, uczucia, relacje, intuicja (żywioł wody)</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">•</span>
+                  <span><strong>Pentakle</strong> — finanse, praca, zdrowie, materia (żywioł ziemi)</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">•</span>
+                  <span><strong>Miecze</strong> — myśli, konflikty, komunikacja, intelekt (żywioł powietrza)</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">•</span>
+                  <span><strong>Różdżki</strong> — pasja, energia, kreatywność, działanie (żywioł ognia)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Pozycja prosta vs odwrócona</h2>
+              <p className="text-muted-foreground leading-relaxed mb-3">
+                Każda karta tarota może pojawić się w dwóch pozycjach: prostej (upright) i odwróconej 
+                (reversed). Pozycja prosta zazwyczaj wskazuje na pozytywne lub bezpośrednie znaczenie karty, 
+                natomiast pozycja odwrócona może sugerować blokady, wyzwania, opóźnienia lub wewnętrzne 
+                aspekty danego tematu.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Odwrócona karta nie oznacza automatycznie czegoś negatywnego — często zachęca do głębszej 
+                refleksji i spojrzenia na temat z innej perspektywy. Nasze narzędzie losuje pozycję 
+                karty z równym prawdopodobieństwem 50/50.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Jak korzystać z losowania kart tarota?</h2>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">1.</span>
+                  <span>Skup się na pytaniu lub temacie, który Cię nurtuje</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">2.</span>
+                  <span>Kliknij „Wylosuj Kartę" — zostanie wybrana losowa karta z pełnej talii 78 kart</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">3.</span>
+                  <span>Kliknij kartę, aby ją obrócić i zobaczyć, którą wylosowałeś</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">4.</span>
+                  <span>Przeczytaj znaczenie karty w wylosowanej pozycji (prostej lub odwróconej)</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">5.</span>
+                  <span>Zastanów się, jak przesłanie karty odnosi się do Twojego pytania</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Najczęściej zadawane pytania</h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-semibold mb-1">Czy losowanie kart tarota jest darmowe?</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Tak, narzędzie jest całkowicie darmowe i nie wymaga rejestracji. Możesz losować karty 
+                    bez ograniczeń.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Ile kart zawiera talia?</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Nasza talia zawiera pełne 78 kart — 22 karty Wielkich Arkanów i 56 kart Małych 
+                    Arkanów (Kielichy, Pentakle, Miecze, Różdżki).
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Jak działa losowanie?</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Używamy kryptograficznie bezpiecznego generatora liczb losowych (crypto.getRandomValues), 
+                    który zapewnia w pełni losowy wybór karty i jej pozycji.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Czy tarot przepowiada przyszłość?</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Tarot jest narzędziem do refleksji i samopoznania, a nie przepowiadania przyszłości. 
+                    Karty mogą pomóc spojrzeć na sytuację z nowej perspektywy i zachęcić do głębszego 
+                    namysłu nad ważnymi kwestiami.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground">
+              <p>
+                Nasze losowanie kart tarota działa całkowicie w przeglądarce — nie wymaga 
+                rejestracji ani połączenia z internetem po załadowaniu strony. 
+                Każda karta posiada unikatową ilustrację w stylu akwarelowym.
               </p>
             </div>
           </section>

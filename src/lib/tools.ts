@@ -259,7 +259,7 @@ export const tools: Tool[] = [
     id: "random-tarot",
     slug: "losuj-karte-tarota",
     icon: Sparkles,
-    isReady: false,
+    isReady: true,
     category: "randomizers",
   },
   {
