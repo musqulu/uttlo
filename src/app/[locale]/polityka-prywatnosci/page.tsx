@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Shield, Database, Cookie, Eye, UserCheck, Mail } from "lucide-react";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
@@ -26,10 +26,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? "Privacy policy of utllo. Learn how we protect your data and what information we collect when you use our free online tools."
       : "Polityka prywatności serwisu utllo. Dowiedz się, jak chronimy Twoje dane i jakie informacje zbieramy podczas korzystania z naszych narzędzi online.",
     alternates: {
-      canonical: `${BASE_URL}/${locale}/polityka-prywatnosci`,
+      canonical: `${BASE_URL}${getLocalePath(locale)}/polityka-prywatnosci`,
       languages: {
-        pl: `${BASE_URL}/pl/polityka-prywatnosci`,
+        pl: `${BASE_URL}/polityka-prywatnosci`,
         en: `${BASE_URL}/en/polityka-prywatnosci`,
+        "x-default": `${BASE_URL}/polityka-prywatnosci`,
       },
     },
     openGraph: {
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: isEn
         ? "Privacy policy of utllo. Learn how we protect your data."
         : "Polityka prywatności serwisu utllo. Dowiedz się, jak chronimy Twoje dane.",
-      url: `${BASE_URL}/${locale}/polityka-prywatnosci`,
+      url: `${BASE_URL}${getLocalePath(locale)}/polityka-prywatnosci`,
       type: "website",
       locale: isEn ? "en_US" : "pl_PL",
     },
@@ -53,9 +54,10 @@ export default async function PrivacyPolicyPage({ params }: PageProps) {
   const dictionary = await getDictionary(locale as Locale);
   const isEn = locale === "en";
 
+  const lp = getLocalePath(locale);
   const breadcrumbItems = [
-    { name: dictionary.nav.home, url: `/${locale}` },
-    { name: isEn ? "Privacy Policy" : "Polityka prywatności", url: `/${locale}/polityka-prywatnosci` },
+    { name: dictionary.nav.home, url: lp || "/" },
+    { name: isEn ? "Privacy Policy" : "Polityka prywatności", url: `${lp}/polityka-prywatnosci` },
   ];
 
   return (

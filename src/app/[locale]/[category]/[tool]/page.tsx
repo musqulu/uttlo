@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import {
   tools as allTools,
@@ -9,6 +9,7 @@ import {
   getToolByCategoryAndSlug,
   getCategoryBySlug,
   getCategorySlug,
+  getCategoryUrl,
   getToolSlug,
   getToolUrl,
   getRelatedTools,
@@ -49,23 +50,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const dict = await getDictionary(locale);
   const toolDict = dict.tools[tool.id as keyof typeof dict.tools];
 
-  // Build hreflang alternates
+  // Build hreflang alternates — Polish at root, English at /en
   const languages: Record<string, string> = {};
   for (const loc of i18n.locales) {
     languages[loc] = `${BASE_URL}${getToolUrl(tool, loc)}`;
   }
+  languages["x-default"] = `${BASE_URL}${getToolUrl(tool, i18n.defaultLocale)}`;
+
+  const canonicalUrl = `${BASE_URL}${getToolUrl(tool, locale)}`;
 
   return {
     title: toolDict?.seoTitle || tool.id,
     description: toolDict?.seoDescription || "",
     alternates: {
-      canonical: `${BASE_URL}${getToolUrl(tool, locale)}`,
+      canonical: canonicalUrl,
       languages,
     },
     openGraph: {
       title: toolDict?.seoTitle || tool.id,
       description: toolDict?.seoDescription || "",
-      url: `${BASE_URL}${getToolUrl(tool, locale)}`,
+      url: canonicalUrl,
       siteName: dict.brand,
       locale: locale === "pl" ? "pl_PL" : "en_US",
       type: "website",
@@ -92,9 +96,10 @@ export default async function ToolPage({ params }: PageProps) {
     url: `${BASE_URL}${getToolUrl(tool, locale)}`,
   });
 
+  const lp = getLocalePath(locale);
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: dict.categoryPages.breadcrumbs.home, url: `${BASE_URL}/${locale}` },
-    { name: categoryPage.title, url: `${BASE_URL}/${locale}/${catSlug}` },
+    { name: dict.categoryPages.breadcrumbs.home, url: `${BASE_URL}${lp || "/"}` },
+    { name: categoryPage.title, url: `${BASE_URL}${getCategoryUrl(categoryId, locale)}` },
     { name: toolDict?.name || tool.id, url: `${BASE_URL}${getToolUrl(tool, locale)}` },
   ]);
 
@@ -107,13 +112,13 @@ export default async function ToolPage({ params }: PageProps) {
         <nav className="mb-6 text-sm text-muted-foreground max-w-2xl mx-auto">
           <ol className="flex items-center gap-2">
             <li>
-              <Link href={`/${locale}`} className="hover:text-foreground transition-colors">
+              <Link href={lp || "/"} className="hover:text-foreground transition-colors">
                 {dict.categoryPages.breadcrumbs.home}
               </Link>
             </li>
             <li>/</li>
             <li>
-              <Link href={`/${locale}/${catSlug}`} className="hover:text-foreground transition-colors">
+              <Link href={getCategoryUrl(categoryId, locale)} className="hover:text-foreground transition-colors">
                 {categoryPage.title}
               </Link>
             </li>

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Mail, MessageSquare, Clock, HelpCircle } from "lucide-react";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
@@ -21,10 +21,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? "Have a question, suggestion, or problem? Contact the utllo team. We respond to messages within 24-48 hours."
       : "Masz pytanie, sugestię lub problem? Skontaktuj się z zespołem utllo. Odpowiadamy na wiadomości w ciągu 24-48 godzin.",
     alternates: {
-      canonical: `${BASE_URL}/${locale}/kontakt`,
+      canonical: `${BASE_URL}${getLocalePath(locale)}/kontakt`,
       languages: {
-        pl: `${BASE_URL}/pl/kontakt`,
+        pl: `${BASE_URL}/kontakt`,
         en: `${BASE_URL}/en/kontakt`,
+        "x-default": `${BASE_URL}/kontakt`,
       },
     },
     openGraph: {
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: isEn
         ? "Have a question, suggestion, or problem? Contact the utllo team."
         : "Masz pytanie, sugestię lub problem? Skontaktuj się z zespołem utllo.",
-      url: `${BASE_URL}/${locale}/kontakt`,
+      url: `${BASE_URL}${getLocalePath(locale)}/kontakt`,
       type: "website",
       locale: isEn ? "en_US" : "pl_PL",
     },
@@ -48,9 +49,10 @@ export default async function ContactPage({ params }: PageProps) {
   const dictionary = await getDictionary(locale as Locale);
   const isEn = locale === "en";
 
+  const lp = getLocalePath(locale);
   const breadcrumbItems = [
-    { name: dictionary.nav.home, url: `/${locale}` },
-    { name: isEn ? "Contact" : "Kontakt", url: `/${locale}/kontakt` },
+    { name: dictionary.nav.home, url: lp || "/" },
+    { name: isEn ? "Contact" : "Kontakt", url: `${lp}/kontakt` },
   ];
 
   return (

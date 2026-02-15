@@ -21,10 +21,11 @@ const bannerText: Record<string, { message: string; privacyLink: string; reject:
 };
 
 function getLocaleFromPath(): string {
-  if (typeof window === "undefined") return "en";
+  if (typeof window === "undefined") return "pl";
   const segments = window.location.pathname.split("/").filter(Boolean);
-  const locale = segments[0];
-  return locale === "pl" ? "pl" : "en";
+  const firstSegment = segments[0];
+  // If path starts with /en, it's English. Otherwise it's Polish (root = default).
+  return firstSegment === "en" ? "en" : "pl";
 }
 
 export function CookieBanner() {
@@ -68,7 +69,7 @@ export function CookieBanner() {
                 <p>
                   {t.message}{" "}
                   <Link
-                    href={`/${locale}/polityka-prywatnosci`}
+                    href={locale === "pl" ? "/polityka-prywatnosci" : `/${locale}/polityka-prywatnosci`}
                     className="underline hover:text-foreground transition-colors"
                   >
                     {t.privacyLink}

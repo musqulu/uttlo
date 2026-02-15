@@ -34,49 +34,87 @@ interface LanguageSwitcherProps {
 }
 
 /**
- * Translates the current pathname from one locale to another.
- * Handles locale prefix, category slugs, and tool slugs.
+ * Detects the current locale from the pathname.
+ * If the path starts with a known non-default locale prefix (e.g. /en/...),
+ * returns that locale. Otherwise returns the default locale (pl).
+ */
+function detectLocaleFromPath(pathname: string): string {
+  for (const locale of i18n.locales) {
+    if (locale === i18n.defaultLocale) continue;
+    if (pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`) {
+      return locale;
+    }
+  }
+  return i18n.defaultLocale;
+}
+
+/**
+ * Strips the locale prefix from a pathname.
+ * /en/tools/password-generator -> ["tools", "password-generator"]
+ * /generatory/generator-hasel -> ["generatory", "generator-hasel"] (root = PL, no prefix)
+ */
+function getPathSegments(pathname: string, currentLocale: string): string[] {
+  const segments = pathname.split("/").filter(Boolean);
+
+  // If path starts with a non-default locale prefix, strip it
+  if (currentLocale !== i18n.defaultLocale && segments[0] === currentLocale) {
+    return segments.slice(1);
+  }
+
+  return segments;
+}
+
+/**
+ * Translates path segments from one locale to another and builds the target URL.
+ * Handles category slugs, tool slugs, and static pages.
+ * Default locale (pl) uses root paths; non-default locales use /{locale}/... prefix.
  */
 function translatePath(pathname: string, fromLocale: string, toLocale: string): string {
-  // Split path: /pl/narzedzia/licznik-znakow -> ["", "pl", "narzedzia", "licznik-znakow"]
-  const segments = pathname.split("/");
+  const segments = getPathSegments(pathname, fromLocale);
 
-  if (segments.length < 2) return `/${toLocale}`;
+  // Home page
+  if (segments.length === 0) {
+    return toLocale === i18n.defaultLocale ? "/" : `/${toLocale}`;
+  }
 
-  // Replace locale
-  segments[1] = toLocale;
+  const translated = [...segments];
 
-  // If there's a category segment (index 2)
-  if (segments.length >= 3 && segments[2]) {
-    const categoryId = getCategoryBySlug(segments[2], fromLocale);
+  // Try to translate category slug (first segment)
+  if (translated[0]) {
+    const categoryId = getCategoryBySlug(translated[0], fromLocale);
     if (categoryId) {
-      segments[2] = getCategorySlug(categoryId, toLocale);
+      translated[0] = getCategorySlug(categoryId, toLocale);
 
-      // If there's a tool segment (index 3)
-      if (segments.length >= 4 && segments[3]) {
+      // Try to translate tool slug (second segment)
+      if (translated[1]) {
         const tool = tools.find((t) => {
-          return t.category === categoryId && t.slugs[fromLocale] === segments[3];
+          return t.category === categoryId && t.slugs[fromLocale] === translated[1];
         });
         if (tool) {
-          segments[3] = getToolSlug(tool, toLocale);
+          translated[1] = getToolSlug(tool, toLocale);
         }
       }
     }
   }
 
-  return segments.join("/");
+  // Build final path: default locale → root, non-default → /{locale}/...
+  const prefix = toLocale === i18n.defaultLocale ? "" : `/${toLocale}`;
+  return `${prefix}/${translated.join("/")}`;
 }
 
 export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const router = useRouter();
 
+  // Detect the actual locale from the URL (since PL pages have no prefix)
+  const detectedLocale = detectLocaleFromPath(pathname);
+
   const switchLocale = (targetLocale: string) => {
     // Set cookie for persistence
     document.cookie = `NEXT_LOCALE=${targetLocale};path=/;max-age=${60 * 60 * 24 * 365}`;
 
     // Translate the current path to the target locale
-    const newPath = translatePath(pathname, locale, targetLocale);
+    const newPath = translatePath(pathname, detectedLocale, targetLocale);
     router.push(newPath);
   };
 

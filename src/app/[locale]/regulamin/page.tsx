@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FileText, CheckCircle, AlertTriangle, Scale, Gavel, RefreshCw, Mail } from "lucide-react";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
@@ -27,10 +27,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? "Terms of service for utllo.com. Rules for using free online tools, user rights and obligations."
       : "Regulamin korzystania z serwisu utllo.pl. Zasady użytkowania darmowych narzędzi online, prawa i obowiązki użytkowników.",
     alternates: {
-      canonical: `${BASE_URL}/${locale}/regulamin`,
+      canonical: `${BASE_URL}${getLocalePath(locale)}/regulamin`,
       languages: {
-        pl: `${BASE_URL}/pl/regulamin`,
+        pl: `${BASE_URL}/regulamin`,
         en: `${BASE_URL}/en/regulamin`,
+        "x-default": `${BASE_URL}/regulamin`,
       },
     },
     openGraph: {
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: isEn
         ? "Terms of service for utllo.com. Rules for using free online tools."
         : "Regulamin korzystania z serwisu utllo.pl. Zasady użytkowania darmowych narzędzi online.",
-      url: `${BASE_URL}/${locale}/regulamin`,
+      url: `${BASE_URL}${getLocalePath(locale)}/regulamin`,
       type: "website",
       locale: isEn ? "en_US" : "pl_PL",
     },
@@ -54,9 +55,10 @@ export default async function TermsPage({ params }: PageProps) {
   const dictionary = await getDictionary(locale as Locale);
   const isEn = locale === "en";
 
+  const lp = getLocalePath(locale);
   const breadcrumbItems = [
-    { name: dictionary.nav.home, url: `/${locale}` },
-    { name: isEn ? "Terms of Service" : "Regulamin", url: `/${locale}/regulamin` },
+    { name: dictionary.nav.home, url: lp || "/" },
+    { name: isEn ? "Terms of Service" : "Regulamin", url: `${lp}/regulamin` },
   ];
 
   return (
@@ -389,14 +391,14 @@ export default async function TermsPage({ params }: PageProps) {
               {isEn ? (
                 <>
                   By using utllo.com, you confirm that you have read these Terms of Service and accept their provisions. We also encourage you to read our{" "}
-                  <Link href={`/${locale}/polityka-prywatnosci`} className="text-primary hover:underline">
+                  <Link href={`${getLocalePath(locale)}/polityka-prywatnosci`} className="text-primary hover:underline">
                     Privacy Policy
                   </Link>.
                 </>
               ) : (
                 <>
                   Korzystając z serwisu utllo.pl, potwierdzasz, że zapoznałeś się z niniejszym Regulaminem i akceptujesz jego postanowienia. Zachęcamy również do zapoznania się z naszą{" "}
-                  <Link href={`/${locale}/polityka-prywatnosci`} className="text-primary hover:underline">
+                  <Link href={`${getLocalePath(locale)}/polityka-prywatnosci`} className="text-primary hover:underline">
                     Polityką Prywatności
                   </Link>.
                 </>

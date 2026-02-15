@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Zap, Shield, UserX } from "lucide-react";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { tools, getToolUrl } from "@/lib/tools";
 import { CategoryTabs } from "@/components/layout/category-tabs";
@@ -15,17 +15,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const dictionary = await getDictionary(locale as Locale);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://utllo.com";
 
-  // Build hreflang alternates
+  // Build hreflang alternates — Polish at root, English at /en
+  const localePath = getLocalePath(locale);
   const languages: Record<string, string> = {};
   for (const loc of i18n.locales) {
-    languages[loc] = `${baseUrl}/${loc}`;
+    languages[loc] = `${baseUrl}${getLocalePath(loc)}` || baseUrl;
   }
+  languages["x-default"] = baseUrl;
 
   return {
     title: `${dictionary.home.title} | ${dictionary.brand}`,
     description: dictionary.home.subtitle,
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
+      canonical: localePath ? `${baseUrl}${localePath}` : baseUrl,
       languages,
     },
     openGraph: {
@@ -48,7 +50,7 @@ export default async function HomePage({ params }: PageProps) {
 
   const websiteSchema = generateWebsiteSchema({
     name: dictionary.brand,
-    url: `${baseUrl}/${locale}`,
+    url: `${baseUrl}${getLocalePath(locale)}` || baseUrl,
     description: dictionary.home.subtitle,
   });
 

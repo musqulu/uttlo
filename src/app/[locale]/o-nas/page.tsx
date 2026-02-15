@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Zap, Target, Users, Code, Heart, Sparkles } from "lucide-react";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
@@ -22,10 +22,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? "Discover utllo - free online tools for everyone. Learn about our mission, technology, and why we build free internet tools."
       : "Poznaj utllo - darmowe narzędzia online dla każdego. Dowiedz się o naszej misji, technologii i dlaczego tworzymy bezpłatne narzędzia internetowe.",
     alternates: {
-      canonical: `${BASE_URL}/${locale}/o-nas`,
+      canonical: `${BASE_URL}${getLocalePath(locale)}/o-nas`,
       languages: {
-        pl: `${BASE_URL}/pl/o-nas`,
+        pl: `${BASE_URL}/o-nas`,
         en: `${BASE_URL}/en/o-nas`,
+        "x-default": `${BASE_URL}/o-nas`,
       },
     },
     openGraph: {
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: isEn
         ? "Discover utllo - free online tools for everyone."
         : "Poznaj utllo - darmowe narzędzia online dla każdego.",
-      url: `${BASE_URL}/${locale}/o-nas`,
+      url: `${BASE_URL}${getLocalePath(locale)}/o-nas`,
       type: "website",
       locale: isEn ? "en_US" : "pl_PL",
     },
@@ -49,9 +50,10 @@ export default async function AboutPage({ params }: PageProps) {
   const dictionary = await getDictionary(locale as Locale);
   const isEn = locale === "en";
 
+  const lp = getLocalePath(locale);
   const breadcrumbItems = [
-    { name: dictionary.nav.home, url: `/${locale}` },
-    { name: isEn ? "About us" : "O nas", url: `/${locale}/o-nas` },
+    { name: dictionary.nav.home, url: lp || "/" },
+    { name: isEn ? "About us" : "O nas", url: `${lp}/o-nas` },
   ];
 
   return (
@@ -231,7 +233,7 @@ export default async function AboutPage({ params }: PageProps) {
             : "Masz pytania lub sugestie? Skontaktuj się z nami!"}
         </p>
         <Link
-          href={`/${locale}/kontakt`}
+          href={`${getLocalePath(locale)}/kontakt`}
           className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           {isEn ? "Contact" : "Kontakt"}

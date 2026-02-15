@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Zap, Shield, UserX } from "lucide-react";
 import { notFound } from "next/navigation";
-import { i18n, Locale } from "@/lib/i18n/config";
+import { i18n, Locale, getLocalePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import {
   getToolsByCategory,
@@ -50,24 +50,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const categoryPage = dict.categoryPages[categoryId];
   const catSlug = getCategorySlug(categoryId, locale);
 
-  // Build hreflang alternates
+  // Build hreflang alternates — Polish at root, English at /en
   const languages: Record<string, string> = {};
   for (const loc of i18n.locales) {
-    languages[loc] = `${BASE_URL}/${loc}/${getCategorySlug(categoryId, loc)}`;
+    languages[loc] = `${BASE_URL}${getCategoryUrl(categoryId, loc)}`;
   }
+  languages["x-default"] = `${BASE_URL}/${getCategorySlug(categoryId, i18n.defaultLocale)}`;
+
+  const canonicalPath = getCategoryUrl(categoryId, locale);
 
   return {
     title: categoryPage.seoTitle,
     description: categoryPage.seoDescription,
     keywords: categoryPage.keywords || [],
     alternates: {
-      canonical: `${BASE_URL}/${locale}/${catSlug}`,
+      canonical: `${BASE_URL}${canonicalPath}`,
       languages,
     },
     openGraph: {
       title: categoryPage.seoTitle,
       description: categoryPage.seoDescription,
-      url: `${BASE_URL}/${locale}/${catSlug}`,
+      url: `${BASE_URL}${canonicalPath}`,
       siteName: dict.brand,
       locale: locale === "pl" ? "pl_PL" : "en_US",
       type: "website",
@@ -104,10 +107,13 @@ export default async function CategoryPage({ params }: PageProps) {
   const readyTools = tools.filter((t) => t.isReady);
   const comingSoonTools = tools.filter((t) => !t.isReady);
 
+  const lp = getLocalePath(locale);
+  const categoryUrlPath = getCategoryUrl(categoryId, locale);
+
   const collectionSchema = generateCollectionPageSchema({
     name: categoryPage.title,
     description: categoryPage.seoDescription,
-    url: `${BASE_URL}/${locale}/${catSlug}`,
+    url: `${BASE_URL}${categoryUrlPath}`,
     items: readyTools.map((tool) => ({
       name: dict.tools[tool.id as keyof typeof dict.tools]?.name || tool.id,
       url: `${BASE_URL}${getToolUrl(tool, locale)}`,
@@ -115,8 +121,8 @@ export default async function CategoryPage({ params }: PageProps) {
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: dict.categoryPages.breadcrumbs.home, url: `${BASE_URL}/${locale}` },
-    { name: categoryPage.title, url: `${BASE_URL}/${locale}/${catSlug}` },
+    { name: dict.categoryPages.breadcrumbs.home, url: `${BASE_URL}${lp || "/"}` },
+    { name: categoryPage.title, url: `${BASE_URL}${categoryUrlPath}` },
   ]);
 
   const otherCategories = getOtherCategories(categoryId);
@@ -129,7 +135,7 @@ export default async function CategoryPage({ params }: PageProps) {
         <nav className="mb-6 text-sm text-muted-foreground">
           <ol className="flex items-center gap-2">
             <li>
-              <Link href={`/${locale}`} className="hover:text-foreground transition-colors">
+              <Link href={lp || "/"} className="hover:text-foreground transition-colors">
                 {dict.categoryPages.breadcrumbs.home}
               </Link>
             </li>

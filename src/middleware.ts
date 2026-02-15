@@ -2,60 +2,52 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { i18n } from "@/lib/i18n/config";
 
-function getPreferredLocale(request: NextRequest): string {
-  // 1. Check for NEXT_LOCALE cookie (user manually switched)
-  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
-  if (cookieLocale && i18n.locales.includes(cookieLocale as any)) {
-    return cookieLocale;
-  }
-
-  // 2. Auto-detect from Accept-Language header
-  const acceptLanguage = request.headers.get("accept-language");
-  if (acceptLanguage) {
-    const languages = acceptLanguage
-      .split(",")
-      .map((lang) => {
-        const [code, qValue] = lang.trim().split(";q=");
-        return {
-          code: code.trim().split("-")[0].toLowerCase(), // "en-US" -> "en"
-          quality: qValue ? parseFloat(qValue) : 1,
-        };
-      })
-      .sort((a, b) => b.quality - a.quality);
-
-    for (const lang of languages) {
-      if (i18n.locales.includes(lang.code as any)) {
-        return lang.code;
-      }
-    }
-  }
-
-  // 3. Fallback to default locale
-  return i18n.defaultLocale;
-}
-
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Check if pathname already has a locale
-  const pathnameHasLocale = i18n.locales.some(
+  // Determine if the pathname starts with any known locale
+  const pathnameLocale = i18n.locales.find(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) {
-    return NextResponse.next();
+  if (pathnameLocale) {
+    // ---------------------------------------------------------------
+    // MIGRATION: /pl/... → 301 permanent redirect to root equivalent
+    // Preserves full path and query parameters. Single hop, no chain.
+    // Must remain active for minimum 12 months (preferably permanent).
+    // ---------------------------------------------------------------
+    if (pathnameLocale === i18n.defaultLocale) {
+      const newPath = pathname.replace(new RegExp(`^/${i18n.defaultLocale}`), "") || "/";
+      const url = new URL(newPath, request.url);
+      url.search = request.nextUrl.search;
+      return NextResponse.redirect(url, 301);
+    }
+
+    // ---------------------------------------------------------------
+    // ENGLISH PROTECTION: /en/... passes through completely untouched.
+    // No redirect, no rewrite, no structural modification.
+    // Only set x-locale header so root layout can set <html lang>.
+    // ---------------------------------------------------------------
+    const response = NextResponse.next();
+    response.headers.set("x-locale", pathnameLocale);
+    return response;
   }
 
-  // Redirect to the preferred locale
-  const locale = getPreferredLocale(request);
+  // -----------------------------------------------------------------
+  // NO LOCALE PREFIX: rewrite internally to /pl/... (invisible to user)
+  // The URL stays as-is (e.g. / or /generatory/generator-hasel).
+  // Internally serves the [locale] route with locale = "pl".
+  // Returns 200, never a redirect.
+  // -----------------------------------------------------------------
+  const rewriteUrl = new URL(`/${i18n.defaultLocale}${pathname}`, request.url);
+  rewriteUrl.search = request.nextUrl.search;
 
-  if (pathname === "/") {
-    return NextResponse.redirect(new URL(`/${locale}`, request.url));
-  }
+  const response = NextResponse.rewrite(rewriteUrl);
 
-  return NextResponse.redirect(
-    new URL(`/${locale}${pathname}`, request.url)
-  );
+  // Set x-locale header so root layout can read the active locale
+  response.headers.set("x-locale", i18n.defaultLocale);
+
+  return response;
 }
 
 export const config = {

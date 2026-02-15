@@ -17,6 +17,7 @@ import {
   getToolUrl,
   categoryMeta,
   getCategoryUrl,
+  getLocalePath,
   Tool,
   ToolCategory,
 } from "@/lib/tools";
@@ -92,7 +93,7 @@ export function Navbar({ locale, dictionary }: NavbarProps) {
       >
         {/* Logo */}
         <Link
-          href={`/${locale}`}
+          href={getLocalePath(locale) || "/"}
           className="flex items-center gap-2.5 group flex-shrink-0"
           aria-label="utllo - Strona główna"
         >
@@ -184,10 +185,10 @@ export function Navbar({ locale, dictionary }: NavbarProps) {
 
             <nav className="p-4" aria-label="Mobile navigation">
               <Link
-                href={`/${locale}`}
+                href={getLocalePath(locale) || "/"}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
-                  pathname === `/${locale}`
+                  pathname === (getLocalePath(locale) || "/")
                     ? "bg-primary/10 text-primary"
                     : "hover:bg-accent"
                 }`}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Zap, Heart } from "lucide-react";
-import { getToolsByCategory, getToolUrl, getCategoryUrl, Tool } from "@/lib/tools";
+import { getToolsByCategory, getToolUrl, getCategoryUrl, getLocalePath, Tool } from "@/lib/tools";
 
 interface FooterProps {
   locale: string;
@@ -67,7 +67,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <Link href={`/${locale}`} className="inline-flex items-center gap-2 group" aria-label="utllo - Strona główna">
+            <Link href={getLocalePath(locale) || "/"} className="inline-flex items-center gap-2 group" aria-label="utllo - Strona główna">
               <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 p-2 shadow-lg shadow-indigo-500/20">
                 <Zap className="h-5 w-5 text-white" />
               </div>
@@ -186,7 +186,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
             <ul className="space-y-3" role="list">
               <li>
                 <Link 
-                  href={`/${locale}/o-nas`}
+                  href={`${getLocalePath(locale)}/o-nas`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {dictionary.footer.about || "O nas"}
@@ -194,7 +194,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
               </li>
               <li>
                 <Link 
-                  href={`/${locale}/kontakt`}
+                  href={`${getLocalePath(locale)}/kontakt`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {dictionary.footer.contact}
@@ -202,7 +202,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
               </li>
               <li>
                 <Link 
-                  href={`/${locale}/polityka-prywatnosci`}
+                  href={`${getLocalePath(locale)}/polityka-prywatnosci`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {dictionary.footer.privacy}
@@ -210,7 +210,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
               </li>
               <li>
                 <Link 
-                  href={`/${locale}/regulamin`}
+                  href={`${getLocalePath(locale)}/regulamin`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {dictionary.footer.terms || "Regulamin"}

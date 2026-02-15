@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Inter } from "next/font/google";
 import { CookieBanner } from "@/components/layout/cookie-banner";
 import { RouteTracker } from "@/components/analytics/route-tracker";
@@ -12,42 +13,44 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     template: "%s | utllo",
-    default: "utllo - Free Online Tools",
+    default: "utllo - Darmowe Narzędzia Online",
   },
   description:
-    "Free online tools for everyone. Password generator, vacation countdown, calculators, converters and more. Everything runs in your browser.",
+    "Darmowe narzędzia online dla każdego. Generator haseł, odliczanie do wakacji, kalkulatory, konwertery i więcej. Wszystko działa w przeglądarce.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_BASE_URL || "https://utllo.com"
   ),
   keywords: [
+    "narzędzia online",
+    "darmowe narzędzia",
+    "generator haseł",
+    "odliczanie do wakacji",
+    "kalkulator BMI",
+    "konwerter PDF",
+    "utllo",
     "online tools",
     "free tools",
-    "password generator",
-    "vacation countdown",
-    "BMI calculator",
-    "PDF converter",
-    "utllo",
   ],
   authors: [{ name: "utllo" }],
   creator: "utllo",
   publisher: "utllo",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    alternateLocale: ["pl_PL"],
+    locale: "pl_PL",
+    alternateLocale: ["en_US"],
     siteName: "utllo",
-    title: "utllo - Free Online Tools",
+    title: "utllo - Darmowe Narzędzia Online",
     description:
-      "Free online tools for everyone. Password generator, vacation countdown, calculators, converters and more.",
+      "Darmowe narzędzia online dla każdego. Generator haseł, odliczanie do wakacji, kalkulatory, konwertery i więcej.",
     url: "https://utllo.com",
   },
   twitter: {
     card: "summary_large_image",
     site: "@utllo",
     creator: "@utllo",
-    title: "utllo - Free Online Tools",
+    title: "utllo - Darmowe Narzędzia Online",
     description:
-      "Free online tools for everyone. Password generator, vacation countdown, calculators, converters and more.",
+      "Darmowe narzędzia online dla każdego. Generator haseł, odliczanie do wakacji, kalkulatory, konwertery i więcej.",
   },
   robots: {
     index: true,
@@ -62,13 +65,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read locale from middleware header or detect from URL
+  const headersList = await headers();
+  const locale = headersList.get("x-locale") || "pl";
+
   return (
-    <html suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         <CookieBanner />

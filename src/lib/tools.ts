@@ -32,6 +32,9 @@ import {
   LucideIcon,
 } from "lucide-react";
 
+import { getLocalePath } from "@/lib/i18n/config";
+export { getLocalePath } from "@/lib/i18n/config";
+
 export type ToolCategory = "tools" | "generators" | "converters" | "randomizers" | "calculators";
 
 export interface CategoryMeta {
@@ -337,11 +340,11 @@ export function getCategoryBySlug(slug: string, locale?: string): ToolCategory |
 export function getToolUrl(tool: Tool, locale: string): string {
   const catSlug = getCategorySlug(tool.category, locale);
   const toolSlug = getToolSlug(tool, locale);
-  return `/${locale}/${catSlug}/${toolSlug}`;
+  return `${getLocalePath(locale)}/${catSlug}/${toolSlug}`;
 }
 
 export function getCategoryUrl(category: ToolCategory, locale: string): string {
-  return `/${locale}/${getCategorySlug(category, locale)}`;
+  return `${getLocalePath(locale)}/${getCategorySlug(category, locale)}`;
 }
 
 export function getToolByCategoryAndSlug(
