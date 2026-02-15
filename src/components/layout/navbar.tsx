@@ -233,10 +233,11 @@ function PopoverPanel({
   onNavigate,
 }: PopoverPanelProps) {
   const readyTools = tools.filter((t) => t.isReady);
+  const useWideLayout = readyTools.length > 8;
 
   return (
     <div className="animate-in fade-in slide-in-from-top-1 duration-200">
-      <div className="rounded-2xl border bg-background shadow-xl shadow-black/5 dark:shadow-none p-2 w-[420px]">
+      <div className={`rounded-2xl border bg-background shadow-xl shadow-black/5 dark:shadow-none p-2 ${useWideLayout ? "w-[680px]" : "w-[420px]"}`}>
         {/* Category header */}
         <div className="flex items-center justify-between px-4 pt-3 pb-2">
           <button
@@ -257,7 +258,7 @@ function PopoverPanel({
         </div>
 
         {/* Tool list */}
-        <div className="grid gap-0.5">
+        <div className={`grid gap-0.5 ${useWideLayout ? "grid-cols-2" : ""}`}>
           {readyTools.map((tool) => {
             const Icon = tool.icon;
             const toolDict = dictionary.tools[tool.id];

@@ -54,6 +54,11 @@ interface SeoContentProps {
   className?: string;
 }
 
+/** Convert inline markdown bold (**text**) to HTML <strong> tags. */
+function inlineMd(text: string): string {
+  return text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
 export function SeoContent({ blocks, className = "" }: SeoContentProps) {
   if (!blocks || blocks.length === 0) return null;
 
@@ -75,7 +80,7 @@ export function SeoContent({ blocks, className = "" }: SeoContentProps) {
                 <h3 className="text-xl font-semibold mb-3">{block.heading}</h3>
                 <ul className="space-y-2 text-muted-foreground">
                   {block.items.map((item, j) => (
-                    <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
+                    <li key={j} dangerouslySetInnerHTML={{ __html: inlineMd(item) }} />
                   ))}
                 </ul>
               </div>
@@ -87,7 +92,7 @@ export function SeoContent({ blocks, className = "" }: SeoContentProps) {
                 <h3 className="text-xl font-semibold mb-3">{block.heading}</h3>
                 <ol className="list-decimal list-inside space-y-3 text-muted-foreground">
                   {block.items.map((item, j) => (
-                    <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
+                    <li key={j} dangerouslySetInnerHTML={{ __html: inlineMd(item) }} />
                   ))}
                 </ol>
               </div>
