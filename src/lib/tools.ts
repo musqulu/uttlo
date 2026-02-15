@@ -28,6 +28,7 @@ import {
   Crown,
   Cat,
   Timer,
+  Fuel,
   LucideIcon,
 } from "lucide-react";
 
@@ -280,6 +281,13 @@ export const tools: Tool[] = [
     id: "cat-years-calculator",
     slugs: { pl: "kalkulator-kocich-lat", en: "cat-years-calculator" },
     icon: Cat,
+    isReady: true,
+    category: "calculators",
+  },
+  {
+    id: "fuel-calculator",
+    slugs: { pl: "kalkulator-spalania", en: "fuel-calculator" },
+    icon: Fuel,
     isReady: true,
     category: "calculators",
   },

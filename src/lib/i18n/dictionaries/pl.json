@@ -2453,6 +2453,141 @@
           ]
         }
       ]
+    },
+    "fuel-calculator": {
+      "name": "Kalkulator Spalania Paliwa",
+      "description": "Oblicz spalanie paliwa i zużycie energii w samochodach spalinowych i elektrycznych.",
+      "seoTitle": "Kalkulator Spalania Paliwa Online - Oblicz Zużycie Paliwa i Energii EV | utllo",
+      "seoDescription": "Darmowy kalkulator spalania paliwa online. Oblicz zużycie paliwa (L/100km) i porównaj spalinowy z elektrycznym. Cena paliwa opcjonalna. Kalkulator dla aut spalinowych i EV.",
+      "title": "Kalkulator Spalania Paliwa",
+      "subtitle": "Oblicz spalanie paliwa i zużycie energii dla aut spalinowych i elektrycznych",
+      "fuelMode": "Spalinowy",
+      "evMode": "Elektryczny (EV)",
+      "distance": "Dystans (km)",
+      "distancePlaceholder": "np. 100",
+      "fuelAmount": "Zużyte paliwo (litry)",
+      "fuelAmountPlaceholder": "np. 7.5",
+      "fuelPrice": "Cena paliwa (zł/litr)",
+      "fuelPricePlaceholder": "np. 6.50",
+      "energyAmount": "Zużyta energia (kWh)",
+      "energyAmountPlaceholder": "np. 18",
+      "electricityPrice": "Cena prądu (zł/kWh)",
+      "electricityPricePlaceholder": "np. 0.85",
+      "calculate": "Oblicz spalanie",
+      "clear": "Wyczyść",
+      "consumptionPer100km": "Zużycie / 100 km",
+      "costPerKm": "Koszt za km",
+      "totalCost": "Koszt całkowity",
+      "kmPerLiter": "km na litrze",
+      "kmPerKwh": "km na kWh",
+      "lPer100km": "L/100km",
+      "kwhPer100km": "kWh/100km",
+      "results": "Wyniki",
+      "comparison": "Porównanie: spalinowy vs elektryczny",
+      "fuelVehicle": "Samochód spalinowy",
+      "electricVehicle": "Samochód elektryczny",
+      "savingsEv": "Oszczędność z EV",
+      "savingsFuel": "Oszczędność ze spalinowego",
+      "perKm": "km",
+      "currency": "zł",
+      "optional": "(opcjonalnie)",
+      "distanceMiles": "",
+      "fuelGallons": "",
+      "milesPerGallon": "",
+      "mpg": "",
+      "unitMetric": "",
+      "unitImperial": "",
+      "milesPerKwh": "",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Kalkulator spalania paliwa online",
+          "body": "Nasz darmowy kalkulator spalania paliwa pozwala szybko obliczyć zużycie paliwa w litrach na 100 km (L/100km) oraz opcjonalnie koszt przejazdu. Obsługuje zarówno samochody spalinowe (benzyna, diesel, LPG), jak i samochody elektryczne (EV). Wystarczy podać przejechany dystans i ilość zużytego paliwa lub energii. Cena paliwa/prądu jest opcjonalna — podaj ją tylko jeśli chcesz zobaczyć szacunkowe koszty."
+        },
+        {
+          "type": "text",
+          "heading": "Jak obliczyć spalanie paliwa?",
+          "body": "Spalanie paliwa wyrażamy w litrach na 100 km (L/100km). Wzór jest prosty: spalanie = (zużyte paliwo w litrach / przejechany dystans w km) × 100. Na przykład, jeśli na dystansie 500 km zużyłeś 35 litrów benzyny, Twoje spalanie wynosi (35 / 500) × 100 = 7,0 L/100km. Dla samochodów elektrycznych stosujemy analogiczny wzór z kWh zamiast litrów."
+        },
+        {
+          "type": "grid",
+          "heading": "Typowe zużycie paliwa i energii wg typu pojazdu",
+          "items": [
+            {
+              "title": "Auto miejskie (benzyna)",
+              "body": "5-7 L/100km — małe, oszczędne samochody jak Fiat 500, Toyota Yaris"
+            },
+            {
+              "title": "Sedan / kombi (benzyna)",
+              "body": "7-10 L/100km — średnie auta rodzinne jak Toyota Corolla, Skoda Octavia"
+            },
+            {
+              "title": "SUV / crossover (diesel)",
+              "body": "6-9 L/100km — większe pojazdy jak Kia Sportage, VW Tiguan"
+            },
+            {
+              "title": "Hybryda (HEV)",
+              "body": "4-6 L/100km — Toyota Prius, Hyundai Ioniq Hybrid"
+            },
+            {
+              "title": "Plug-in hybryda (PHEV)",
+              "body": "1-3 L/100km (+ prąd) — tryb elektryczny + spalinowy w jednym"
+            },
+            {
+              "title": "Samochód elektryczny (EV)",
+              "body": "14-20 kWh/100km — Tesla Model 3, VW ID.3, Hyundai Ioniq 5"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "heading": "Samochody elektryczne — zużycie energii",
+          "body": "Zużycie energii w samochodach elektrycznych mierzy się w kWh na 100 km (kWh/100km). Typowy samochód elektryczny zużywa od 14 do 22 kWh/100km, w zależności od masy pojazdu, stylu jazdy i warunków pogodowych. Przy cenie prądu około 0,85 zł/kWh, koszt przejechania 100 km samochodem elektrycznym wynosi 12-19 zł, podczas gdy samochodem spalinowym (7 L/100km przy 6,50 zł/l) — około 45 zł. To nawet 60-70% oszczędności na paliwie."
+        },
+        {
+          "type": "list",
+          "heading": "Jak zmniejszyć spalanie paliwa?",
+          "items": [
+            "**Płynna jazda** — unikaj gwałtownego przyspieszania i hamowania, utrzymuj stałą prędkość",
+            "**Odpowiednie ciśnienie w oponach** — za niskie ciśnienie zwiększa opór toczenia i spalanie nawet o 5-10%",
+            "**Ogranicz prędkość na autostradzie** — jazda 120 km/h zamiast 140 km/h może obniżyć spalanie o 15-20%",
+            "**Wyłącz zbędne odbiorniki** — klimatyzacja może zwiększyć spalanie o 0,5-1 L/100km",
+            "**Regularny serwis** — wymiana filtrów, oleju i świec zapłonowych utrzymuje silnik w optymalnej sprawności",
+            "**Zredukuj masę** — usuń zbędne przedmioty z bagażnika i zdejmij bagażnik dachowy gdy go nie używasz",
+            "**Korzystaj z tempa jazdy ekonomicznej** — dla benzyny to 60-90 km/h, dla diesla 70-100 km/h"
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Często zadawane pytania",
+          "items": [
+            {
+              "q": "Jak obliczyć spalanie samochodu?",
+              "a": "Zatankuj do pełna, wyzeruj licznik, przejedź normalną trasę, zatankuj ponownie do pełna. Spalanie = (litry przy drugim tankowaniu / przejechane km) × 100. Nasz kalkulator wykona te obliczenia za Ciebie."
+            },
+            {
+              "q": "Ile kosztuje przejechanie 100 km samochodem elektrycznym?",
+              "a": "Przy średnim zużyciu 17 kWh/100km i cenie prądu 0,85 zł/kWh, koszt wynosi około 14,50 zł. Z domowej ładowarki nocą (taryfa G12) może to być nawet 8-10 zł."
+            },
+            {
+              "q": "Co wpływa na spalanie paliwa?",
+              "a": "Główne czynniki to: styl jazdy, warunki drogowe (miasto vs trasa), masa pojazdu, ciśnienie w oponach, stan techniczny auta, klimatyzacja i prędkość. W mieście spalanie jest wyższe niż na trasie."
+            },
+            {
+              "q": "Czy auto elektryczne jest tańsze w eksploatacji?",
+              "a": "Tak, koszt energii na km jest 3-4 razy niższy niż paliwa. Ponadto EV mają niższe koszty serwisowe (brak oleju, filtrów, sprzęgła). Główny koszt to zakup i ewentualna wymiana baterii."
+            },
+            {
+              "q": "Jak obliczyć koszt przejazdu?",
+              "a": "Koszt = (spalanie L/100km / 100) × dystans km × cena paliwa za litr. Np. przy spalaniu 7 L/100km, trasie 300 km i cenie 6,50 zł/l: (7/100) × 300 × 6,50 = 136,50 zł."
+            },
+            {
+              "q": "Czy muszę podawać cenę paliwa?",
+              "a": "Nie, cena paliwa i prądu jest opcjonalna. Jeśli chcesz tylko poznać spalanie (L/100km), wystarczy podać dystans i ilość zużytego paliwa. Koszty pojawią się tylko gdy wpiszesz cenę."
+            }
+          ]
+        }
+      ]
     }
   },
   "common": {

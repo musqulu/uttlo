@@ -54,6 +54,7 @@ const nextConfig = {
       { old: 'kalkulator-psich-lat', category: 'kalkulatory' },
       { old: 'kalkulator-cyfr-rzymskich', category: 'kalkulatory' },
       { old: 'kalkulator-kocich-lat', category: 'kalkulatory' },
+      { old: 'kalkulator-spalania', category: 'kalkulatory' },
     ];
 
     const redirects = legacyToolRedirects.map(({ old, category }) => ({

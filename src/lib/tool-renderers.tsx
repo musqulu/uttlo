@@ -28,6 +28,7 @@ import { InflationCalculator } from "@/components/calculators/inflation-calculat
 import { DogYearsCalculator } from "@/components/calculators/dog-years-calculator";
 import { RomanNumeralsCalculator } from "@/components/calculators/roman-numerals-calculator";
 import { CatYearsCalculator } from "@/components/calculators/cat-years-calculator";
+import { FuelCalculator } from "@/components/calculators/fuel-calculator";
 import { ToolPlaceholder } from "@/components/layout/tool-placeholder";
 
 export function renderToolComponent(
@@ -687,6 +688,53 @@ export function renderToolComponent(
             mature: toolDict.mature || "Mature",
             senior: toolDict.senior || "Senior",
             geriatric: toolDict.geriatric || "Geriatric",
+          }}
+        />
+      );
+    case "fuel-calculator":
+      return (
+        <FuelCalculator
+          locale={locale}
+          dictionary={{
+            title: toolDict.title || "Fuel Calculator",
+            subtitle: toolDict.subtitle || "Calculate fuel and energy consumption",
+            fuelMode: toolDict.fuelMode || "Fuel",
+            evMode: toolDict.evMode || "Electric (EV)",
+            distance: toolDict.distance || "Distance (km)",
+            distancePlaceholder: toolDict.distancePlaceholder || "e.g. 100",
+            fuelAmount: toolDict.fuelAmount || "Fuel used (liters)",
+            fuelAmountPlaceholder: toolDict.fuelAmountPlaceholder || "e.g. 7.5",
+            fuelPrice: toolDict.fuelPrice || "Fuel price (per liter)",
+            fuelPricePlaceholder: toolDict.fuelPricePlaceholder || "e.g. 6.50",
+            energyAmount: toolDict.energyAmount || "Energy used (kWh)",
+            energyAmountPlaceholder: toolDict.energyAmountPlaceholder || "e.g. 18",
+            electricityPrice: toolDict.electricityPrice || "Electricity price (per kWh)",
+            electricityPricePlaceholder: toolDict.electricityPricePlaceholder || "e.g. 0.85",
+            calculate: toolDict.calculate || "Calculate",
+            clear: toolDict.clear || "Clear",
+            consumptionPer100km: toolDict.consumptionPer100km || "Consumption / 100 km",
+            costPerKm: toolDict.costPerKm || "Cost per km",
+            totalCost: toolDict.totalCost || "Total cost",
+            kmPerLiter: toolDict.kmPerLiter || "km per liter",
+            kmPerKwh: toolDict.kmPerKwh || "km per kWh",
+            lPer100km: toolDict.lPer100km || "L/100km",
+            kwhPer100km: toolDict.kwhPer100km || "kWh/100km",
+            results: toolDict.results || "Results",
+            comparison: toolDict.comparison || "Fuel vs EV comparison",
+            fuelVehicle: toolDict.fuelVehicle || "Fuel vehicle",
+            electricVehicle: toolDict.electricVehicle || "Electric vehicle",
+            savingsEv: toolDict.savingsEv || "EV savings",
+            savingsFuel: toolDict.savingsFuel || "Fuel savings",
+            perKm: toolDict.perKm || "km",
+            currency: toolDict.currency || "PLN",
+            optional: toolDict.optional || "(optional)",
+            distanceMiles: toolDict.distanceMiles || "Distance (miles)",
+            fuelGallons: toolDict.fuelGallons || "Fuel used (gallons)",
+            milesPerGallon: toolDict.milesPerGallon || "Miles per gallon",
+            mpg: toolDict.mpg || "MPG",
+            unitMetric: toolDict.unitMetric || "Metric (km/L)",
+            unitImperial: toolDict.unitImperial || "Imperial (mi/gal)",
+            milesPerKwh: toolDict.milesPerKwh || "Miles per kWh",
           }}
         />
       );

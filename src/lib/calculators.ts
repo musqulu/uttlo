@@ -945,3 +945,150 @@ export const CAT_LIFE_EXPECTANCY = {
   indoor: { min: 12, max: 18 },
   outdoor: { min: 5, max: 10 },
 };
+
+// ========================
+// Fuel / EV Consumption
+// ========================
+
+export interface FuelConsumptionResult {
+  consumptionPer100km: number; // L/100km or kWh/100km
+  costPerKm: number | null;    // null when price not provided
+  totalCost: number | null;    // null when price not provided
+  kmPerUnit: number;           // km per liter or km per kWh
+}
+
+/**
+ * Calculate fuel consumption for a combustion engine vehicle.
+ * Price is optional — when 0 or not given, cost fields return null.
+ */
+export function calculateFuelConsumption(
+  distanceKm: number,
+  fuelLiters: number,
+  fuelPricePerLiter: number = 0
+): FuelConsumptionResult {
+  const consumptionPer100km = (fuelLiters / distanceKm) * 100;
+  const kmPerUnit = distanceKm / fuelLiters;
+
+  const hasPrice = fuelPricePerLiter > 0;
+  const totalCost = hasPrice ? fuelLiters * fuelPricePerLiter : null;
+  const costPerKm = hasPrice && totalCost !== null ? totalCost / distanceKm : null;
+
+  return {
+    consumptionPer100km: Math.round(consumptionPer100km * 100) / 100,
+    costPerKm: costPerKm !== null ? Math.round(costPerKm * 100) / 100 : null,
+    totalCost: totalCost !== null ? Math.round(totalCost * 100) / 100 : null,
+    kmPerUnit: Math.round(kmPerUnit * 100) / 100,
+  };
+}
+
+/**
+ * Calculate energy consumption for an electric vehicle.
+ * Price is optional — when 0 or not given, cost fields return null.
+ */
+export function calculateEvConsumption(
+  distanceKm: number,
+  energyKwh: number,
+  electricityPricePerKwh: number = 0
+): FuelConsumptionResult {
+  const consumptionPer100km = (energyKwh / distanceKm) * 100;
+  const kmPerUnit = distanceKm / energyKwh;
+
+  const hasPrice = electricityPricePerKwh > 0;
+  const totalCost = hasPrice ? energyKwh * electricityPricePerKwh : null;
+  const costPerKm = hasPrice && totalCost !== null ? totalCost / distanceKm : null;
+
+  return {
+    consumptionPer100km: Math.round(consumptionPer100km * 100) / 100,
+    costPerKm: costPerKm !== null ? Math.round(costPerKm * 100) / 100 : null,
+    totalCost: totalCost !== null ? Math.round(totalCost * 100) / 100 : null,
+    kmPerUnit: Math.round(kmPerUnit * 100) / 100,
+  };
+}
+
+/**
+ * Validate fuel calculator inputs. Returns { valid, error? }.
+ * Price is optional (NaN / undefined is fine).
+ */
+export function validateFuelInputs(
+  distanceKm: number,
+  fuelLiters: number,
+  fuelPrice?: number
+): { valid: boolean; error?: string } {
+  if (isNaN(distanceKm) || distanceKm <= 0) {
+    return { valid: false, error: "Distance must be greater than 0" };
+  }
+  if (isNaN(fuelLiters) || fuelLiters <= 0) {
+    return { valid: false, error: "Fuel amount must be greater than 0" };
+  }
+  if (fuelPrice !== undefined && !isNaN(fuelPrice) && fuelPrice < 0) {
+    return { valid: false, error: "Fuel price must be 0 or greater" };
+  }
+  if (distanceKm > 100000) {
+    return { valid: false, error: "Distance seems too large" };
+  }
+  return { valid: true };
+}
+
+/**
+ * Validate EV calculator inputs. Returns { valid, error? }.
+ * Price is optional (NaN / undefined is fine).
+ */
+export function validateEvInputs(
+  distanceKm: number,
+  energyKwh: number,
+  electricityPrice?: number
+): { valid: boolean; error?: string } {
+  if (isNaN(distanceKm) || distanceKm <= 0) {
+    return { valid: false, error: "Distance must be greater than 0" };
+  }
+  if (isNaN(energyKwh) || energyKwh <= 0) {
+    return { valid: false, error: "Energy amount must be greater than 0" };
+  }
+  if (electricityPrice !== undefined && !isNaN(electricityPrice) && electricityPrice < 0) {
+    return { valid: false, error: "Electricity price must be 0 or greater" };
+  }
+  if (distanceKm > 100000) {
+    return { valid: false, error: "Distance seems too large" };
+  }
+  return { valid: true };
+}
+
+// ========================
+// Imperial / Metric helpers
+// ========================
+
+const KM_PER_MILE = 1.60934;
+const LITERS_PER_US_GALLON = 3.78541;
+
+export function milesToKm(miles: number): number {
+  return miles * KM_PER_MILE;
+}
+
+export function kmToMiles(km: number): number {
+  return km / KM_PER_MILE;
+}
+
+export function gallonsToLiters(gallons: number): number {
+  return gallons * LITERS_PER_US_GALLON;
+}
+
+export function litersToGallons(liters: number): number {
+  return liters / LITERS_PER_US_GALLON;
+}
+
+/**
+ * Convert L/100km to US MPG.
+ * MPG = 235.215 / (L/100km)
+ */
+export function lPer100kmToMpg(lPer100km: number): number {
+  if (lPer100km <= 0) return 0;
+  return Math.round((235.215 / lPer100km) * 100) / 100;
+}
+
+/**
+ * Convert US MPG to L/100km.
+ */
+export function mpgToLPer100km(mpg: number): number {
+  if (mpg <= 0) return 0;
+  return Math.round((235.215 / mpg) * 100) / 100;
+}
