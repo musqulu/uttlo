@@ -29,6 +29,7 @@ import {
   Cat,
   Timer,
   Fuel,
+  Zap,
   LucideIcon,
 } from "lucide-react";
 
@@ -291,6 +292,13 @@ export const tools: Tool[] = [
     id: "fuel-calculator",
     slugs: { pl: "kalkulator-spalania", en: "fuel-calculator" },
     icon: Fuel,
+    isReady: true,
+    category: "calculators",
+  },
+  {
+    id: "electricity-calculator",
+    slugs: { pl: "kalkulator-pradu", en: "electricity-calculator" },
+    icon: Zap,
     isReady: true,
     category: "calculators",
   },

@@ -29,6 +29,7 @@ import { DogYearsCalculator } from "@/components/calculators/dog-years-calculato
 import { RomanNumeralsCalculator } from "@/components/calculators/roman-numerals-calculator";
 import { CatYearsCalculator } from "@/components/calculators/cat-years-calculator";
 import { FuelCalculator } from "@/components/calculators/fuel-calculator";
+import { ElectricityCalculator } from "@/components/calculators/electricity-calculator";
 import { ToolPlaceholder } from "@/components/layout/tool-placeholder";
 
 export function renderToolComponent(
@@ -735,6 +736,46 @@ export function renderToolComponent(
             unitMetric: toolDict.unitMetric || "Metric (km/L)",
             unitImperial: toolDict.unitImperial || "Imperial (mi/gal)",
             milesPerKwh: toolDict.milesPerKwh || "Miles per kWh",
+          }}
+        />
+      );
+
+    case "electricity-calculator":
+      return (
+        <ElectricityCalculator
+          dictionary={{
+            title: toolDict.title || "Electricity Calculator",
+            subtitle: toolDict.subtitle || "Calculate electricity cost",
+            power: toolDict.power || "Power (W)",
+            powerPlaceholder: toolDict.powerPlaceholder || "e.g. 2000",
+            hoursPerDay: toolDict.hoursPerDay || "Hours per day",
+            hoursPerDayPlaceholder: toolDict.hoursPerDayPlaceholder || "e.g. 4",
+            electricityPrice: toolDict.electricityPrice || "Price per kWh",
+            electricityPricePlaceholder: toolDict.electricityPricePlaceholder || "e.g. 1.20",
+            billingPeriod: toolDict.billingPeriod || "Billing period",
+            billingPeriodPlaceholder: toolDict.billingPeriodPlaceholder || "e.g. 30",
+            calculate: toolDict.calculate || "Calculate cost",
+            clear: toolDict.clear || "Clear",
+            results: toolDict.results || "Results",
+            dailyUsage: toolDict.dailyUsage || "Daily usage",
+            totalUsage: toolDict.totalUsage || "Total usage",
+            dailyCost: toolDict.dailyCost || "Daily cost",
+            monthlyCost: toolDict.monthlyCost || "Monthly cost",
+            yearlyCost: toolDict.yearlyCost || "Yearly cost",
+            presets: toolDict.presets || "Common appliances",
+            presetsHint: toolDict.presetsHint || "Click to fill power value",
+            days: toolDict.days || "days",
+            defaultPrice: toolDict.defaultPrice || "0.30",
+            appliances: toolDict.appliances || [
+              { name: "LED Bulb", watts: 10, hours: 8 },
+              { name: "TV", watts: 100, hours: 4 },
+              { name: "Computer", watts: 300, hours: 6 },
+              { name: "Fridge", watts: 150, hours: 10 },
+              { name: "Washing Machine", watts: 2000, hours: 1 },
+              { name: "Kettle", watts: 2200, hours: 0.25 },
+              { name: "Iron", watts: 2400, hours: 0.5 },
+              { name: "Oven", watts: 3500, hours: 1 },
+            ],
           }}
         />
       );

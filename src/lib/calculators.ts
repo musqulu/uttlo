@@ -1092,3 +1092,73 @@ export function mpgToLPer100km(mpg: number): number {
   if (mpg <= 0) return 0;
   return Math.round((235.215 / mpg) * 100) / 100;
 }
+
+// ========================
+// Electricity Cost Calculator
+// ========================
+
+export interface ElectricityCostResult {
+  totalKwh: number;
+  dailyCost: number;
+  monthlyCost: number;
+  yearlyCost: number;
+  dailyKwh: number;
+}
+
+/**
+ * Calculate electricity cost based on appliance power, usage, and price.
+ * @param watts - Power consumption in watts
+ * @param hoursPerDay - Hours of usage per day
+ * @param pricePerKwh - Electricity price per kWh
+ * @param days - Billing period in days (default 30)
+ */
+export function calculateElectricityCost(
+  watts: number,
+  hoursPerDay: number,
+  pricePerKwh: number,
+  days: number = 30
+): ElectricityCostResult {
+  const dailyKwh = (watts * hoursPerDay) / 1000;
+  const totalKwh = dailyKwh * days;
+  const dailyCost = dailyKwh * pricePerKwh;
+  const monthlyCost = dailyKwh * 30 * pricePerKwh;
+  const yearlyCost = dailyKwh * 365 * pricePerKwh;
+
+  return {
+    totalKwh: Math.round(totalKwh * 100) / 100,
+    dailyCost: Math.round(dailyCost * 100) / 100,
+    monthlyCost: Math.round(monthlyCost * 100) / 100,
+    yearlyCost: Math.round(yearlyCost * 100) / 100,
+    dailyKwh: Math.round(dailyKwh * 100) / 100,
+  };
+}
+
+/**
+ * Validate electricity calculator inputs.
+ */
+export function validateElectricityInputs(
+  watts: number,
+  hoursPerDay: number,
+  pricePerKwh: number,
+  days: number
+): { valid: boolean; error?: string } {
+  if (isNaN(watts) || isNaN(hoursPerDay) || isNaN(pricePerKwh) || isNaN(days)) {
+    return { valid: false, error: "All values must be numbers" };
+  }
+  if (watts <= 0) {
+    return { valid: false, error: "Power must be greater than 0" };
+  }
+  if (watts > 100000) {
+    return { valid: false, error: "Power seems too large" };
+  }
+  if (hoursPerDay < 0 || hoursPerDay > 24) {
+    return { valid: false, error: "Hours per day must be between 0 and 24" };
+  }
+  if (pricePerKwh <= 0) {
+    return { valid: false, error: "Price must be greater than 0" };
+  }
+  if (days <= 0 || days > 365) {
+    return { valid: false, error: "Days must be between 1 and 365" };
+  }
+  return { valid: true };
+}

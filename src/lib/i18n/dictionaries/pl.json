@@ -2588,6 +2588,117 @@
           ]
         }
       ]
+    },
+    "electricity-calculator": {
+      "name": "Kalkulator Prądu",
+      "description": "Oblicz koszt zużycia prądu dla dowolnego urządzenia. Sprawdź ile zapłacisz za energię dziennie, miesięcznie i rocznie.",
+      "seoTitle": "Kalkulator Prądu Online - Oblicz Koszt Energii Elektrycznej | Darmowe Narzędzie",
+      "seoDescription": "Darmowy kalkulator prądu online. Oblicz ile kosztuje prąd dla każdego urządzenia. Sprawdź dzienne, miesięczne i roczne koszty energii elektrycznej.",
+      "title": "Kalkulator Prądu",
+      "subtitle": "Oblicz koszt zużycia energii elektrycznej",
+      "power": "Moc urządzenia (W)",
+      "powerPlaceholder": "np. 2000",
+      "hoursPerDay": "Godziny pracy dziennie",
+      "hoursPerDayPlaceholder": "np. 4",
+      "electricityPrice": "Cena prądu (zł/kWh)",
+      "electricityPricePlaceholder": "np. 1,20",
+      "billingPeriod": "Okres rozliczeniowy",
+      "billingPeriodPlaceholder": "np. 30",
+      "calculate": "Oblicz koszt",
+      "clear": "Wyczyść",
+      "results": "Wyniki",
+      "dailyUsage": "Dzienne zużycie",
+      "totalUsage": "Łączne zużycie",
+      "dailyCost": "Koszt dzienny",
+      "monthlyCost": "Koszt miesięczny",
+      "yearlyCost": "Koszt roczny",
+      "presets": "Popularne urządzenia",
+      "presetsHint": "Kliknij, aby wpisać moc urządzenia",
+      "days": "dni",
+      "defaultPrice": "1.20",
+      "appliances": [
+        { "name": "Żarówka LED", "watts": 10, "hours": 8 },
+        { "name": "Telewizor", "watts": 100, "hours": 4 },
+        { "name": "Komputer", "watts": 300, "hours": 6 },
+        { "name": "Lodówka", "watts": 150, "hours": 10 },
+        { "name": "Pralka", "watts": 2000, "hours": 1 },
+        { "name": "Czajnik", "watts": 2200, "hours": 0.25 },
+        { "name": "Żelazko", "watts": 2400, "hours": 0.5 },
+        { "name": "Piekarnik", "watts": 3500, "hours": 1 },
+        { "name": "Suszarka", "watts": 2000, "hours": 1 },
+        { "name": "Zmywarka", "watts": 1800, "hours": 1.5 },
+        { "name": "Klimatyzacja", "watts": 2500, "hours": 6 },
+        { "name": "Odkurzacz", "watts": 1600, "hours": 0.5 }
+      ],
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Kalkulator Prądu Online - Oblicz Koszt Energii Elektrycznej",
+          "body": "Nasz kalkulator prądu pozwala szybko obliczyć ile kosztuje używanie dowolnego urządzenia elektrycznego. Wystarczy podać moc urządzenia w watach, liczbę godzin pracy dziennie i cenę prądu za kWh. Kalkulator pokaże Ci dzienne, miesięczne i roczne koszty energii elektrycznej. Dzięki temu łatwo sprawdzisz, które urządzenia najbardziej obciążają Twój rachunek za prąd."
+        },
+        {
+          "type": "text",
+          "heading": "Jak obliczyć koszt prądu?",
+          "body": "Koszt prądu oblicza się mnożąc moc urządzenia (w kilowatach) przez czas pracy (w godzinach) i cenę energii za kWh. Wzór: **Koszt = (Moc [W] / 1000) × Czas [h] × Cena [zł/kWh]**. Na przykład grzejnik o mocy 2000W pracujący 5 godzin dziennie przy cenie 1,20 zł/kWh zużyje 10 kWh i będzie kosztować 12 zł dziennie, czyli około 360 zł miesięcznie."
+        },
+        {
+          "type": "table",
+          "heading": "Zużycie prądu popularnych urządzeń domowych",
+          "headers": ["Urządzenie", "Typowa moc", "Średnie użycie dziennie", "Koszt miesięczny*"],
+          "rows": [
+            ["Żarówka LED", "10 W", "8 h", "~2,90 zł"],
+            ["Telewizor", "100 W", "4 h", "~14,40 zł"],
+            ["Komputer stacjonarny", "300 W", "6 h", "~64,80 zł"],
+            ["Laptop", "60 W", "6 h", "~12,96 zł"],
+            ["Lodówka", "150 W", "24 h (cyklicznie)", "~43,20 zł"],
+            ["Pralka", "2000 W", "1 h (co 2 dni)", "~36,00 zł"],
+            ["Czajnik elektryczny", "2200 W", "0,25 h", "~19,80 zł"],
+            ["Piekarnik", "3500 W", "1 h", "~126,00 zł"],
+            ["Klimatyzacja", "2500 W", "6 h", "~540,00 zł"],
+            ["Odkurzacz", "1600 W", "0,5 h", "~28,80 zł"]
+          ],
+          "footer": "* Szacunkowy koszt przy cenie 1,20 zł/kWh"
+        },
+        {
+          "type": "list",
+          "heading": "Jak zmniejszyć rachunki za prąd?",
+          "items": [
+            "**Wymień żarówki na LED** - Zużywają do 80% mniej energii niż tradycyjne żarówki",
+            "**Wyłączaj urządzenia z gniazdka** - Tryb standby zużywa prąd (tzw. wampiry energetyczne)",
+            "**Korzystaj z taryfy nocnej** - Prąd w nocy jest tańszy w taryfie G12",
+            "**Wybieraj urządzenia klasy A+++** - Nowoczesne AGD zużywa znacznie mniej energii",
+            "**Ogranicz klimatyzację** - To jedno z najbardziej energochłonnych urządzeń domowych",
+            "**Gotuj z pokrywką** - Oszczędza do 30% energii podczas gotowania na kuchence elektrycznej",
+            "**Prześ pralkę na 30°C** - Większość prania nie wymaga wyższej temperatury"
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Często zadawane pytania",
+          "items": [
+            {
+              "q": "Ile kosztuje 1 kWh prądu w Polsce?",
+              "a": "Cena prądu w Polsce zależy od taryfy i dostawcy. Średnia cena dla gospodarstw domowych wynosi około 1,00-1,30 zł/kWh (z opłatami dystrybucyjnymi). Sprawdź aktualną cenę na fakturze od swojego dostawcy energii."
+            },
+            {
+              "q": "Co to jest kWh (kilowatogodzina)?",
+              "a": "Kilowatogodzina (kWh) to jednostka energii. 1 kWh oznacza zużycie 1 kilowata mocy przez 1 godzinę. Na przykład żarówka 100W pracująca 10 godzin zużyje 1 kWh (100W × 10h = 1000 Wh = 1 kWh)."
+            },
+            {
+              "q": "Czym różni się taryfa G11 od G12?",
+              "a": "Taryfa G11 to jednolita cena prądu przez całą dobę. Taryfa G12 (dwustrefowa) oferuje tańszy prąd w godzinach nocnych (zwykle 22:00-6:00) i w weekendy, ale droższą w ciągu dnia. G12 opłaca się jeśli dużo prądu zużywasz w nocy."
+            },
+            {
+              "q": "Jak odczytać licznik prądu?",
+              "a": "Nowoczesne liczniki cyfrowe pokazują zużycie w kWh na wyświetlaczu. W przypadku taryfy G12 mają dwie strefy (szczyt i pozaszczyt). Odczyt wysyła się do dostawcy energii lub jest on odczytywany zdalnie."
+            },
+            {
+              "q": "Ile prądu zużywa średnio mieszkanie?",
+              "a": "Średnie zużycie prądu w polskim mieszkaniu to ok. 2000-3000 kWh rocznie (2 osoby), 3000-4500 kWh (4 osoby). Zależy to od liczby urządzeń, sposobu ogrzewania i stylu życia."
+            }
+          ]
+        }
+      ]
     }
   },
   "common": {

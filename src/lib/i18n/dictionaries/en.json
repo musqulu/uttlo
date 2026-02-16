@@ -2589,6 +2589,117 @@
           ]
         }
       ]
+    },
+    "electricity-calculator": {
+      "name": "Electricity Calculator",
+      "description": "Calculate the cost of electricity for any appliance. See daily, monthly, and yearly energy costs.",
+      "seoTitle": "Electricity Cost Calculator Online - Calculate Energy Bill | Free Tool",
+      "seoDescription": "Free online electricity calculator. Calculate how much it costs to run any appliance. See daily, monthly, and yearly electricity costs instantly.",
+      "title": "Electricity Calculator",
+      "subtitle": "Calculate the cost of electricity usage",
+      "power": "Appliance power (W)",
+      "powerPlaceholder": "e.g. 2000",
+      "hoursPerDay": "Hours per day",
+      "hoursPerDayPlaceholder": "e.g. 4",
+      "electricityPrice": "Electricity price (per kWh)",
+      "electricityPricePlaceholder": "e.g. 0.30",
+      "billingPeriod": "Billing period",
+      "billingPeriodPlaceholder": "e.g. 30",
+      "calculate": "Calculate cost",
+      "clear": "Clear",
+      "results": "Results",
+      "dailyUsage": "Daily usage",
+      "totalUsage": "Total usage",
+      "dailyCost": "Daily cost",
+      "monthlyCost": "Monthly cost",
+      "yearlyCost": "Yearly cost",
+      "presets": "Common appliances",
+      "presetsHint": "Click to fill in the power value",
+      "days": "days",
+      "defaultPrice": "0.30",
+      "appliances": [
+        { "name": "LED Bulb", "watts": 10, "hours": 8 },
+        { "name": "TV", "watts": 100, "hours": 4 },
+        { "name": "Desktop PC", "watts": 300, "hours": 6 },
+        { "name": "Fridge", "watts": 150, "hours": 10 },
+        { "name": "Washing Machine", "watts": 2000, "hours": 1 },
+        { "name": "Kettle", "watts": 2200, "hours": 0.25 },
+        { "name": "Iron", "watts": 2400, "hours": 0.5 },
+        { "name": "Oven", "watts": 3500, "hours": 1 },
+        { "name": "Tumble Dryer", "watts": 2000, "hours": 1 },
+        { "name": "Dishwasher", "watts": 1800, "hours": 1.5 },
+        { "name": "Air Conditioner", "watts": 2500, "hours": 6 },
+        { "name": "Vacuum Cleaner", "watts": 1600, "hours": 0.5 }
+      ],
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Electricity Cost Calculator - Work Out Your Energy Bill",
+          "body": "Our electricity calculator lets you quickly work out how much it costs to run any electrical appliance. Simply enter the appliance wattage, hours of use per day, and your electricity price per kWh. The calculator shows daily, monthly, and yearly energy costs so you can easily see which appliances are costing you the most."
+        },
+        {
+          "type": "text",
+          "heading": "How to calculate electricity cost",
+          "body": "Electricity cost is calculated by multiplying the appliance power (in kilowatts) by the usage time (in hours) and the price per kWh. Formula: **Cost = (Power [W] / 1000) x Time [h] x Price [per kWh]**. For example, a 2000W heater running 5 hours a day at $0.30/kWh uses 10 kWh and costs $3.00 per day, or about $90 per month."
+        },
+        {
+          "type": "table",
+          "heading": "Electricity usage of common household appliances",
+          "headers": ["Appliance", "Typical power", "Average daily use", "Monthly cost*"],
+          "rows": [
+            ["LED Bulb", "10 W", "8 h", "~$0.72"],
+            ["TV", "100 W", "4 h", "~$3.60"],
+            ["Desktop PC", "300 W", "6 h", "~$16.20"],
+            ["Laptop", "60 W", "6 h", "~$3.24"],
+            ["Fridge", "150 W", "24 h (cycles)", "~$10.80"],
+            ["Washing Machine", "2000 W", "1 h (every 2 days)", "~$9.00"],
+            ["Electric Kettle", "2200 W", "0.25 h", "~$4.95"],
+            ["Oven", "3500 W", "1 h", "~$31.50"],
+            ["Air Conditioner", "2500 W", "6 h", "~$135.00"],
+            ["Vacuum Cleaner", "1600 W", "0.5 h", "~$7.20"]
+          ],
+          "footer": "* Estimated cost at $0.30/kWh"
+        },
+        {
+          "type": "list",
+          "heading": "Tips to reduce your electricity bill",
+          "items": [
+            "**Switch to LED bulbs** - They use up to 80% less energy than traditional bulbs",
+            "**Unplug standby devices** - Standby mode still draws power (so-called energy vampires)",
+            "**Use off-peak tariffs** - Electricity is cheaper at night on time-of-use plans",
+            "**Choose A+++ rated appliances** - Modern appliances use significantly less energy",
+            "**Limit air conditioning** - It is one of the most energy-hungry household appliances",
+            "**Cook with the lid on** - Saves up to 30% of energy when cooking on an electric hob",
+            "**Wash clothes at 30°C** - Most laundry does not need higher temperatures"
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently asked questions",
+          "items": [
+            {
+              "q": "How much does electricity cost per kWh?",
+              "a": "Electricity prices vary by country and provider. In the US, the average is about $0.16/kWh; in the UK around £0.28/kWh; in the EU roughly €0.25/kWh. Check your latest utility bill for your exact rate."
+            },
+            {
+              "q": "What is a kWh (kilowatt-hour)?",
+              "a": "A kilowatt-hour (kWh) is a unit of energy. 1 kWh means using 1 kilowatt of power for 1 hour. For example, a 100W bulb running for 10 hours uses 1 kWh (100W x 10h = 1000 Wh = 1 kWh)."
+            },
+            {
+              "q": "What uses the most electricity in a home?",
+              "a": "Heating and cooling systems, electric water heaters, ovens, and tumble dryers are typically the biggest consumers. Always-on appliances like fridges also add up over time."
+            },
+            {
+              "q": "How can I read my electricity meter?",
+              "a": "Digital meters display your consumption in kWh on the screen. Smart meters send readings automatically to your provider. For dual-rate meters, there will be two readings (peak and off-peak)."
+            },
+            {
+              "q": "How much electricity does an average home use?",
+              "a": "In the US, the average household uses about 10,500 kWh per year. In the UK it is around 2,900 kWh, and in the EU roughly 3,500 kWh. Usage depends on household size, appliances, and climate."
+            }
+          ]
+        }
+      ]
     }
   },
   "common": {
