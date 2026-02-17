@@ -30,6 +30,8 @@ import {
   Timer,
   Fuel,
   Zap,
+  StickyNote,
+  GitCompareArrows,
   LucideIcon,
 } from "lucide-react";
 
@@ -160,6 +162,20 @@ export const tools: Tool[] = [
     id: "metronome",
     slugs: { pl: "metronom", en: "metronome" },
     icon: Timer,
+    isReady: true,
+    category: "tools",
+  },
+  {
+    id: "online-notepad",
+    slugs: { pl: "notatnik-online", en: "online-notepad" },
+    icon: StickyNote,
+    isReady: true,
+    category: "tools",
+  },
+  {
+    id: "diff-checker",
+    slugs: { pl: "porownywarka-tekstow", en: "diff-checker" },
+    icon: GitCompareArrows,
     isReady: true,
     category: "tools",
   },

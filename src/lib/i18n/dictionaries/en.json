@@ -1291,6 +1291,233 @@
         }
       ]
     },
+    "online-notepad": {
+      "name": "Online Notepad",
+      "description": "Free online notepad in your browser. Write, edit and save notes without registration.",
+      "seoTitle": "Online Notepad - Free Text Editor in Your Browser",
+      "seoDescription": "Free online notepad with no login required. Write, edit and save notes in your browser. Auto-save, character counter, download as TXT. No installation needed.",
+      "title": "Online Notepad",
+      "subtitle": "Write and save notes directly in your browser",
+      "placeholder": "Start typing your note...",
+      "characters": "Characters",
+      "words": "Words",
+      "lines": "Lines",
+      "fontSize": "Font size",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "extraLarge": "Extra large",
+      "find": "Find",
+      "replace": "Replace",
+      "findPlaceholder": "Find text...",
+      "replacePlaceholder": "Replace with...",
+      "replaceAll": "Replace all",
+      "matchesFound": "found",
+      "noMatches": "No matches",
+      "download": "Download",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "clear": "Clear",
+      "clearConfirm": "Are you sure you want to clear all text? This action cannot be undone.",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit fullscreen",
+      "autoSaved": "Auto-saved",
+      "newNote": "New note",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "What is an online notepad?",
+          "body": "An online notepad is a free text editing tool that works directly in your web browser. It requires no software installation, registration or login. Just open the page and start typing. Your notes are automatically saved in your browser's local storage, so you won't lose them even after closing the tab. It's the perfect solution when you need to quickly jot something down, draft a text or simply have a convenient place for notes at your fingertips."
+        },
+        {
+          "type": "list",
+          "heading": "Key features of the online notepad",
+          "items": [
+            "**Auto-save** — Your notes are automatically saved in your browser, so you won't lose anything even if you accidentally close the page",
+            "**Character and word counter** — Monitor your text length in real time. Useful when writing social media posts, SEO descriptions and texts with character limits",
+            "**Find and replace** — Quickly search for phrases in your text and replace them with a single click, or replace all occurrences at once",
+            "**Download as TXT** — Save your note as a text file on your device, ready to open in any text editor",
+            "**Adjustable font size** — Customize the text size to your needs — small, medium, large or extra large",
+            "**Fullscreen mode** — Write without distractions on the entire screen — ideal for focused work sessions",
+            "**Copy to clipboard** — Copy all text with one click and paste it anywhere you need",
+            "**Privacy first** — Your data never leaves your browser. We don't send your text to any server"
+          ]
+        },
+        {
+          "type": "ordered-list",
+          "heading": "How to use the online notepad?",
+          "items": [
+            "Open the online notepad page in your browser",
+            "Start typing or paste text into the main editing area",
+            "Your notes are saved automatically — no need to click anything",
+            "Use the toolbar to change font size, search text or switch to fullscreen mode",
+            "When you're done, click Download to save your note as a TXT file or Copy to copy the text to your clipboard"
+          ]
+        },
+        {
+          "type": "list",
+          "heading": "Who is the online notepad for?",
+          "items": [
+            "**Students** — Quick note-taking for ideas, plans, summaries or lecture notes",
+            "**Writers and bloggers** — Drafting articles, blog posts and creative content in a comfortable environment",
+            "**SEO specialists** — Writing and checking the length of meta descriptions, titles and content with the character counter",
+            "**Developers** — Quick notes, code snippets, TODO lists and temporary text storage",
+            "**Office workers** — Noting down meeting ideas, creating task lists and drafting emails",
+            "**Anyone who needs a quick note** — No registration, no installation, just open and write"
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently asked questions",
+          "items": [
+            {
+              "q": "Is the online notepad free?",
+              "a": "Yes, the online notepad is completely free and requires no payments. You can use it without limits, without intrusive ads and without having to create an account."
+            },
+            {
+              "q": "Are my notes secure?",
+              "a": "Yes, your notes are stored exclusively in your browser's local storage. They are not sent to any external server, which means only you have access to them. However, keep in mind that clearing your browser data will delete saved notes."
+            },
+            {
+              "q": "Are notes saved automatically?",
+              "a": "Yes, the notepad automatically saves your text in the browser every half second. Even if you accidentally close the tab or browser, your note will be waiting when you reopen the page."
+            },
+            {
+              "q": "Can I download my note as a file?",
+              "a": "Yes, click the Download button in the toolbar and your note will be saved as a .txt file on your device. The text file can be opened in any text editor."
+            },
+            {
+              "q": "Do I need to register?",
+              "a": "No, the online notepad requires no registration, login or sharing of any personal information. Just open the page and start writing."
+            },
+            {
+              "q": "Does the notepad work on mobile?",
+              "a": "Yes, the online notepad is fully responsive and works on smartphones, tablets and computers. You can write notes from any device with a web browser."
+            }
+          ]
+        }
+      ]
+    },
+    "diff-checker": {
+      "name": "Diff Checker",
+      "description": "Compare two texts and find differences. Free online diff checker with line, word and character comparison.",
+      "seoTitle": "Diff Checker Online - Compare Text Differences Free | utllo",
+      "seoDescription": "Free online diff checker tool. Compare two texts side-by-side and find differences at line, word or character level. No registration required, works entirely in your browser.",
+      "title": "Diff Checker",
+      "subtitle": "Compare two texts and highlight every difference",
+      "originalLabel": "Original text",
+      "modifiedLabel": "Modified text",
+      "originalPlaceholder": "Paste original text here...",
+      "modifiedPlaceholder": "Paste modified text here...",
+      "compare": "Compare",
+      "clear": "Clear",
+      "swap": "Swap",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "sideBySide": "Side by side",
+      "inline": "Inline",
+      "lineDiff": "Lines",
+      "wordDiff": "Words",
+      "charDiff": "Characters",
+      "ignoreWhitespace": "Ignore whitespace",
+      "ignoreCase": "Ignore case",
+      "additions": "additions",
+      "deletions": "deletions",
+      "unchanged": "unchanged",
+      "noDifferences": "Paste text in both fields to compare differences",
+      "textsIdentical": "Texts are identical — no differences found",
+      "compareLevel": "Compare",
+      "viewMode": "View",
+      "options": "Options",
+      "diffResult": "Diff result",
+      "lineNumber": "Line",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "What is a diff checker?",
+          "body": "A diff checker is a tool that compares two pieces of text and highlights the differences between them. It uses the Myers diff algorithm — the same algorithm behind Git and other version control systems — to find the minimum set of changes needed to transform one text into the other. Our diff checker runs entirely in your browser, so your data never leaves your device."
+        },
+        {
+          "type": "list",
+          "heading": "Key features",
+          "items": [
+            "**Three comparison levels** — Compare at line, word or character level for different levels of granularity",
+            "**Side-by-side and inline views** — Choose the view mode that works best for you. Side-by-side shows both texts next to each other, inline merges them into a single stream",
+            "**Ignore whitespace** — Toggle this option to skip differences caused by spaces, tabs and line endings",
+            "**Ignore case** — Compare texts without regard to uppercase and lowercase letters",
+            "**Color-coded highlights** — Additions are shown in green, deletions in red, making changes easy to spot at a glance",
+            "**Statistics** — See the exact count of additions, deletions and unchanged segments",
+            "**Swap and copy** — Quickly swap the original and modified texts or copy the diff result to your clipboard",
+            "**100% private** — All processing happens in your browser. No text is sent to any server"
+          ]
+        },
+        {
+          "type": "ordered-list",
+          "heading": "How to use the diff checker",
+          "items": [
+            "Paste or type your original text in the left field",
+            "Paste or type the modified text in the right field",
+            "The diff is computed automatically — differences are highlighted instantly",
+            "Use the toolbar to switch between line, word or character comparison",
+            "Toggle between side-by-side and inline views to find the one that suits you",
+            "Enable 'Ignore whitespace' or 'Ignore case' if needed",
+            "Click Copy to copy the diff result or Clear to start over"
+          ]
+        },
+        {
+          "type": "grid",
+          "heading": "Use cases",
+          "items": [
+            {
+              "title": "Code review",
+              "body": "Compare two versions of source code to see exactly what changed. Perfect for reviewing pull requests, patches and refactoring results."
+            },
+            {
+              "title": "Document comparison",
+              "body": "Spot differences between two versions of a contract, article or report. Useful for legal, editorial and academic work."
+            },
+            {
+              "title": "Content editing",
+              "body": "Compare drafts of blog posts, product descriptions or marketing copy to track changes made during the editing process."
+            },
+            {
+              "title": "Configuration files",
+              "body": "Check differences between server configs, .env files or settings files to quickly find what was added, removed or modified."
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently asked questions",
+          "items": [
+            {
+              "q": "Is the diff checker free?",
+              "a": "Yes, the diff checker is completely free with no limits, no ads and no registration required. You can use it as many times as you need."
+            },
+            {
+              "q": "Is my data secure?",
+              "a": "Absolutely. All comparison is done locally in your browser using JavaScript. Your text is never sent to any server, ensuring complete privacy and security."
+            },
+            {
+              "q": "What comparison modes are available?",
+              "a": "You can compare at three levels: line-by-line (best for code and structured text), word-by-word (best for prose and documents) and character-by-character (best for finding tiny changes like typos)."
+            },
+            {
+              "q": "Can I compare code with this tool?",
+              "a": "Yes, the diff checker works great for comparing code. Use line-level comparison for the most familiar diff view. The monospace font and whitespace-aware comparison make it ideal for code review."
+            },
+            {
+              "q": "What is the maximum text size?",
+              "a": "Since the tool runs in your browser, the limit depends on your device's memory. In practice, it handles texts of 100,000+ characters without issues on modern devices."
+            },
+            {
+              "q": "Does it work on mobile?",
+              "a": "Yes, the diff checker is fully responsive and works on smartphones, tablets and desktop computers. On smaller screens, the inline view mode is recommended for the best experience."
+            }
+          ]
+        }
+      ]
+    },
     "pdf-to-word": {
       "name": "PDF to Word",
       "description": "Convert PDF documents to editable Word files.",

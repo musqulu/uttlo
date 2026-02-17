@@ -1291,6 +1291,233 @@
         }
       ]
     },
+    "online-notepad": {
+      "name": "Notatnik Online",
+      "description": "Darmowy notatnik online w przeglądarce. Pisz, edytuj i zapisuj notatki bez rejestracji.",
+      "seoTitle": "Notatnik Online - Darmowy Edytor Tekstu w Przeglądarce",
+      "seoDescription": "Darmowy notatnik online bez rejestracji. Pisz, edytuj i zapisuj notatki w przeglądarce. Automatyczny zapis, licznik znaków, pobieranie jako TXT. Bez instalacji.",
+      "title": "Notatnik Online",
+      "subtitle": "Pisz i zapisuj notatki bezpośrednio w przeglądarce",
+      "placeholder": "Zacznij pisać swoją notatkę...",
+      "characters": "Znaki",
+      "words": "Słowa",
+      "lines": "Linie",
+      "fontSize": "Rozmiar czcionki",
+      "small": "Mały",
+      "medium": "Średni",
+      "large": "Duży",
+      "extraLarge": "Bardzo duży",
+      "find": "Znajdź",
+      "replace": "Zamień",
+      "findPlaceholder": "Szukany tekst...",
+      "replacePlaceholder": "Zamień na...",
+      "replaceAll": "Zamień wszystko",
+      "matchesFound": "znalezionych",
+      "noMatches": "Brak wyników",
+      "download": "Pobierz",
+      "copy": "Kopiuj",
+      "copied": "Skopiowano!",
+      "clear": "Wyczyść",
+      "clearConfirm": "Czy na pewno chcesz wyczyścić cały tekst? Ta operacja jest nieodwracalna.",
+      "fullscreen": "Pełny ekran",
+      "exitFullscreen": "Zamknij pełny ekran",
+      "autoSaved": "Zapisano automatycznie",
+      "newNote": "Nowa notatka",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Czym jest notatnik online?",
+          "body": "Notatnik online to darmowe narzędzie do pisania i edycji tekstu, które działa bezpośrednio w przeglądarce internetowej. Nie wymaga instalacji żadnego oprogramowania, rejestracji ani logowania. Wystarczy otworzyć stronę i zacząć pisać. Twoje notatki są automatycznie zapisywane w pamięci przeglądarki (localStorage), dzięki czemu nie stracisz ich nawet po zamknięciu karty. To idealne rozwiązanie, gdy potrzebujesz szybko coś zanotować, napisać szkic tekstu lub po prostu mieć pod ręką wygodne miejsce na notatki."
+        },
+        {
+          "type": "list",
+          "heading": "Kluczowe funkcje notatnika online",
+          "items": [
+            "**Automatyczny zapis** — Twoje notatki zapisują się automatycznie w przeglądarce, więc nic nie stracisz nawet po przypadkowym zamknięciu strony",
+            "**Licznik znaków i słów** — Monitoruj długość tekstu w czasie rzeczywistym. Przydatne przy pisaniu postów na media społecznościowe, opisów SEO i prac z limitem znaków",
+            "**Znajdź i zamień** — Szybko wyszukuj frazy w tekście i zamieniaj je jednym kliknięciem lub zamień wszystkie wystąpienia naraz",
+            "**Pobieranie jako TXT** — Zapisz swoją notatkę jako plik tekstowy na dysku, gotowy do otwarcia w dowolnym edytorze",
+            "**Regulowany rozmiar czcionki** — Dopasuj wielkość tekstu do swoich potrzeb — mały, średni, duży lub bardzo duży",
+            "**Tryb pełnoekranowy** — Pisz bez rozpraszania się, na całym ekranie — idealny do skupionej pracy",
+            "**Kopiowanie do schowka** — Skopiuj cały tekst jednym kliknięciem i wklej go w dowolnym miejscu",
+            "**Prywatność** — Twoje dane nie opuszczają przeglądarki. Nie wysyłamy tekstu na żaden serwer"
+          ]
+        },
+        {
+          "type": "ordered-list",
+          "heading": "Jak korzystać z notatnika online?",
+          "items": [
+            "Otwórz stronę notatnika online w swojej przeglądarce",
+            "Zacznij pisać lub wklej tekst w główne pole edycji",
+            "Twoje notatki zapisują się automatycznie — nie musisz nic klikać",
+            "Użyj paska narzędzi aby zmienić rozmiar czcionki, wyszukać tekst lub przejść do trybu pełnoekranowego",
+            "Gdy skończysz, kliknij Pobierz aby zapisać notatkę jako plik TXT lub Kopiuj aby skopiować tekst do schowka"
+          ]
+        },
+        {
+          "type": "list",
+          "heading": "Dla kogo jest notatnik online?",
+          "items": [
+            "**Uczniowie i studenci** — Szybkie notowanie pomysłów, planów, streszczeń lub notatek z wykładów",
+            "**Pisarze i blogerzy** — Tworzenie szkiców artykułów, wpisów blogowych i treści kreatywnych w wygodnym środowisku",
+            "**Specjaliści SEO** — Pisanie i kontrolowanie długości meta opisów, tytułów i treści z licznikiem znaków",
+            "**Programiści** — Szybkie notatki, fragmenty kodu, listy TODO i tymczasowe zapisy tekstu",
+            "**Pracownicy biurowi** — Notowanie pomysłów ze spotkań, tworzenie list zadań i szkicowanie maili",
+            "**Każdy, kto potrzebuje szybkiej notatki** — Bez rejestracji, bez instalacji, wystarczy otworzyć i pisać"
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Często zadawane pytania",
+          "items": [
+            {
+              "q": "Czy notatnik online jest darmowy?",
+              "a": "Tak, notatnik online jest całkowicie darmowy i nie wymaga żadnych opłat. Możesz korzystać z niego bez ograniczeń, bez reklam przerywających pracę i bez konieczności tworzenia konta."
+            },
+            {
+              "q": "Czy moje notatki są bezpieczne?",
+              "a": "Tak, Twoje notatki są przechowywane wyłącznie w pamięci Twojej przeglądarki (localStorage). Nie są wysyłane na żaden serwer zewnętrzny, co oznacza, że tylko Ty masz do nich dostęp. Pamiętaj jednak, że wyczyszczenie danych przeglądarki usunie zapisane notatki."
+            },
+            {
+              "q": "Czy notatki zapisują się automatycznie?",
+              "a": "Tak, notatnik automatycznie zapisuje Twój tekst w przeglądarce co pół sekundy. Nawet jeśli przypadkowo zamkniesz kartę lub przeglądarkę, Twoja notatka będzie czekała po ponownym otwarciu strony."
+            },
+            {
+              "q": "Czy mogę pobrać notatkę jako plik?",
+              "a": "Tak, kliknij przycisk Pobierz na pasku narzędzi, a Twoja notatka zostanie zapisana jako plik .txt na Twoim urządzeniu. Plik tekstowy można otworzyć w dowolnym edytorze tekstu."
+            },
+            {
+              "q": "Czy potrzebna jest rejestracja?",
+              "a": "Nie, notatnik online nie wymaga rejestracji, logowania ani podawania żadnych danych osobowych. Wystarczy otworzyć stronę i zacząć pisać."
+            },
+            {
+              "q": "Czy notatnik działa na telefonie?",
+              "a": "Tak, notatnik online jest w pełni responsywny i działa na smartfonach, tabletach oraz komputerach. Możesz pisać notatki z dowolnego urządzenia z przeglądarką internetową."
+            }
+          ]
+        }
+      ]
+    },
+    "diff-checker": {
+      "name": "Porównywarka Tekstów",
+      "description": "Porównaj dwa teksty i znajdź różnice. Darmowa porównywarka online z porównaniem linii, słów i znaków.",
+      "seoTitle": "Porównywarka Tekstów Online - Porównaj Różnice w Tekście | utllo",
+      "seoDescription": "Darmowa porównywarka tekstów online. Porównaj dwa teksty obok siebie i znajdź różnice na poziomie linii, słów lub znaków. Bez rejestracji, działa w przeglądarce.",
+      "title": "Porównywarka Tekstów",
+      "subtitle": "Porównaj dwa teksty i podświetl każdą różnicę",
+      "originalLabel": "Tekst oryginalny",
+      "modifiedLabel": "Tekst zmodyfikowany",
+      "originalPlaceholder": "Wklej oryginalny tekst tutaj...",
+      "modifiedPlaceholder": "Wklej zmodyfikowany tekst tutaj...",
+      "compare": "Porównaj",
+      "clear": "Wyczyść",
+      "swap": "Zamień",
+      "copy": "Kopiuj",
+      "copied": "Skopiowano!",
+      "sideBySide": "Obok siebie",
+      "inline": "W linii",
+      "lineDiff": "Linie",
+      "wordDiff": "Słowa",
+      "charDiff": "Znaki",
+      "ignoreWhitespace": "Ignoruj białe znaki",
+      "ignoreCase": "Ignoruj wielkość liter",
+      "additions": "dodanych",
+      "deletions": "usuniętych",
+      "unchanged": "bez zmian",
+      "noDifferences": "Wklej tekst w oba pola, aby porównać różnice",
+      "textsIdentical": "Teksty są identyczne — nie znaleziono różnic",
+      "compareLevel": "Porównanie",
+      "viewMode": "Widok",
+      "options": "Opcje",
+      "diffResult": "Wynik porównania",
+      "lineNumber": "Linia",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Czym jest porównywarka tekstów?",
+          "body": "Porównywarka tekstów to narzędzie, które porównuje dwa fragmenty tekstu i podświetla różnice między nimi. Wykorzystuje algorytm Myersa — ten sam algorytm, który stoi za Gitem i innymi systemami kontroli wersji — aby znaleźć minimalny zestaw zmian potrzebnych do przekształcenia jednego tekstu w drugi. Nasza porównywarka działa całkowicie w Twojej przeglądarce, więc Twoje dane nigdy nie opuszczają Twojego urządzenia."
+        },
+        {
+          "type": "list",
+          "heading": "Kluczowe funkcje",
+          "items": [
+            "**Trzy poziomy porównania** — Porównuj na poziomie linii, słów lub znaków, aby uzyskać różny stopień szczegółowości",
+            "**Widok obok siebie i w linii** — Wybierz tryb widoku, który najlepiej Ci odpowiada. Widok obok siebie pokazuje oba teksty obok siebie, widok w linii łączy je w jeden strumień",
+            "**Ignorowanie białych znaków** — Włącz tę opcję, aby pominąć różnice spowodowane spacjami, tabulatorami i końcami linii",
+            "**Ignorowanie wielkości liter** — Porównuj teksty bez uwzględniania wielkich i małych liter",
+            "**Kolorowe podświetlenia** — Dodania są wyświetlane na zielono, usunięcia na czerwono, dzięki czemu zmiany są łatwe do zauważenia na pierwszy rzut oka",
+            "**Statystyki** — Zobacz dokładną liczbę dodań, usunięć i niezmienionych segmentów",
+            "**Zamiana i kopiowanie** — Szybko zamień tekst oryginalny i zmodyfikowany lub skopiuj wynik porównania do schowka",
+            "**100% prywatności** — Całe przetwarzanie odbywa się w Twojej przeglądarce. Żaden tekst nie jest wysyłany na serwer"
+          ]
+        },
+        {
+          "type": "ordered-list",
+          "heading": "Jak korzystać z porównywarki tekstów?",
+          "items": [
+            "Wklej lub wpisz oryginalny tekst w lewe pole",
+            "Wklej lub wpisz zmodyfikowany tekst w prawe pole",
+            "Porównanie jest obliczane automatycznie — różnice są podświetlane natychmiast",
+            "Użyj paska narzędzi, aby przełączać między porównaniem linii, słów lub znaków",
+            "Przełączaj między widokiem obok siebie a widokiem w linii",
+            "Włącz opcję 'Ignoruj białe znaki' lub 'Ignoruj wielkość liter' w razie potrzeby",
+            "Kliknij Kopiuj, aby skopiować wynik porównania, lub Wyczyść, aby zacząć od nowa"
+          ]
+        },
+        {
+          "type": "grid",
+          "heading": "Zastosowania",
+          "items": [
+            {
+              "title": "Przegląd kodu",
+              "body": "Porównaj dwie wersje kodu źródłowego, aby zobaczyć dokładnie, co się zmieniło. Idealne do przeglądania pull requestów, łatek i wyników refaktoryzacji."
+            },
+            {
+              "title": "Porównywanie dokumentów",
+              "body": "Znajdź różnice między dwiema wersjami umowy, artykułu lub raportu. Przydatne w pracy prawniczej, redakcyjnej i akademickiej."
+            },
+            {
+              "title": "Edycja treści",
+              "body": "Porównaj szkice wpisów blogowych, opisów produktów lub tekstów marketingowych, aby śledzić zmiany dokonane podczas procesu edycji."
+            },
+            {
+              "title": "Pliki konfiguracyjne",
+              "body": "Sprawdź różnice między konfiguracjami serwerów, plikami .env lub ustawieniami, aby szybko znaleźć co zostało dodane, usunięte lub zmodyfikowane."
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Często zadawane pytania",
+          "items": [
+            {
+              "q": "Czy porównywarka tekstów jest darmowa?",
+              "a": "Tak, porównywarka tekstów jest całkowicie darmowa, bez limitów, bez reklam i bez wymaganej rejestracji. Możesz z niej korzystać tyle razy, ile potrzebujesz."
+            },
+            {
+              "q": "Czy moje dane są bezpieczne?",
+              "a": "Absolutnie tak. Całe porównanie odbywa się lokalnie w Twojej przeglądarce za pomocą JavaScript. Twój tekst nigdy nie jest wysyłany na żaden serwer, co zapewnia pełną prywatność i bezpieczeństwo."
+            },
+            {
+              "q": "Jakie tryby porównania są dostępne?",
+              "a": "Możesz porównywać na trzech poziomach: linia po linii (najlepsze dla kodu i tekstu strukturalnego), słowo po słowie (najlepsze dla prozy i dokumentów) oraz znak po znaku (najlepsze do znajdowania drobnych zmian, takich jak literówki)."
+            },
+            {
+              "q": "Czy mogę porównywać kod tym narzędziem?",
+              "a": "Tak, porównywarka świetnie nadaje się do porównywania kodu. Użyj porównania na poziomie linii, aby uzyskać najbardziej znany widok diff. Czcionka monospace i porównanie uwzględniające białe znaki sprawiają, że jest idealna do przeglądu kodu."
+            },
+            {
+              "q": "Jaki jest maksymalny rozmiar tekstu?",
+              "a": "Ponieważ narzędzie działa w Twojej przeglądarce, limit zależy od pamięci Twojego urządzenia. W praktyce obsługuje teksty o długości ponad 100 000 znaków bez problemów na nowoczesnych urządzeniach."
+            },
+            {
+              "q": "Czy działa na telefonie?",
+              "a": "Tak, porównywarka tekstów jest w pełni responsywna i działa na smartfonach, tabletach oraz komputerach stacjonarnych. Na mniejszych ekranach zalecany jest widok w linii dla najlepszego doświadczenia."
+            }
+          ]
+        }
+      ]
+    },
     "pdf-to-word": {
       "name": "PDF na Word",
       "description": "Konwertuj dokumenty PDF do edytowalnych plików Word.",

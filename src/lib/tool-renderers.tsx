@@ -16,6 +16,8 @@ import { WhiteScreenTool } from "@/components/white-screen/white-screen-tool";
 import { AmountInWords } from "@/components/amount-in-words/amount-in-words";
 import { CaesarCipher } from "@/components/caesar-cipher/caesar-cipher";
 import { Metronome } from "@/components/metronome/metronome";
+import { OnlineNotepad } from "@/components/online-notepad/online-notepad";
+import { DiffChecker } from "@/components/diff-checker/diff-checker";
 import { PdfConverter } from "@/components/pdf-converter/pdf-converter";
 import { PdfToWordConverter } from "@/components/pdf-converter/pdf-to-word-converter";
 import { BMICalculator } from "@/components/calculators/bmi-calculator";
@@ -377,6 +379,77 @@ export function renderToolComponent(
             allegro: toolDict.allegro || "Allegro",
             presto: toolDict.presto || "Presto",
             vivace: toolDict.vivace || "Vivace",
+          }}
+        />
+      );
+
+    case "online-notepad":
+      return (
+        <OnlineNotepad
+          dictionary={{
+            title: toolDict.title || "Online Notepad",
+            subtitle: toolDict.subtitle || "Write and save notes in your browser",
+            placeholder: toolDict.placeholder || "Start typing your note...",
+            characters: toolDict.characters || "Characters",
+            words: toolDict.words || "Words",
+            lines: toolDict.lines || "Lines",
+            fontSize: toolDict.fontSize || "Font size",
+            small: toolDict.small || "Small",
+            medium: toolDict.medium || "Medium",
+            large: toolDict.large || "Large",
+            extraLarge: toolDict.extraLarge || "Extra large",
+            find: toolDict.find || "Find",
+            replace: toolDict.replace || "Replace",
+            findPlaceholder: toolDict.findPlaceholder || "Find text...",
+            replacePlaceholder: toolDict.replacePlaceholder || "Replace with...",
+            replaceAll: toolDict.replaceAll || "Replace all",
+            matchesFound: toolDict.matchesFound || "found",
+            noMatches: toolDict.noMatches || "No matches",
+            download: toolDict.download || "Download",
+            copy: toolDict.copy || "Copy",
+            copied: toolDict.copied || "Copied!",
+            clear: toolDict.clear || "Clear",
+            clearConfirm: toolDict.clearConfirm || "Are you sure you want to clear all text?",
+            fullscreen: toolDict.fullscreen || "Fullscreen",
+            exitFullscreen: toolDict.exitFullscreen || "Exit fullscreen",
+            autoSaved: toolDict.autoSaved || "Auto-saved",
+            newNote: toolDict.newNote || "New note",
+          }}
+        />
+      );
+
+    case "diff-checker":
+      return (
+        <DiffChecker
+          dictionary={{
+            title: toolDict.title || "Diff Checker",
+            subtitle: toolDict.subtitle || "Compare two texts and find differences",
+            originalLabel: toolDict.originalLabel || "Original",
+            modifiedLabel: toolDict.modifiedLabel || "Modified",
+            originalPlaceholder: toolDict.originalPlaceholder || "Paste original text here...",
+            modifiedPlaceholder: toolDict.modifiedPlaceholder || "Paste modified text here...",
+            compare: toolDict.compare || "Compare",
+            clear: toolDict.clear || "Clear",
+            swap: toolDict.swap || "Swap",
+            copy: toolDict.copy || "Copy",
+            copied: toolDict.copied || "Copied!",
+            sideBySide: toolDict.sideBySide || "Side by side",
+            inline: toolDict.inline || "Inline",
+            lineDiff: toolDict.lineDiff || "Lines",
+            wordDiff: toolDict.wordDiff || "Words",
+            charDiff: toolDict.charDiff || "Characters",
+            ignoreWhitespace: toolDict.ignoreWhitespace || "Ignore whitespace",
+            ignoreCase: toolDict.ignoreCase || "Ignore case",
+            additions: toolDict.additions || "additions",
+            deletions: toolDict.deletions || "deletions",
+            unchanged: toolDict.unchanged || "unchanged",
+            noDifferences: toolDict.noDifferences || "Paste text in both fields to compare differences",
+            textsIdentical: toolDict.textsIdentical || "Texts are identical — no differences found",
+            compareLevel: toolDict.compareLevel || "Compare",
+            viewMode: toolDict.viewMode || "View",
+            options: toolDict.options || "Options",
+            diffResult: toolDict.diffResult || "Diff result",
+            lineNumber: toolDict.lineNumber || "Line",
           }}
         />
       );
