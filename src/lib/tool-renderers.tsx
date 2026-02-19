@@ -5,6 +5,7 @@ import { QRGenerator } from "@/components/qr-generator/qr-generator";
 import { NumberGenerator } from "@/components/random-number/number-generator";
 import { NumbersGenerator } from "@/components/random-numbers/numbers-generator";
 import { YesNoGenerator } from "@/components/random-yesno/yesno-generator";
+import { CoinFlipper } from "@/components/coin-flip/coin-flipper";
 import { DiceRoller } from "@/components/dice/dice-roller";
 import { TarotReader } from "@/components/tarot/tarot-reader";
 import { CharacterCounter } from "@/components/text-counter/character-counter";
@@ -149,6 +150,27 @@ export function renderToolComponent(
             generate: toolDict.generate || "Generate",
             result: toolDict.result || "Result",
             tryAgain: toolDict.tryAgain || "Try again",
+          }}
+        />
+      );
+    case "coin-flip":
+      return (
+        <CoinFlipper
+          dictionary={{
+            title: toolDict.title || "Coin Flip",
+            subtitle: toolDict.subtitle || "Virtual coin flip online",
+            flip: toolDict.flip || "Flip coin",
+            flipping: toolDict.flipping || "Flipping...",
+            heads: toolDict.heads || "Heads",
+            tails: toolDict.tails || "Tails",
+            result: toolDict.result || "Result",
+            flipAgain: toolDict.flipAgain || "Flip again",
+            numberOfCoins: toolDict.numberOfCoins || "Number of coins",
+            history: toolDict.history || "Flip history",
+            clearHistory: toolDict.clearHistory || "Clear history",
+            total: toolDict.total || "Total",
+            headsCount: toolDict.headsCount || "Heads",
+            tailsCount: toolDict.tailsCount || "Tails",
           }}
         />
       );

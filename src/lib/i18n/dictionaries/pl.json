@@ -1876,6 +1876,89 @@
         }
       ]
     },
+    "coin-flip": {
+      "name": "Rzut Monetą",
+      "description": "Wirtualny rzut monetą. Orzeł czy reszka online!",
+      "seoTitle": "Rzut Monetą Online - Orzeł czy Reszka | Darmowy Generator",
+      "seoDescription": "Darmowy rzut monetą online. Orzeł czy reszka? Rzuć wirtualną monetą i pozwól losowi zdecydować. Uczciwe losowanie z kryptograficzną losowością. Idealny do gier, zakładów i podejmowania decyzji.",
+      "title": "Rzut Monetą",
+      "subtitle": "Wirtualna moneta - orzeł czy reszka online",
+      "flip": "Rzuć monetą",
+      "flipping": "Rzucam...",
+      "heads": "Orzeł",
+      "tails": "Reszka",
+      "result": "Wynik",
+      "flipAgain": "Rzuć ponownie",
+      "numberOfCoins": "Liczba monet",
+      "history": "Historia rzutów",
+      "clearHistory": "Wyczyść historię",
+      "total": "Łącznie",
+      "headsCount": "Orzeł",
+      "tailsCount": "Reszka",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Rzut Monetą Online - Orzeł czy Reszka",
+          "body": "Nasz darmowy wirtualny rzut monetą to szybki i uczciwy sposób na podjęcie decyzji. Każdy rzut daje dokładnie 50% szans na orła i 50% na reszkę, wykorzystując kryptograficznie bezpieczny generator liczb losowych. Nie potrzebujesz prawdziwej monety — wystarczy jedno kliknięcie!"
+        },
+        {
+          "type": "list",
+          "heading": "Do czego służy wirtualna moneta?",
+          "items": [
+            "**Podejmowanie decyzji** - Nie możesz się zdecydować? Pozwól monecie wybrać!",
+            "**Gry i zabawy** - Kto zaczyna? Kto zmywa? Rzuć monetą!",
+            "**Sport** - Losowanie strony boiska, kolejności serwisu",
+            "**Nauka prawdopodobieństwa** - Sprawdź rozkład wyników przy wielu rzutach",
+            "**Zakłady między znajomymi** - Uczciwe i niepodważalne losowanie",
+            "**Gry planszowe i karciane** - Zastąp brakującą monetę wirtualną"
+          ]
+        },
+        {
+          "type": "grid",
+          "heading": "Funkcje naszego generatora",
+          "items": [
+            {
+              "title": "Animacja rzutu",
+              "body": "Realistyczna animacja obrotu monety zwiększa napięcie przed wynikiem."
+            },
+            {
+              "title": "Wiele monet naraz",
+              "body": "Rzuć od 1 do 10 monet jednocześnie i sprawdź wyniki."
+            },
+            {
+              "title": "Historia i statystyki",
+              "body": "Przeglądaj historię rzutów i śledź ile razy wypadł orzeł, a ile reszka."
+            },
+            {
+              "title": "Kryptograficzna losowość",
+              "body": "Wykorzystujemy crypto.getRandomValues() - ten sam standard co banki i kasyna."
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Często zadawane pytania",
+          "items": [
+            {
+              "q": "Czy wynik rzutu monetą jest naprawdę losowy?",
+              "a": "Tak! Nasz generator wykorzystuje kryptograficznie bezpieczne algorytmy (crypto.getRandomValues). Każdy rzut daje dokładnie 50% szans na orła i 50% na reszkę."
+            },
+            {
+              "q": "Czy mogę rzucić wieloma monetami naraz?",
+              "a": "Tak! Użyj suwaka \"Liczba monet\" aby wybrać od 1 do 10 monet. Wszystkie zostaną rzucone jednocześnie, a zobaczysz wynik każdej z nich."
+            },
+            {
+              "q": "Dlaczego warto używać wirtualnej monety?",
+              "a": "Wirtualna moneta jest zawsze pod ręką, daje idealnie uczciwy wynik 50/50 i pozwala rzucać wieloma monetami naraz. Jest też bardziej higieniczna niż podawanie sobie monety!"
+            },
+            {
+              "q": "Czy historia rzutów jest zapisywana?",
+              "a": "Historia jest przechowywana tylko w bieżącej sesji przeglądarki. Po odświeżeniu strony historia zostanie wyczyszczona. Nie zapisujemy żadnych danych na serwerze."
+            }
+          ]
+        }
+      ]
+    },
     "proportion-calculator": {
       "name": "Kalkulator Proporcji",
       "description": "Oblicz brakującą wartość w proporcji A:B = C:X.",

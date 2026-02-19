@@ -32,6 +32,7 @@ import {
   Zap,
   StickyNote,
   GitCompareArrows,
+  Coins,
   LucideIcon,
 } from "lucide-react";
 
@@ -229,6 +230,13 @@ export const tools: Tool[] = [
     id: "random-yesno",
     slugs: { pl: "losuj-tak-nie", en: "random-yes-no" },
     icon: HelpCircle,
+    isReady: true,
+    category: "randomizers",
+  },
+  {
+    id: "coin-flip",
+    slugs: { pl: "rzut-moneta", en: "coin-flip" },
+    icon: Coins,
     isReady: true,
     category: "randomizers",
   },

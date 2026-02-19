@@ -1876,6 +1876,89 @@
         }
       ]
     },
+    "coin-flip": {
+      "name": "Coin Flip",
+      "description": "Virtual coin flip. Heads or tails online!",
+      "seoTitle": "Coin Flip Online - Heads or Tails | Free Generator",
+      "seoDescription": "Free online coin flip simulator. Heads or tails? Flip a virtual coin and let chance decide. Fair results with cryptographic randomness. Perfect for games, bets and decision making.",
+      "title": "Coin Flip",
+      "subtitle": "Virtual coin - heads or tails online",
+      "flip": "Flip coin",
+      "flipping": "Flipping...",
+      "heads": "Heads",
+      "tails": "Tails",
+      "result": "Result",
+      "flipAgain": "Flip again",
+      "numberOfCoins": "Number of coins",
+      "history": "Flip history",
+      "clearHistory": "Clear history",
+      "total": "Total",
+      "headsCount": "Heads",
+      "tailsCount": "Tails",
+      "seoContent": [
+        {
+          "type": "text",
+          "heading": "Coin Flip Online - Heads or Tails",
+          "body": "Our free virtual coin flip is a quick and fair way to make decisions. Each flip gives exactly a 50% chance for heads and 50% for tails, using a cryptographically secure random number generator. No real coin needed — just one click!"
+        },
+        {
+          "type": "list",
+          "heading": "What is a virtual coin flip for?",
+          "items": [
+            "**Making decisions** - Can't decide? Let the coin choose for you!",
+            "**Games and fun** - Who goes first? Who does the dishes? Flip a coin!",
+            "**Sports** - Picking sides, deciding who serves first",
+            "**Learning probability** - Check the distribution of results over many flips",
+            "**Bets between friends** - Fair and indisputable randomization",
+            "**Board and card games** - Replace a missing coin with a virtual one"
+          ]
+        },
+        {
+          "type": "grid",
+          "heading": "Features of our coin flipper",
+          "items": [
+            {
+              "title": "Flip animation",
+              "body": "Realistic coin spin animation builds tension before the result."
+            },
+            {
+              "title": "Multiple coins at once",
+              "body": "Flip 1 to 10 coins at the same time and check the results."
+            },
+            {
+              "title": "History and statistics",
+              "body": "Browse flip history and track how many times heads vs tails appeared."
+            },
+            {
+              "title": "Cryptographic randomness",
+              "body": "We use crypto.getRandomValues() — the same standard used by banks and casinos."
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently asked questions",
+          "items": [
+            {
+              "q": "Is the coin flip result truly random?",
+              "a": "Yes! Our generator uses cryptographically secure algorithms (crypto.getRandomValues). Each flip gives exactly a 50% chance for heads and 50% for tails."
+            },
+            {
+              "q": "Can I flip multiple coins at once?",
+              "a": "Yes! Use the \"Number of coins\" slider to choose from 1 to 10 coins. All coins are flipped simultaneously and you can see the result for each one."
+            },
+            {
+              "q": "Why use a virtual coin?",
+              "a": "A virtual coin is always at hand, gives a perfectly fair 50/50 result, and lets you flip multiple coins at once. It's also more hygienic than passing a coin around!"
+            },
+            {
+              "q": "Is the flip history saved?",
+              "a": "The history is stored only in the current browser session. Refreshing the page will clear the history. We do not save any data on our servers."
+            }
+          ]
+        }
+      ]
+    },
     "proportion-calculator": {
       "name": "Proportion Calculator",
       "description": "Calculate the missing value in a proportion A:B = C:X.",
